@@ -8,8 +8,27 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 {
-    public class AppDbContext
+    public class AppDbContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Server =baroportaldb.caaggpsonajp.ap-northeast-1.rds.amazonaws.com;Port=5432;Database = baroportaldb; User Id=postgres; Password =12345678");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<User>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>().Property(x => x.Email).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.FirstName).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.LastName).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.IdentityNumber).HasMaxLength(11).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.CreateDate).IsRequired().HasDefaultValueSql("NOW()");
+            modelBuilder.Entity<User>().Property(x => x.PasswordHash).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.PasswordSalt).IsRequired();
+        }
 
     }
 }
