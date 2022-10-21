@@ -97,13 +97,13 @@ namespace BaroPortal.Business.Concrete
 
             SmtpClient client = new SmtpClient("smtp.yandex.com.tr", 587);
             MailMessage message = new MailMessage();
-            message.From = new MailAddress("karartek@yandex.com");
+            message.From = new MailAddress("baroportal@yandex.com");
             message.To.Add(userForRegister.Email);
-            message.Subject = "Merhaba " + userForRegister.FirstName;
-            message.Body = "Karartek uygulama şifreniz: " + RandomPassword;
+            message.Subject = "Selam" + userForRegister.FirstName;
+            message.Body = "Yeni şifreniz: " + RandomPassword;
             client.UseDefaultCredentials = false;
             client.EnableSsl = true; // Encryption
-            client.Credentials = new System.Net.NetworkCredential("karartek@yandex.com", "plbobupzzvaxxgpw");
+            client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");
 
             client.Send(message);
             if (result != null)

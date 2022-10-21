@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserService, UserService>();
-//builder.Services.AddSingleton<IUserDal, EfUserDal>();
+builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
 var app = builder.Build();
 

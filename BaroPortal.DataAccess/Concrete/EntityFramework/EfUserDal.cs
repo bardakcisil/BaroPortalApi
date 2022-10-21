@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal {
+    public class EfUserDal:IUserDal {
         public User GetUserByIdentity(string identityNumber)
         {
             using var context = new AppDbContext();
