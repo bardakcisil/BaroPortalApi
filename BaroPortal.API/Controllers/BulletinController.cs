@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BaroPortal.Business.Abstract;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaroPortal.API.Controllers
@@ -7,5 +8,6 @@ namespace BaroPortal.API.Controllers
     [ApiController]
     public class BulletinController : ControllerBase
     {
+        private IBulletinService _bulletinService;
     }
 }
