@@ -43,7 +43,7 @@ namespace BaroPortal.Business.Concrete
 
         public List<Bulletin> ShowBulletin()
         {
-            var bulletin = _bulletinDal.GetBulletinDetail(Bulletin bulletin);
+            var bulletin = _bulletinDal.GetBulletinDetail();
 
         }
     }

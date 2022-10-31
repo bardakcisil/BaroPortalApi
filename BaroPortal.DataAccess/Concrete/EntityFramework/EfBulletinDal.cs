@@ -13,10 +13,10 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
     {
 
 
-        public Bulletin GetBulletinDetail(Bulletin bulletin)
+        public Bulletin GetBulletinDetail()
         {
             using var context = new AppDbContext();
-            var bulletinTitle = context.Bulletins.SingleOrDefault(x => x.Title == Title);
+            var bulletin = context.Bulletins.SingleOrDefault();
             return bulletin;
 
         }
