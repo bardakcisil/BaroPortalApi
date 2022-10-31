@@ -29,13 +29,11 @@ namespace BaroPortal.Business.Concrete
                 Title = addBulletin.Title,
                 Detail = addBulletin.Detail,
             };
+
             var result = _bulletinDal.Insert(bulletin);
-            if(result != null)
-            {
-                return true;    
-            }
-            return false;
-            
+
+            if (result) return true;
+            else return false;
             
         }
 

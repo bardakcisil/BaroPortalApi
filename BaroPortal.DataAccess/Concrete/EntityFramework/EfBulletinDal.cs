@@ -19,12 +19,13 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 
         }
 
-        public Bulletin Insert(Bulletin bulletin)
+
+        bool IBulletinDal.Insert(Bulletin bulletin)
         {
             using var context = new AppDbContext();
             context.Bulletins.Add(bulletin);
             context.SaveChanges();
-            return bulletin;
+            return true;
         }
     }
 }
