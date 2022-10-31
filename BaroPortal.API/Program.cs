@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
 builder.Services.AddSingleton<IBulletinDal, EfBulletinDal>();
+builder.Services.AddSingleton<IBulletinService, BulletinService>();
 
 var app = builder.Build();
 

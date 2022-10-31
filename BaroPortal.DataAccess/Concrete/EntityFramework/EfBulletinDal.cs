@@ -11,21 +11,22 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
     public class EfBulletinDal : IBulletinDal
     {
+
+
         public Bulletin GetBulletinDetail(Bulletin bulletin)
         {
             using var context = new AppDbContext();
-            var bulletinTitle = context.Bulletins.SingleOrDefault();
+            var bulletinTitle = context.Bulletins.SingleOrDefault(x => x.Title == Title);
             return bulletin;
 
         }
 
-
-        bool IBulletinDal.Insert(Bulletin bulletin)
+        public Bulletin Insert(Bulletin bulletin)
         {
             using var context = new AppDbContext();
             context.Bulletins.Add(bulletin);
             context.SaveChanges();
-            return true;
+            return bulletin;
         }
     }
 }

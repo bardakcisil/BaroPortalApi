@@ -17,15 +17,16 @@ namespace BaroPortal.API.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(AddBulletin bulletin)
+        public ActionResult AddBulletin(AddBulletinDto bulletin)
         {
             var result = _bulletinService.AddBulletin(bulletin);
-            if (result != null)
+            if (result)
             {
                 return Ok(result);
             }
+            else { return BadRequest("Bulletin did not added"); }
 
-            return BadRequest("Bulletin did not added");
+            
 
         }
     }

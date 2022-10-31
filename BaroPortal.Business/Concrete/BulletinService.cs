@@ -22,24 +22,29 @@ namespace BaroPortal.Business.Concrete
             _configuration = configuration; 
         }
 
-        public bool AddBulletin(AddBulletin addBulletin)
+
+        public bool AddBulletin(AddBulletinDto addBulletin)
         {
-            var bulletin = new Bulletin()
+            var bulletin = _bulletinDal;
+                if(bulletin is null) { return false; } else { 
+            var _bulletin = new Bulletin()
             {
                 Title = addBulletin.Title,
                 Detail = addBulletin.Detail,
             };
-
-            var result = _bulletinDal.Insert(bulletin);
-
-            if (result) return true;
-            else return false;
             
+
+            var result = _bulletinDal.Insert(_bulletin);
+                return true;
+            }
+
+
         }
 
         public List<Bulletin> ShowBulletin()
         {
-            throw new NotImplementedException();
+            var bulletin = _bulletinDal.GetBulletinDetail(Bulletin bulletin);
+
         }
     }
 }

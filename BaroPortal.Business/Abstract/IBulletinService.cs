@@ -10,7 +10,7 @@ namespace BaroPortal.Business.Abstract
 {
     public interface IBulletinService
     {
-        bool AddBulletin(AddBulletin addBulletin);
+        bool AddBulletin(AddBulletinDto addBulletin);
         List<Bulletin> ShowBulletin();
 
     }
