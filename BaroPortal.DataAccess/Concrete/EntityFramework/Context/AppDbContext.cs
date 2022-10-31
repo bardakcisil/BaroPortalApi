@@ -11,6 +11,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
     public class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Bulletin> Bulletins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +29,18 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<User>().Property(x => x.CreateDate).IsRequired().HasDefaultValueSql("NOW()");
             modelBuilder.Entity<User>().Property(x => x.PasswordHash).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.PasswordSalt).IsRequired();
+
+            modelBuilder.Entity<Bulletin>().ToTable("Bulletins");
+            modelBuilder.Entity<Bulletin>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Bulletin>().Property(x => x.Title).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Bulletin>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.CreateDate).IsRequired().HasDefaultValueSql("NOW()");
+            modelBuilder.Entity<User>().Property(x => x.CreateDate).IsRequired().HasDefaultValueSql("NOW()");
         }
+
+
+
+
 
     }
 }

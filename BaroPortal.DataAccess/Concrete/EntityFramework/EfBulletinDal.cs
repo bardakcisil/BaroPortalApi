@@ -13,7 +13,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
     {
         public Bulletin GetBulletinDetail(Bulletin bulletin)
         {
-            using var context = new AppBulletinContext();
+            using var context = new AppDbContext();
             var bulletinTitle = context.Bulletins.SingleOrDefault();
             return bulletin;
 
@@ -21,7 +21,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 
         public Bulletin Insert(Bulletin bulletin)
         {
-            using var context = new AppBulletinContext();
+            using var context = new AppDbContext();
             context.Bulletins.Add(bulletin);
             context.SaveChanges();
             return bulletin;
