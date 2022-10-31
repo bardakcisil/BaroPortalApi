@@ -9,7 +9,7 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface IBulletinDal
     {
-        Bulletin GetBulletinDetail();
+        List<Bulletin> GetBulletinDetail();
        Bulletin Insert(Bulletin bulletin);
     }
 }

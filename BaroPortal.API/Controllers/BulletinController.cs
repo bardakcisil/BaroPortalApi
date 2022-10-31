@@ -14,7 +14,17 @@ namespace BaroPortal.API.Controllers
         {
             _bulletinService = bulletinService;
         }
-
+        [HttpGet("getall")]
+        public ActionResult ShowBulletin()
+        {
+ 
+            var result = _bulletinService.ShowBulletin();
+            if (result is not null)
+            {
+                return Ok(result); 
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("add")]
         public ActionResult AddBulletin(AddBulletinDto bulletin)
@@ -26,7 +36,6 @@ namespace BaroPortal.API.Controllers
             }
             else { return BadRequest("Bulletin did not added"); }
 
-            
 
         }
     }
