@@ -31,9 +31,6 @@ namespace BaroPortal.Business.Concrete
         }
 
 
-
-
-
         public string Login(UserForLogin userforlogin)
         {
             var user = _userDal.GetUserByIdentity(userforlogin.IdentityNumber);
@@ -71,11 +68,11 @@ namespace BaroPortal.Business.Concrete
             else
 
             {
-                RandomPassword = GeneratePassword();
-                Console.WriteLine(RandomPassword);
+                //RandomPassword = GeneratePassword();
+                //Console.WriteLine(RandomPassword);
 
 
-                CreatePasswordHash(RandomPassword, out byte[] passwordHash, out byte[] passwordSalt);
+                CreatePasswordHash(userForRegister.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 string dataToSave = Convert.ToBase64String(passwordHash);
                 Console.WriteLine(dataToSave);
 
@@ -92,64 +89,60 @@ namespace BaroPortal.Business.Concrete
                 };
 
             }
-
             var result = _userDal.Insert(user);
-
-            SmtpClient client = new SmtpClient("smtp.yandex.com.tr", 587);
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress("baroportal@yandex.com");
-            message.To.Add(userForRegister.Email);
-            message.Subject = "Selam" + userForRegister.FirstName;
-            message.Body = "Yeni şifreniz: " + RandomPassword;
-            client.UseDefaultCredentials = false;
-            client.EnableSsl = true; // Encryption
-            client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");
-
-            client.Send(message);
-            if (result != null)
-            {
-                return true;
-
-            }
-            return false;
+            return true;
         }
 
+        //    SmtpClient client = new SmtpClient("smtp.yandex.com.tr", 587);
+        //    MailMessage message = new MailMessage();
+        //    message.From = new MailAddress("baroportal@yandex.com");
+        //    message.To.Add(userForRegister.Email);
+        //    message.Subject = "Selam" + userForRegister.FirstName;
+        //    message.Body = "Yeni şifreniz: " + RandomPassword;
+        //    client.UseDefaultCredentials = false;
+        //    client.EnableSsl = true; // Encryption
+        //    client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");
 
-        public string GeneratePassword()
-        {
-            string PasswordLength = "8";
-            string NewPassword = "";
+        //    client.Send(message);
+        //    if (result != null)
+        //    {
+        //        return true;
 
-            string allowedChars = "";
-            allowedChars = "1,2,3,4,5,6,7,8,9,0";
-            allowedChars += "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";//özelkarakter
-            allowedChars += "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
-
-
-            char[] sep = {
-            ','
-        };
-            string[] arr = allowedChars.Split(sep);
-
-
-            string IDString = "";
-            string temp = "";
-
-            Random rand = new Random();
-
-            for (int i = 0; i < Convert.ToInt32(PasswordLength); i++)
-            {
-                temp = arr[rand.Next(0, arr.Length)];
-                IDString += temp;
-                NewPassword = IDString;
-
-            }
-            return NewPassword;
-        }
+        //    }
+        //    return false;
+        //}
 
 
+        //public string GeneratePassword()
+        //{
+        //    string PasswordLength = "8";
+        //    string NewPassword = "";
+
+        //    string allowedChars = "";
+        //    allowedChars = "1,2,3,4,5,6,7,8,9,0";
+        //    allowedChars += "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";//özelkarakter
+        //    allowedChars += "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
 
 
+        //    char[] sep = {
+        //    ','
+        //};
+        //    string[] arr = allowedChars.Split(sep);
+
+
+        //    string IDString = "";
+        //    string temp = "";
+
+        //    Random rand = new Random();
+
+        //    for (int i = 0; i < Convert.ToInt32(PasswordLength); i++)
+        //    {
+        //        temp = arr[rand.Next(0, arr.Length)];
+        //        IDString += temp;
+        //        NewPassword = IDString;
+
+        //    }
+        
 
 
         // Hashing functions 
