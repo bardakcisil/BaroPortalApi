@@ -9,7 +9,7 @@ namespace BaroPortal.Business.Abstract
 {
     public interface IUserService
     {
-        string Login(UserForLogin userForLogin);
+        ResponseDto Login(UserForLogin userForLogin);
         bool Register(UserForRegister userForRegister);
     }
 }

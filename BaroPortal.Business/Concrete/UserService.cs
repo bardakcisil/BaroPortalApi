@@ -31,25 +31,33 @@ namespace BaroPortal.Business.Concrete
         }
 
 
-        public string Login(UserForLogin userforlogin)
+        public ResponseDto Login(UserForLogin userforlogin)
         {
+            ResponseDto response = new ResponseDto();
             var user = _userDal.GetUserByIdentity(userforlogin.IdentityNumber);
 
             if (user is null)
             {
-                return ("User Not found");
+               response.HasError = true;
+               response.Message = "Wrong";
+                return response;
+
             }
 
             else if (!VerifyPasswordHash(userforlogin.Password, user.PasswordHash, user.PasswordSalt))
             {
-                return ("Wrong Password!");
+                response.HasError = true;
+                response.Message = "User Not Found";
+                return response;
             }
             else
             {
 
                 //We create Token here
-                string token = CreateToken(user);
-                return token;
+                response.Token = CreateToken(user);
+                response.HasError = false;
+                response.Message = "User Found";
+                return response;
             }
 
 
