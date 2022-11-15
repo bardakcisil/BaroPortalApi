@@ -88,6 +88,8 @@ namespace BaroPortal.Business.Concrete
                     PasswordSalt = passwordSalt
                 };
 
+                user.CreateDate = DateTime.Now; 
+
             }
             var result = _userDal.Insert(user);
             return true;
