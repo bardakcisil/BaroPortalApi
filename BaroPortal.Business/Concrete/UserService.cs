@@ -108,7 +108,7 @@ namespace BaroPortal.Business.Concrete
         //    message.From = new MailAddress("baroportal@yandex.com");
         //    message.To.Add(userForRegister.Email);
         //    message.Subject = "Selam" + userForRegister.FirstName;
-        //    message.Body = "Yeni şifreniz: " + RandomPassword;
+        //    message.Body = "Yeni şifreniz: " + 
         //    client.UseDefaultCredentials = false;
         //    client.EnableSsl = true; // Encryption
         //    client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");

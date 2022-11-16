@@ -28,6 +28,8 @@ namespace BaroPortal.API.Controllers
 
             return BadRequest("Registeration Failed");
         }
+
+
         [HttpPost("login")]
         public ActionResult Login(UserForLogin userForLogin)
         {

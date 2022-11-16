@@ -16,6 +16,8 @@ builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
 builder.Services.AddSingleton<IBulletinDal, EfBulletinDal>();
 builder.Services.AddSingleton<IBulletinService, BulletinService>();
+builder.Services.AddSingleton<IAdvertDal, EfAdvertDal>();
+builder.Services.AddSingleton<IAdvertService, AdvertService>();
 
 var app = builder.Build();
 
