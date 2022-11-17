@@ -16,7 +16,7 @@ namespace BaroPortal.Business.Concrete
     {
         private readonly IAdvertDal _advertDal;
         private readonly IConfiguration _configuration;
-        public string AdvertNumber;
+        public int AdvertNumber;
         
 
         public AdvertService(IAdvertDal advertDal, IConfiguration configuration)
@@ -33,42 +33,88 @@ namespace BaroPortal.Business.Concrete
             {
                 return false;
             }
-
             else
-
             {
-               
-               var _advert = new Advert()
+                AdvertNumber = GenerateAdNumber();
+                Console.WriteLine(AdvertNumber);
+
+                var _advert = new Advert()
                 {
                     Title = addAdvert.Title,
-                    AdvertId = addAdvert.AdvertId,
+                    AdvertId =  AdvertNumber,
                     AdvertiserName = addAdvert.AdvertiserName,
                     AdvertiserSname = addAdvert.AdvertiserSname,
-                   AdvertTypeName = addAdvert.AdvertTypeName,
-                   ConscriptionStatus = addAdvert.Conscription,
-               
+                    AdvertTypeName = addAdvert.AdvertTypeName,
+                    ConscriptionStatus = addAdvert.Conscription,
                     AdvertiserEmail = addAdvert.AdvertiserEmail,
                     AdvertiserLwork = addAdvert.AdvertiserLwork,
                     AdvertiserPhone = addAdvert.AdvertiserPhone,
                     Detail = addAdvert.Detail,
                 };
                 var result = _advertDal.Insert(_advert);
-                return true;
+               
+
+
+            SmtpClient client = new SmtpClient("smtp.yandex.com.tr", 587);
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("baroportal@yandex.com");
+            message.To.Add(addAdvert.AdvertiserEmail);
+            message.Subject = "Sayın " + addAdvert.AdvertiserName + " " + addAdvert.AdvertiserSname;
+            message.Body = "ilanın ilan numarası: " + AdvertNumber + ", İlanınızı bu numara ile kaldırabilirsiniz ";
+            client.UseDefaultCredentials = false;
+            client.EnableSsl = true; // Encryption
+            client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");
+
+            client.Send(message);
+
+                if (result != null)
+                {
+                    return true;
+                }
+                else
+                    return false;
+
             }
-
-
-
-
-            
-
         }
 
+
+        public int GenerateAdNumber()
+        {
+            string IdLength = "4";
+            string AdNumber ="";
+            int AdvertismentNum;
+
+            string allowedChars = "";
+            allowedChars = "1,2,3,4,5,6,7,8,9,0";
+        
+
+            char[] sep = {
+                ','
+            };
+            string[] arr = allowedChars.Split(sep);
+
+
+            string IDString = "";
+            string temp = "";
+
+            Random rand = new Random();
+
+            for (int i = 0; i < Convert.ToInt32(IdLength); i++)
+            {
+                temp = arr[rand.Next(0, arr.Length)];
+                IDString += temp;
+                AdNumber = IDString;
+
+            }
+           AdvertismentNum = Convert.ToInt32(AdNumber);
+            return AdvertismentNum; 
+
+        }
         public List<Advert> GetAll()
         {
             var advert = _advertDal.GetAll();
             return advert;
         }
-
      
     }
 

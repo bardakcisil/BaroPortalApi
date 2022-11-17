@@ -8,8 +8,6 @@ namespace BaroPortal.Entities.Dto
 {
     public class AddAdvertDto
     {
-        public int AdvertId { get; set; }
-
         public string AdvertTypeName { get; set; } = null;
         public string Title { get; set; } = null!;
 
