@@ -13,6 +13,8 @@ namespace BaroPortal.Business.Abstract
         List<Advert> GetAll();
         
         bool AddAdvert(AddAdvertDto addAdvert);
+        //Task<List<Advert>?> DeleteAd(int id);
+        bool DeleteAd(int id);
 
     }
 }

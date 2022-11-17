@@ -67,20 +67,20 @@ namespace BaroPortal.Business.Concrete
 
             client.Send(message);
 
-                if (result != null)
+                 if (result != null)
                 {
                     return true;
                 }
                 else
-                    return false;
-
+                    return false; 
+                
             }
         }
 
 
         public int GenerateAdNumber()
         {
-            string IdLength = "4";
+            string IdLength = "5";
             string AdNumber ="";
             int AdvertismentNum;
 
@@ -115,7 +115,32 @@ namespace BaroPortal.Business.Concrete
             var advert = _advertDal.GetAll();
             return advert;
         }
-     
+
+      
+
+        public bool DeleteAd(int id)
+        {
+            
+            var result = _advertDal.Get(p => p.AdvertId == id);
+            _advertDal.Delete(result);
+            return true;
+        }
+
+        //public async Task<List<Advert>?> DeleteAd(int id)
+        //{
+        //    var ad =  new  Advert();
+
+        //     await ad.FindAsync(id);
+        //    if (ad is null)
+        //        return null;
+
+        //    _advertDal.Advert.Remove(ad);
+        //    await _advertDalt.SaveChangesAsync();
+
+        //    return await _context.SuperHeroes.ToListAsync();
+        //}
+
+
     }
 
 }

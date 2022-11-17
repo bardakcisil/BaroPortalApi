@@ -39,5 +39,22 @@ namespace BaroPortal.API.Controllers
 
 
         }
+
+        [HttpGet("Delete Ad/{{id}}")]
+        public bool DeleteDecree(int id)
+        {
+            _advertService.DeleteAd(id);
+            return true;
+        }
+        //    [HttpDelete("{id}")]
+        //public async Task<ActionResult<List<Advert>>> DeleteHero(int id)
+        //{
+        //    var result = await _superHeroService.DeleteHero(id);
+        //    if (result is null)
+        //        return NotFound("Hero not found.");
+
+        //    return Ok(result);
+        //}
+
     }
 }
