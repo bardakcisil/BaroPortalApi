@@ -16,7 +16,8 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BaroPortal;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;"); //Hussain
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// isil
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

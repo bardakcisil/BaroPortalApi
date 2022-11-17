@@ -14,12 +14,12 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
     {
   
 
-        public Advert GetAllByCategory(string advertTypeName)
-        {
-            using var context = new AppDbContext();
-            var advert = context.Adverts.SingleOrDefault(x => x.AdvertTypeName == advertTypeName);
-            return advert;
-        }
+        //public Advert GetAllByCategory(string advertTypeName)
+        //{
+        //    using var context = new AppDbContext();
+        //    var advert = context.Adverts.SingleOrDefault(x => x.AdvertTypeName == advertTypeName);
+        //    return advert;
+        //}
 
         public Advert Insert(Advert advert)
         {
@@ -36,11 +36,11 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             return advert;
         }
 
-        public Advert GetAllByConscriptionStatus(string conscription)
-        {
-            using var context = new AppDbContext();
-            var advert = context.Adverts.SingleOrDefault(x =>x.ConscriptionStatus== conscription);
-            return advert;
-        }
+        //public Advert GetAllByConscriptionStatus(string conscription)
+        //{
+        //    using var context = new AppDbContext();
+        //    var advert = context.Adverts.SingleOrDefault(x =>x.ConscriptionStatus== conscription);
+        //    return advert;
+        //}
     }
 }

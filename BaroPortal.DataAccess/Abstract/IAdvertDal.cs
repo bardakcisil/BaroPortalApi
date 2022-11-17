@@ -11,8 +11,8 @@ namespace BaroPortal.DataAccess.Abstract
     public interface IAdvertDal
     {
         List<Advert> GetAll();
-        Advert GetAllByCategory(string categoryName);
-        Advert GetAllByConscriptionStatus(string conscription);
+        //Advert GetAllByCategory(string categoryName);
+        //Advert GetAllByConscriptionStatus(string conscription);
         Advert Insert(Advert advert);
     }
 }

@@ -27,9 +27,9 @@ namespace BaroPortal.Business.Concrete
 
         public bool AddAdvert(AddAdvertDto addAdvert)
         {
-            var advert = _advertDal.GetAllByCategory(addAdvert.CategoryName);
+            var advert = _advertDal;
 
-            if (advert is not null)
+            if (advert is null)
             {
                 return false;
             }
@@ -37,33 +37,29 @@ namespace BaroPortal.Business.Concrete
             else
 
             {
-                //AdvertNumber = GeneratePassword();
-                //string dataToSave = AdvertNumber;
-                Console.WriteLine(AdvertNumber);
-
-
-
-                advert = new Advert()
+               
+               var _advert = new Advert()
                 {
-                    Title = advert.Title,
-                    AdvertId = advert.AdvertId,
-                    AdvertiserName = advert.AdvertiserName,
-                    AdvertiserSname = advert.AdvertiserSname,
-                    AdvertiserEmail = advert.AdvertiserEmail,
-                    AdvertiserLwork = advert.AdvertiserLwork,
-                    AdvertiserPhone = advert.AdvertiserPhone,
-                    Detail = advert.Detail,
+                    Title = addAdvert.Title,
+                    AdvertId = addAdvert.AdvertId,
+                    AdvertiserName = addAdvert.AdvertiserName,
+                    AdvertiserSname = addAdvert.AdvertiserSname,
+                   AdvertTypeName = addAdvert.AdvertTypeName,
+                   ConscriptionStatus = addAdvert.Conscription,
+               
+                    AdvertiserEmail = addAdvert.AdvertiserEmail,
+                    AdvertiserLwork = addAdvert.AdvertiserLwork,
+                    AdvertiserPhone = addAdvert.AdvertiserPhone,
+                    Detail = addAdvert.Detail,
                 };
-
-                advert.CreateDate = DateTime.Now;
-
+                var result = _advertDal.Insert(_advert);
+                return true;
             }
 
 
 
 
-            var result = _advertDal.Insert(advert);
-            return true;
+            
 
         }
 
@@ -73,6 +69,7 @@ namespace BaroPortal.Business.Concrete
             return advert;
         }
 
+     
     }
 
 }

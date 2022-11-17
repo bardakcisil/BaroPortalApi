@@ -10,7 +10,7 @@ namespace BaroPortal.Entities.Dto
     {
         public int AdvertId { get; set; }
 
-        public string CategoryName { get; set; } = null;
+        public string AdvertTypeName { get; set; } = null;
         public string Title { get; set; } = null!;
 
         public string AdvertiserName { get; set; } = null!;
