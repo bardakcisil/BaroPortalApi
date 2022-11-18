@@ -11,5 +11,6 @@ namespace BaroPortal.DataAccess.Abstract
     {
         User GetUserByIdentity(string identity);
         User Insert(User user);
+        User userForForgotPassword(string identityNumber, byte[] passwordHash, byte[] passwordSalt);
     }
 }

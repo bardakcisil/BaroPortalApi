@@ -42,5 +42,47 @@ namespace BaroPortal.API.Controllers
             return Ok(userToLogin);
         }
 
+
+        //[HttpPost("Forgot Password")]
+        //public bool NewPassword(ForgotPassword forgotPassword)
+        //{
+        // var userToGetPass =  _userService.NewPassword(forgotPassword);
+
+        //    if (userToGetPass == null)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+
+        //}
+
+        [HttpPost("forgotMyPassword")]
+        public ActionResult ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto)
+        {
+            var userToLogin = _userService.ForgotMyPassword(forgotMyPasswordDto);
+            if (userToLogin == null)
+            {
+                return BadRequest("Login Failed");
+            }
+
+            return Ok(userToLogin);
+        }
+
+
+
     }
+    //} [HttpPost("Forgot Password")]
+    //public ActionResult NewPassword(ForgotPassword forgotPassword)
+    //{
+    //    var newpass = _userService.NewPassword(forgotPassword); 
+    //    if (newpass== null)
+    //    {
+    //        return BadRequest("User not found");
+    //    }
+
+    //    return Ok(forgotPassword);
+    //}
 }

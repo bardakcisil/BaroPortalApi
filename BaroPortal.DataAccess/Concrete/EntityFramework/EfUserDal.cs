@@ -24,7 +24,25 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             context.SaveChanges();
             return user;
         }
+        public User userForForgotPassword(string identityNumber, byte[] passwordHash, byte[] passwordSalt)
+        {
+
+            using var context = new AppDbContext();
+            var user = GetUserByIdentity(identityNumber);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;  //here password Hash was written :)
+
+            context.Update(user);
+            context.SaveChanges();
+
+            return user;
+
+
+
+        }
     }
-    
+
+   
+
 
 }

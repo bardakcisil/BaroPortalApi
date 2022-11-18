@@ -11,5 +11,7 @@ namespace BaroPortal.Business.Abstract
     {
         ResponseDto Login(UserForLogin userForLogin);
         bool Register(UserForRegister userForRegister);
+
+        ResponseDto ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto);
     }
 }
