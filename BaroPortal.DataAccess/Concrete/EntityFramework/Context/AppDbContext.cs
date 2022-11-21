@@ -12,12 +12,13 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
     {
         public DbSet<User>? Users { get; set; }
         public DbSet<Bulletin>? Bulletins { get; set; }
+        public DbSet<Events>? Events { get; set; }
         public DbSet<Advert>? Adverts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;"); //Hussain
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// isil
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,7 +35,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<Advert>().ToTable("Adverts");
             modelBuilder.Entity<Advert>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-             modelBuilder.Entity<Advert>().Property(x => x.AdvertId).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<Advert>().Property(x => x.AdvertId).HasMaxLength(10000).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.Title).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.AdvertTypeName).HasMaxLength(100).IsRequired();
@@ -44,7 +45,17 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Advert>().Property(x => x.ConscriptionStatus).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.AdvertiserPhone).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.AdvertiserEmail).HasMaxLength(100).IsRequired();
-           
+
+            modelBuilder.Entity<Events>().ToTable("Events");
+            modelBuilder.Entity<Events>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Events>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Events>().Property(x => x.Title).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Events>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<Events>().Property(x => x.image).IsRequired();
+
+
+
+
 
         }
 
