@@ -21,6 +21,9 @@ builder.Services.AddSingleton<IAdvertService, AdvertService>();
 builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
 builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
 
+builder.Services.AddSingleton<IEvenstDal, EfEventsDal>();
+builder.Services.AddSingleton<IEventsService, EventService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
