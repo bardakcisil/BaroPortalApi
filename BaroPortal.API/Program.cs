@@ -18,6 +18,8 @@ builder.Services.AddSingleton<IBulletinDal, EfBulletinDal>();
 builder.Services.AddSingleton<IBulletinService, BulletinService>();
 builder.Services.AddSingleton<IAdvertDal, EfAdvertDal>();
 builder.Services.AddSingleton<IAdvertService, AdvertService>();
+builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
+builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
 
 var app = builder.Build();
 

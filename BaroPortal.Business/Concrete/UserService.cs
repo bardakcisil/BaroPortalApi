@@ -22,7 +22,9 @@ namespace BaroPortal.Business.Concrete
 
         private readonly IUserDal _userDal;
         private readonly IConfiguration _configuration;
-        private string RandomPassword;
+      
+
+
 
         public UserService(IUserDal userDal, IConfiguration configuration)
         {

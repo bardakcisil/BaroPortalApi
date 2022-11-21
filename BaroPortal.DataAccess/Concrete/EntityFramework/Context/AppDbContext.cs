@@ -13,11 +13,12 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<User>? Users { get; set; }
         public DbSet<Bulletin>? Bulletins { get; set; }
         public DbSet<Advert>? Adverts { get; set; }
+        public DbSet<Announcement>? Announcements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;"); //Hussain
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// isil
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=BaroPortal;Trusted_Connection=True;");// isil
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,7 +45,14 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Advert>().Property(x => x.ConscriptionStatus).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.AdvertiserPhone).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Advert>().Property(x => x.AdvertiserEmail).HasMaxLength(100).IsRequired();
-           
+
+            modelBuilder.Entity<Announcement>().ToTable("Announcements");
+            modelBuilder.Entity<Announcement>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Announcement>().Property(x => x.ImageData).HasColumnType("image"); 
+            modelBuilder.Entity<Announcement>().Property(x => x.Title).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Announcement>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
+    
+
 
         }
 
