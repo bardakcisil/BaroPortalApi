@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.DataAccess.Abstract
 {
-    public interface IBulletinDal
+    public interface IAnnouncementDal
     {
-        List<Bulletin> GetBulletinDetail();
-       Bulletin Insert(Bulletin bulletin);
+        List<Announcement> GetDetail();
+        Announcement Insert(Announcement announcement);
     }
 }

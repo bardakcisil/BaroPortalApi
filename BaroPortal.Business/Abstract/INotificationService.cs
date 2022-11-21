@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Business.Abstract
 {
-    public interface IBulletinService
+    public interface INotificationService
     {
-        bool AddBulletin(AddBulletinDto addBulletin);
-        List<Bulletin> ShowBulletin();
+        bool Add(AddNotificationDto addBulletin);
+        List<Notification> ShowList();
 
     }
 }
