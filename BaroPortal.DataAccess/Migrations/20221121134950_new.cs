@@ -49,18 +49,18 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bulletins",
+                name: "Notifications",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Detail = table.Column<string>(type: "nvarchar(max)", maxLength: 10000000, nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bulletins", x => x.Id);
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,7 +94,7 @@ namespace BaroPortal.DataAccess.Migrations
                 name: "Announcements");
 
             migrationBuilder.DropTable(
-                name: "Bulletins");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Users");

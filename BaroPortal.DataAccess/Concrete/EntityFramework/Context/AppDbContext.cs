@@ -11,7 +11,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
     public class AppDbContext : DbContext
     {
         public DbSet<User>? Users { get; set; }
-        public DbSet<Bulletin>? Bulletins { get; set; }
+        public DbSet<Notification>? Notifications { get; set; }
         public DbSet<Advert>? Adverts { get; set; }
         public DbSet<Announcement>? Announcements { get; set; }
 
@@ -51,7 +51,12 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Announcement>().Property(x => x.ImageData).HasColumnType("image"); 
             modelBuilder.Entity<Announcement>().Property(x => x.Title).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Announcement>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
-    
+
+            modelBuilder.Entity<Notification>().ToTable("Notifications");
+            modelBuilder.Entity<Notification>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Notification>().Property(x => x.Title).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Notification>().Property(x => x.Detail).HasMaxLength(10000000).IsRequired();
+
 
 
         }

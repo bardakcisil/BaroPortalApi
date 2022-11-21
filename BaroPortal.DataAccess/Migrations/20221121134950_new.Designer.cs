@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221121115045_new")]
+    [Migration("20221121134950_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,11 +122,12 @@ namespace BaroPortal.DataAccess.Migrations
                     b.ToTable("Announcements", (string)null);
                 });
 
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Bulletin", b =>
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -135,15 +136,17 @@ namespace BaroPortal.DataAccess.Migrations
 
                     b.Property<string>("Detail")
                         .IsRequired()
+                        .HasMaxLength(10000000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bulletins");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.User", b =>

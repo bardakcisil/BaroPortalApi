@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto
 {
-    public class AddBulletinDto
+    public class AddNotificationDto
     {
         public string Title { get; set; } = null!;
         public string Detail { get; set; } = null!;

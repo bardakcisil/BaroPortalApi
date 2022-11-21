@@ -120,11 +120,12 @@ namespace BaroPortal.DataAccess.Migrations
                     b.ToTable("Announcements", (string)null);
                 });
 
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Bulletin", b =>
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -133,15 +134,17 @@ namespace BaroPortal.DataAccess.Migrations
 
                     b.Property<string>("Detail")
                         .IsRequired()
+                        .HasMaxLength(10000000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bulletins");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.User", b =>

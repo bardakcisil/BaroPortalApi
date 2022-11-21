@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Concrete
 {
-    public class Bulletin : BaseEntity
+    public class Notification : BaseEntity
     {
             
         public string Title { get; set; } = null!;

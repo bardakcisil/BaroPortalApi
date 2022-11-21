@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
-    public class EfBulletinDal : IBulletinDal
+    public class EfNotificationDal : INotificationDal
     {
 
 
-        public List<Bulletin> GetBulletinDetail()
+        public List<Notification> GetDetail()
         {
             using var context = new AppDbContext();
-            var bulletin = context.Bulletins.ToList();
-            return bulletin;
+            var notification = context.Notifications.ToList();
+            return notification;
 
         }
 
-        public Bulletin Insert(Bulletin bulletin)
+        public Notification Insert(Notification notification)
         {
             using var context = new AppDbContext();
-            context.Bulletins.Add(bulletin);
+            context.Notifications.Add(notification);
             context.SaveChanges();
-            return bulletin;
+            return notification;
         }
     }
 }
