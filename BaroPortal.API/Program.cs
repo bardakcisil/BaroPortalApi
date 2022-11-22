@@ -21,8 +21,11 @@ builder.Services.AddSingleton<IAdvertService, AdvertService>();
 builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
 builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
 
-builder.Services.AddSingleton<IEvenstDal, EfEventsDal>();
-builder.Services.AddSingleton<IEventsService, EventService>();
+builder.Services.AddSingleton<IEventDal, EfEventDal>();
+builder.Services.AddSingleton<IEventService, EventService>();
+
+builder.Services.AddSingleton<INewDal, EfNewDal>();
+builder.Services.AddSingleton<INewService, NewService>();
 
 var app = builder.Build();
 

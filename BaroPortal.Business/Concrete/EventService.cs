@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Business.Concrete
 {
-    public class EventService : IEventsService
+    public class EventService : IEventService
     {
-        private readonly IEvenstDal _eventsDal;
+        private readonly IEventDal _eventsDal;
         private readonly IConfiguration _configuration;
 
 
 
-        public EventService(IEvenstDal eventsDal, IConfiguration configuration)
+        public EventService(IEventDal eventsDal, IConfiguration configuration)
         {
             _eventsDal = eventsDal;
             _configuration = configuration;
@@ -31,7 +31,7 @@ namespace BaroPortal.Business.Concrete
             if (events is null) { return false; }
             else
             {
-                var _event = new Events()
+                var _event = new Event()
                 {
                     image = addEvents.image,
                     Title = addEvents.Title,
@@ -44,9 +44,9 @@ namespace BaroPortal.Business.Concrete
             }
         }
 
-        public List<Events> ShowList()
+        public List<Event> ShowList()
         {
-            var events = _eventsDal.GetEventsDetail();
+            var events = _eventsDal.GetDetail();
             return events;
         }
     }

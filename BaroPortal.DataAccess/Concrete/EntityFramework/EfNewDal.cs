@@ -9,24 +9,21 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
-    public class EfEventsDal : IEvenstDal
+    public class EfNewDal : INewDal
     {
-
-
-        public List<Events> GetEventsDetail()
+        public List<New> GetDetail()
         {
             using var context = new AppDbContext();
-            var _event = context.Events.ToList();
-            return _event;
-
+            var _new = context.News.ToList();
+            return _new;
         }
 
-        public Events Insert(Events _event)
+        public New Insert(New _new)
         {
             using var context = new AppDbContext();
-            context.Events.Add(_event);
+            context.News.Add(_new);
             context.SaveChanges();
-            return _event;
+            return _new;
         }
     }
 }

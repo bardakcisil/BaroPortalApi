@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Business.Abstract
 {
-    public interface IEventsService
+    public interface IEventService
     {
         bool Add(AddEventDto addEvents);
-        List<Events> ShowList();
+        List<Event> ShowList();
     }
 }

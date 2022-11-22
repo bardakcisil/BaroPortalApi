@@ -7,19 +7,19 @@ namespace BaroPortal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventController : ControllerBase
+    public class NewController : ControllerBase
     {
-        private IEventService _eventService;
+        private INewService _newService;
 
-        public EventController(IEventService eventService)
+        public NewController(INewService newService)
         {
-            _eventService = eventService;
+            _newService = newService;
         }
         [HttpGet("getall")]
-        public ActionResult ShowEvent()
+        public ActionResult ShowNew()
         {
 
-            var result = _eventService.ShowList();
+            var result = _newService.ShowList();
             if (result is not null)
             {
                 return Ok(result);
@@ -28,9 +28,9 @@ namespace BaroPortal.API.Controllers
         }
 
         [HttpPost("add")]
-        public ActionResult Add(AddEventDto addEvents)
+        public ActionResult Add(AddNewDto addNews)
         {
-            var result = _eventService.Add(addEvents);
+            var result = _newService.Add(addNews);
             if (result)
             {
                 return Ok(result);
