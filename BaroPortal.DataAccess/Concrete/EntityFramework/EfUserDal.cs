@@ -40,6 +40,13 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 
 
         }
+        public User Get(Func<User, bool>? filter = null)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.Set<User>().SingleOrDefault(filter);
+            }
+        }
     }
 
    
