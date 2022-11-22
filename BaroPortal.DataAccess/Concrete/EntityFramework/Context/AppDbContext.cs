@@ -16,6 +16,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Announcement>? Announcements { get; set; }
         public DbSet<Event>? Events  { get; set; }
         public DbSet<New>? News { get; set; }
+        public DbSet<Education>? Educations { get; set; }
 
 
 
@@ -64,17 +65,27 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Event>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
             modelBuilder.Entity<Event>().Property(x => x.image).IsRequired();
 
-
             modelBuilder.Entity<Announcement>().ToTable("Announcements");
             modelBuilder.Entity<Announcement>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Announcement>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Announcement>().Property(x => x.ImageData).HasColumnType("image");
             modelBuilder.Entity<Announcement>().Property(x => x.Title).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Announcement>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
 
             modelBuilder.Entity<Notification>().ToTable("Notifications");
             modelBuilder.Entity<Notification>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Notification>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Notification>().Property(x => x.Title).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Notification>().Property(x => x.Detail).HasMaxLength(10000000).IsRequired();
+
+            modelBuilder.Entity<Education>().ToTable("Educations");
+            modelBuilder.Entity<Education>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Education>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.PdfFile).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.FileName).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.FileExtension);
+            modelBuilder.Entity<Education>().Property(x => x.FilePath);
+            modelBuilder.Entity<Education>().Property(x => x.FileSize);
         }
 
 

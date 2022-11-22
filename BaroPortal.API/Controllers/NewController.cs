@@ -35,7 +35,7 @@ namespace BaroPortal.API.Controllers
             {
                 return Ok(result);
             }
-            else { return BadRequest("Event did not added"); }
+            else { return BadRequest("New did not added"); }
 
 
         }

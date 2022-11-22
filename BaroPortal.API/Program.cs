@@ -27,6 +27,9 @@ builder.Services.AddSingleton<IEventService, EventService>();
 builder.Services.AddSingleton<INewDal, EfNewDal>();
 builder.Services.AddSingleton<INewService, NewService>();
 
+builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
+builder.Services.AddSingleton<IEducationService, EducationService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
