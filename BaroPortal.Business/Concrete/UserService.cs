@@ -102,25 +102,16 @@ namespace BaroPortal.Business.Concrete
             return true;
         }
 
+       
+        public async Task<User?> GetSingleHero(int id)
+        {
+            var hero = _userDal.Get(p => p.Id== id);
+            //var hero = await _userDal.SuperHeroes.FindAsync(id);
+            if (hero is null)
+                return null;
 
-        //public bool NewPassword(ForgotPassword forgotPassword)
-        //{
-        //    //var UserId = forgotPassword.IdentityNumber;
-        //    var user = _userDal.GetUserByIdentity(forgotPassword.IdentityNumber);
-
-        //    //var result = _userDal.Get(p => registereduser.IdentityNumber == UserId);
-        //    //Console.WriteLine(result.ToString());
-        //    if (user is null)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-
-        //    }
-
-        //}
+            return hero;
+        }
 
         public ResponseDto ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto)
         {
@@ -256,7 +247,6 @@ namespace BaroPortal.Business.Concrete
             return new JwtSecurityTokenHandler().WriteToken(token);
 
         }
-
 
     }
 }

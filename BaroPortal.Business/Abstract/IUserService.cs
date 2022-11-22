@@ -1,4 +1,5 @@
-﻿using BaroPortal.Entities.Dto;
+﻿using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace BaroPortal.Business.Abstract
     {
         ResponseDto Login(UserForLogin userForLogin);
         bool Register(UserForRegister userForRegister);
+        Task<User?> GetSingleHero(int id);
+
 
         ResponseDto ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto);
     }

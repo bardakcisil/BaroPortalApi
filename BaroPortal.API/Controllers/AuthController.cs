@@ -1,5 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,20 @@ namespace BaroPortal.API.Controllers
 
             return BadRequest("Registeration Failed");
         }
+
+
+
+        [HttpGet("Profile{id}"), Authorize]
+        public async Task<ActionResult<UserForRegister>> GetSingleHero(int id)
+        {
+            var result = await _userService.GetSingleHero(id);
+            if (result is null)
+                return NotFound("Hero not found.");
+
+            return Ok(result);
+        }
+
+
 
 
         [HttpPost("login")]

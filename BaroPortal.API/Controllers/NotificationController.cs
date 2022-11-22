@@ -1,11 +1,13 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaroPortal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotificationController : ControllerBase
     {
         private INotificationService _notificationService;
