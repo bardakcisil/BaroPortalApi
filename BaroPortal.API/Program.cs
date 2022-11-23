@@ -19,10 +19,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
+
 builder.Services.AddSingleton<INotificationDal, EfNotificationDal>();
 builder.Services.AddSingleton<INotificationService, NotificationService>();
+
 builder.Services.AddSingleton<IAdvertDal, EfAdvertDal>();
 builder.Services.AddSingleton<IAdvertService, AdvertService>();
+
+builder.Services.AddSingleton<IAdvertisementDal, EfAdvertisementDal>();
+builder.Services.AddSingleton<IAdvertisementService, AdvertisementService>();
+
 builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
 builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
 
@@ -31,6 +37,10 @@ builder.Services.AddSingleton<IEventService, EventService>();
 
 builder.Services.AddSingleton<INewDal, EfNewDal>();
 builder.Services.AddSingleton<INewService, NewService>();
+
+builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
+builder.Services.AddSingleton<IEducationService, EducationService>();
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
@@ -56,8 +66,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 var app = builder.Build();
-builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
-builder.Services.AddSingleton<IEducationService, EducationService>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

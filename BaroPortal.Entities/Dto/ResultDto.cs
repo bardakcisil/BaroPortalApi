@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto
 {
-    public class ResponseDto
+    public class ResultDto
     {
         public bool HasError { get; set; }
         public string Message { get; set; } = null!;
-        public string Token { get; set; } = null!;
     }
 }

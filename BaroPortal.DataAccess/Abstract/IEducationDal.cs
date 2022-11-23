@@ -10,7 +10,7 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface IEducationDal
     {
-        bool Add(Education _education);
+        Education Add(Education _education);
         List<Education> GetDetail(); 
     }
 }
