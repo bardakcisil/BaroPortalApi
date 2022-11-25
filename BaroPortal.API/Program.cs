@@ -31,6 +31,15 @@ builder.Services.AddSingleton<IEventService, EventService>();
 
 builder.Services.AddSingleton<INewDal, EfNewDal>();
 builder.Services.AddSingleton<INewService, NewService>();
+
+builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
+builder.Services.AddSingleton<IEducationService, EducationService>();
+
+builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
+builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
+
+
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
@@ -55,9 +64,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
+
 var app = builder.Build();
-builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
-builder.Services.AddSingleton<IEducationService, EducationService>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

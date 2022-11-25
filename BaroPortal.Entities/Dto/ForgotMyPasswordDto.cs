@@ -9,6 +9,6 @@ namespace BaroPortal.Entities.Dto
     public class ForgotMyPasswordDto
     {
         public string IdentityNumber { get; set; } = null!;
-        public string PhoneNumber { get; set; } = null!;
+        public string Email { get; set; } = null!;
     }
 }

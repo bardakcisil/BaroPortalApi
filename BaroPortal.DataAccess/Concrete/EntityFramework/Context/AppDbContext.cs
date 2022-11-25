@@ -15,6 +15,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Advert>? Adverts { get; set; }
         public DbSet<Announcement>? Announcements { get; set; }
         public DbSet<Event>? Events  { get; set; }
+        public DbSet<BarSearch>? BarSearch { get; set; }
         public DbSet<New>? News { get; set; }
         public DbSet<Education>? Educations { get; set; }
 
@@ -86,6 +87,16 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Education>().Property(x => x.FileExtension);
             modelBuilder.Entity<Education>().Property(x => x.FilePath);
             modelBuilder.Entity<Education>().Property(x => x.FileSize);
+
+
+            modelBuilder.Entity<BarSearch>().ToTable("BarSearch");
+            modelBuilder.Entity<BarSearch>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<BarSearch>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.TypeId).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.Surname).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.BaroNumber).IsRequired();
+            
         }
 
 
