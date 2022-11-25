@@ -12,15 +12,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
     public class EfEducationDal : IEducationDal
     {
-        public bool Add(Education _education)
+        public Education Add(Education _education)
         {
 
 
             using var context = new AppDbContext();
             context.Educations.Add(_education);
             context.SaveChanges();
-            return true;
-            //return _education;
+            //return true;
+            return _education;
       
         }
 

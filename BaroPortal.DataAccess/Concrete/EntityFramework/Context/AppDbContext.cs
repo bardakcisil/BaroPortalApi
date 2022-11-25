@@ -18,13 +18,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<BarSearch>? BarSearch { get; set; }
         public DbSet<New>? News { get; set; }
         public DbSet<Education>? Educations { get; set; }
+        public DbSet<Advertisement>? Advertisements { get; set; }
+        public DbSet<AdvType>? AdvertType { get; set; }
 
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           // optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=BaroPortal;Trusted_Connection=True;");// isil
-             optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// Hussain
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=BaroPortal;Trusted_Connection=True;");// isil
+             //ptionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortaltest;Trusted_Connection=True;");// Hussain
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -89,6 +91,34 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Education>().Property(x => x.FileSize);
 
 
+            modelBuilder.Entity<Advertisement>().ToTable("Advertisements");
+            modelBuilder.Entity<Advertisement>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Advertisement>().Property(x => x.AdvertId).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.Title).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.Description).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.Advertiser).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.AdvertiserPhone).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.AdvertiserEmail).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Advertisement>().Property(x => x.CreateDate).IsRequired();
+
+
+            modelBuilder.Entity<AdvType>().ToTable("AdvertTypes");
+            modelBuilder.Entity<AdvType>().HasMany<Advertisement>(x => x.Advertisement).WithOne(y => y.AdvertType).HasForeignKey(y => y.TypeId);
+            modelBuilder.Entity<AdvType>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<AdvType>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<AdvType>().Property(x => x.TypeId).IsRequired();
+            modelBuilder.Entity<AdvType>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<AdvType>().HasData(
+                new { Id = 1, TypeId = 1, Name = "İş Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 2, TypeId = 2, Name = "Avukat Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 3, TypeId = 3, Name = "Katip/Sekreter Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 4, TypeId = 4, Name = "Staj Yeri Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 5, TypeId = 5, Name = "Ortak Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 6, TypeId = 6, Name = "Stajyer Av. Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 7, TypeId = 7, Name = "Diğer", CreateDate = DateTime.Now }
+                );
+
+
             modelBuilder.Entity<BarSearch>().ToTable("BarSearch");
             modelBuilder.Entity<BarSearch>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<BarSearch>().Property(x => x.CreateDate).IsRequired();
@@ -96,7 +126,6 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<BarSearch>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<BarSearch>().Property(x => x.Surname).IsRequired();
             modelBuilder.Entity<BarSearch>().Property(x => x.BaroNumber).IsRequired();
-            
         }
 
 

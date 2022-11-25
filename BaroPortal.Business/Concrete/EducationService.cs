@@ -64,7 +64,7 @@ namespace BaroPortal.Business.Concrete
 
 
                 var result = _educationDal.Add(education);
-                return result;
+                return true;
             }
         }
 

@@ -19,10 +19,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
+
 builder.Services.AddSingleton<INotificationDal, EfNotificationDal>();
 builder.Services.AddSingleton<INotificationService, NotificationService>();
+
 builder.Services.AddSingleton<IAdvertDal, EfAdvertDal>();
 builder.Services.AddSingleton<IAdvertService, AdvertService>();
+
+builder.Services.AddSingleton<IAdvertisementDal, EfAdvertisementDal>();
+builder.Services.AddSingleton<IAdvertisementService, AdvertisementService>();
+
 builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
 builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
 
@@ -37,8 +43,6 @@ builder.Services.AddSingleton<IEducationService, EducationService>();
 
 builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
-
-
 
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
