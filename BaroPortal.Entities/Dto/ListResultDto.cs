@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto
 {
-    public class ResultDto
+    public class ListResultDto<T>
     {
-        //public string? Data { get; set; } = null!;
+        public List<T> Data { get; set; }
         public bool HasError { get; set; }
         public string Message { get; set; } = null!;
     }

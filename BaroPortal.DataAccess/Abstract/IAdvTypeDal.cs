@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.DataAccess.Abstract
+namespace BaroPortal.Business.Abstract
 {
-    public interface INotificationDal
+    public interface IAdvTypeDal
     {
-        List<Notification> GetAll();
-        Notification Insert(Notification bulletin);
+        List<AdvType> GetDetail();
     }
 }

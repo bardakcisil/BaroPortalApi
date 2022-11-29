@@ -1,4 +1,5 @@
 ﻿using BaroPortal.Business.Abstract;
+using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace BaroPortal.API.Controllers
         public ActionResult GetAll()
         {
 
-            var result = _advertService.GetAll();
+            var result = _advertService.GetList();
             if (result is not null)
             {
                 return Ok(result);
@@ -31,7 +32,7 @@ namespace BaroPortal.API.Controllers
         public ActionResult AddAdvertisement(AddAdvertisementDto addAdvert)
         {
             var result = _advertService.AddAdvertisement(addAdvert);
-            if (result)
+            if (result is not null)
             {
                 return Ok(result);
             }
@@ -39,12 +40,28 @@ namespace BaroPortal.API.Controllers
 
 
         }
-
-        [HttpGet("Delete Ad/{{id}}")]
-        public bool DeleteDecree(int id)
+        [HttpGet(" getAdvertDetails")]
+        public IActionResult GetAdvertDetail(int id)
         {
-            _advertService.DeleteAd(id);
-            return true;
+            //dependency chain
+
+            var result = _advertService.GetAdvertDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _advertService.DeleteAd(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("Getby/TypeId")]

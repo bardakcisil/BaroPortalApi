@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Business.Abstract
 {
-    public interface INotificationService
+    public interface IAdvTypeService
     {
-        bool Add(AddNotificationDto addBulletin);
-        IDataResult<List<GetNotificationDto>> GetList();
-
+        ListResultDto<AdvTypeDto> ShowList();
     }
 }

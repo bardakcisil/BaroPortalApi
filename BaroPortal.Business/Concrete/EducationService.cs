@@ -30,7 +30,8 @@ namespace BaroPortal.Business.Concrete
             var educations = _educationDal;
             if (educations is null) { return false; }
             else
-            {
+            { 
+                var title = uploadDto.Title;
                 var file = uploadDto.PdfFile; // **it returns NULL**
                 /*var upload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files", file.FileName);
 
@@ -53,6 +54,7 @@ namespace BaroPortal.Business.Concrete
                 }
                 var education = new Education()
                 {
+                    Title = title,
                     FileName = file.FileName,
                     FilePath = Path.GetExtension(file.FileName),
                     FileSize = file.ContentType,

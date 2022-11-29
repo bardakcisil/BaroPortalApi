@@ -13,7 +13,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
     {
 
 
-        public List<Notification> GetDetail()
+        public List<Notification> GetAll()
         {
             using var context = new AppDbContext();
             var notification = context.Notifications.ToList();

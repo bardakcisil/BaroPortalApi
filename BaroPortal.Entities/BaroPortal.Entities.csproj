@@ -15,8 +15,4 @@
     <ProjectReference Include="..\BaroPortal.Core\BaroPortal.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Seeds\" />
-  </ItemGroup>
-
 </Project>

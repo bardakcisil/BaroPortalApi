@@ -1,4 +1,5 @@
-﻿using BaroPortal.DataAccess.Abstract;
+﻿using BaroPortal.Core.Result;
+using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
 using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
@@ -23,13 +24,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             return advert;
         }
 
-        public void Delete(Advertisement advert)
+        public bool Delete(Advertisement advert)
         {
             using (AppDbContext context = new AppDbContext())
             {
                 var deletedAd = context.Entry(advert);
                 deletedAd.State = EntityState.Deleted;
                 context.SaveChanges();
+                return true;
+                
             }
         }
 
@@ -75,6 +78,40 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
                                AdvertId = p.AdvertId,
                                AdvertType = p.AdvertType,
                            }).ToList(); */
+
+
+
+
+
+
+
+            }
+        }
+
+        public List<AdvertDetailDto> GetAdvertDetails()
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                //ontext.Set<Advertisement>().SingleOrDefault(filter);
+                var result = from p in context.Advertisements
+                              join c in context.AdvertTypes
+                              on p.TypeId equals c.TypeId
+                              select new AdvertDetailDto
+                              {
+                                  
+                                  Title = p.Title,
+                                  Description = p.Description,
+                                  Advertiser = p.Advertiser,
+                                  AdvertiserPhone = p.AdvertiserPhone,
+                                  AdvertiserEmail = p.AdvertiserEmail,
+                                  
+                              };
+
+
+                return result.ToList();
+
+
+                /*  */
 
 
 
