@@ -39,6 +39,7 @@ builder.Services.AddSingleton<INewService, NewService>();
 
 builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
 builder.Services.AddSingleton<IEducationService, EducationService>();
+
 builder.Services.AddSingleton<IAdvTypeDal, EfAdvTypeDal>();
 builder.Services.AddSingleton<IAdvTypeService, AdvTypeService>();
 
