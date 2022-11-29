@@ -64,7 +64,7 @@ namespace BaroPortal.API.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("Getby/TypeId")]
+        [HttpGet("{id}")]
         public ActionResult GetByCategoryId(int id)
         {
 

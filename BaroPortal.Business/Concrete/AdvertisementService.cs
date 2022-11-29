@@ -220,43 +220,47 @@ namespace BaroPortal.Business.Concrete
             return AdvertismentNum;
         }
 
-        public IDataResult<List<GetAdvertisementDto>> GetByTypeId(int id)
-        {
 
-          
-          var result = _advertDal.GetByType(id);
-            var data = new List<GetAdvertisementDto>();
-            foreach(var item in result)
-            {
-                GetAdvertisementDto dto = new GetAdvertisementDto();
-                dto.AdvertId = item.AdvertId;
-                dto.Title = item.Title;
-                dto.Advertiser = item.Advertiser;
-                dto.TypeId = item.TypeId;
-                dto.AdvertiserEmail = item.AdvertiserEmail;
-                dto.AdvertiserPhone = item.AdvertiserPhone;
-                dto.Description = item.Description;
-                dto.Name = item.AdvertType.Name;
-
-                data.Add(dto);
-            }
-
-
-
-            if (data is not null)
-            {
-                return new SuccessDataResult<List<GetAdvertisementDto>>(data, "Liste görüntülendi");
-            }
-            else
-            {
-                return new ErrorDataResult<List<GetAdvertisementDto>>("Liste görüntülenemedi");
-            }
-        }
 
 
         IDataResult<List<AdvertDetailDto>> IAdvertisementService.GetAdvertDetails()
         {
             return new SuccessDataResult<List<AdvertDetailDto>>(_advertDal.GetAdvertDetails());
+        }
+
+        ListResultDto<GetAdvertisementListDto> IAdvertisementService.GetByTypeId(int id)
+        {
+            ListResultDto<GetAdvertisementListDto> response = new ListResultDto<GetAdvertisementListDto>();
+
+            var result = _advertDal.GetByType(id);
+            var data = new List<GetAdvertisementListDto>();
+            foreach (var item in result)
+            {
+                GetAdvertisementListDto dto = new GetAdvertisementListDto();
+                dto.Advertiser = item.Advertiser;
+                dto.Title = item.Title;
+                dto.Advertiser = item.Advertiser;
+                dto.AdvertiserPhone = item.AdvertiserPhone;
+                dto.AdvertiserEmail = item.AdvertiserEmail;
+                dto.Description = item.Description;
+
+                data.Add(dto);
+            }
+
+            response.Data = data;
+
+            if (data is not null)
+            {
+                response.HasError = false;
+                response.Message = "Liste görüntülendi";
+                return response;
+            }
+            else
+            {
+                response.HasError = true;
+                response.Message = "Liste görüntülenmedi";
+                return response;
+            }
         }
     }
 }
