@@ -16,6 +16,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Advert>? Adverts { get; set; }
         public DbSet<Announcement>? Announcements { get; set; }
         public DbSet<Event>? Events  { get; set; }
+        public DbSet<BarSearch>? BarSearch { get; set; }
         public DbSet<New>? News { get; set; }
         public DbSet<Education>? Educations { get; set; }
         public DbSet<Advertisement>? Advertisements { get; set; }
@@ -91,6 +92,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Education>().Property(x => x.FilePath);
             modelBuilder.Entity<Education>().Property(x => x.FileSize);
 
+
             modelBuilder.Entity<Advertisement>().ToTable("Advertisements");
             modelBuilder.Entity<Advertisement>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Advertisement>().Property(x => x.AdvertId).HasMaxLength(10000).IsRequired();
@@ -108,8 +110,22 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<AdvType>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<AdvType>().Property(x => x.TypeId).IsRequired();
             modelBuilder.Entity<AdvType>().Property(x => x.Name).IsRequired();
-            modelBuilder.Entity<AdvType>().HasData(AdvTypeSeed.advertType);
-                
+            modelBuilder.Entity<BarSearch>().ToTable("BarSearch");
+            modelBuilder.Entity<BarSearch>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<BarSearch>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.TypeId).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.Surname).IsRequired();
+            modelBuilder.Entity<BarSearch>().Property(x => x.BaroNumber).IsRequired();
+            modelBuilder.Entity<AdvType>().HasData(
+                new { Id =1, TypeId = 1, Name = "İş Arıyorum", CreateDate=DateTime.Now },
+                new { Id = 2, TypeId = 2, Name = "Avukat Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 3, TypeId = 3, Name = "Katip/Sekreter Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 4, TypeId = 4, Name = "Staj Yeri Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 5, TypeId = 5, Name = "Ortak Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 6, TypeId = 6, Name = "Stajyer Av. Arıyorum", CreateDate = DateTime.Now },
+                new { Id = 7, TypeId = 7, Name = "Diğer", CreateDate = DateTime.Now }
+                );
         }
 
 

@@ -4,6 +4,7 @@ using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221124090543_BarSearch")]
+    partial class BarSearch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,132 +89,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Adverts", (string)null);
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AdvertId")
-                        .HasMaxLength(10000)
-                        .HasColumnType("int");
-
-                    b.Property<string>("Advertiser")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AdvertiserEmail")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AdvertiserPhone")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("TypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TypeId");
-
-                    b.ToTable("Advertisements", (string)null);
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.AdvType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdvertTypes", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 554, DateTimeKind.Local).AddTicks(5395),
-                            Name = "İş Arıyorum",
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2011),
-                            Name = "Avukat Arıyorum",
-                            TypeId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2018),
-                            Name = "Katip/Sekreter Arıyorum",
-                            TypeId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2019),
-                            Name = "Staj Yeri Arıyorum",
-                            TypeId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2020),
-                            Name = "Ortak Arıyorum",
-                            TypeId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2023),
-                            Name = "Stajyer Av. Arıyorum",
-                            TypeId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2024),
-                            Name = "Diğer",
-                            TypeId = 7
-                        });
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Announcement", b =>
@@ -308,10 +184,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Property<byte[]>("PdfFile")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -458,20 +330,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement", b =>
-                {
-                    b.HasOne("BaroPortal.Entities.Concrete.AdvType", "AdvertType")
-                        .WithMany("Advertisement")
-                        .HasForeignKey("TypeId");
-
-                    b.Navigation("AdvertType");
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.AdvType", b =>
-                {
-                    b.Navigation("Advertisement");
                 });
 #pragma warning restore 612, 618
         }

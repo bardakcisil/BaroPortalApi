@@ -9,7 +9,7 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface IEventDal
     {
-        List<Event> GetDetail();
+         List<Event> GetDetail();
          Event Insert(Event _event);
     }
 }

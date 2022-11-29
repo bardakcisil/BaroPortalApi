@@ -44,6 +44,9 @@ builder.Services.AddSingleton<IAdvTypeService, AdvTypeService>();
 
 
 
+builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
+builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
@@ -68,6 +71,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
+
 var app = builder.Build();
 
 

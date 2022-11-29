@@ -124,10 +124,10 @@ namespace BaroPortal.Business.Concrete
 
 
 
-            if (user is null || user.PhoneNumber != forgotMyPasswordDto.PhoneNumber)
+            if (user is null || user.Email != forgotMyPasswordDto.Email || user.IdentityNumber != forgotMyPasswordDto.IdentityNumber)
             {
                 response.HasError = true;
-                response.Message = "Telefon numaranızı kontrol ediniz."; //mantıksız
+                response.Message = "Bilgilerinizi kontrol ediniz"; //mantıksız
                 return response;
 
             }
