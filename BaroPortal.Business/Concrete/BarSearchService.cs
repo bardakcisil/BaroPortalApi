@@ -42,8 +42,6 @@ namespace BaroPortal.Business.Concrete
                 return true;
             }
         }
-
-
         public LawyerResponseDto CheckUser(BaroSearchDto barsearchDto)
         {
 
@@ -70,6 +68,7 @@ namespace BaroPortal.Business.Concrete
             
             }
             response.Data= listDto;
+
             if (listDto is not null)
             {
                 response.HasError = false;
