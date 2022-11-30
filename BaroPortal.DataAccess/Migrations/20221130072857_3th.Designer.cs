@@ -4,6 +4,7 @@ using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221130072857_3th")]
+    partial class _3th
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,49 +103,49 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(553),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8206),
                             Name = "İş Arıyorum",
                             TypeId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(570),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8224),
                             Name = "Avukat Arıyorum",
                             TypeId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(571),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8225),
                             Name = "Katip/Sekreter Arıyorum",
                             TypeId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(572),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8226),
                             Name = "Staj Yeri Arıyorum",
                             TypeId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(573),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8226),
                             Name = "Ortak Arıyorum",
                             TypeId = 5
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(575),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8229),
                             Name = "Stajyer Av. Arıyorum",
                             TypeId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 713, DateTimeKind.Local).AddTicks(576),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 690, DateTimeKind.Local).AddTicks(8230),
                             Name = "Diğer",
                             TypeId = 7
                         });
@@ -210,7 +212,7 @@ namespace BaroPortal.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BarUserSearch", (string)null);
+                    b.ToTable("BarSearch", (string)null);
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUs", b =>
@@ -284,21 +286,21 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 709, DateTimeKind.Local).AddTicks(5429),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 687, DateTimeKind.Local).AddTicks(2636),
                             Name = "Öneri",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 710, DateTimeKind.Local).AddTicks(4406),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 688, DateTimeKind.Local).AddTicks(1973),
                             Name = "Bilgi",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 11, 30, 10, 58, 40, 710, DateTimeKind.Local).AddTicks(4415),
+                            CreateDate = new DateTime(2022, 11, 30, 10, 28, 56, 688, DateTimeKind.Local).AddTicks(1981),
                             Name = "Şikayet",
                             TopicId = 3
                         });

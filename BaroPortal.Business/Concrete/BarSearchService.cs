@@ -51,7 +51,7 @@ namespace BaroPortal.Business.Concrete
 
             //var user = _barSearchDal.GetUserByIdentity(barsearchDto.TypeId);
 
-            var resultList = _barSearchDal.GetAll(p => (p.TypeId == barsearchDto.TypeId) && (p.Name.Contains(barsearchDto.Name) || p.Surname.Contains(barsearchDto.Surname) || p.BaroNumber == barsearchDto.BaroNumber)   );
+            var resultList = _barSearchDal.GetAll(p => (p.TypeId == barsearchDto.TypeId) && (p.Name.Contains(barsearchDto.Name) || p.Surname.Contains(barsearchDto.Surname) || p.BaroNumber == barsearchDto.BaroNumber));
             var listDto = new List<GetBarSearchListDto>();
 
 
@@ -60,16 +60,16 @@ namespace BaroPortal.Business.Concrete
             foreach (var item in resultList)
             {
                 GetBarSearchListDto dto = new GetBarSearchListDto();
-                
-                dto.title =item.TypeId ;
+
+                dto.title = item.TypeId;
                 dto.Name = item.Name;
                 dto.Surname = item.Surname;
                 dto.BarNumber = item.BaroNumber;
-            
+
                 listDto.Add(dto);
-            
+
             }
-            response.Data= listDto;
+            response.Data = listDto;
             if (listDto is not null)
             {
                 response.HasError = false;
@@ -84,48 +84,5 @@ namespace BaroPortal.Business.Concrete
 
 
 
-        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*             if (user is not null)
-            {
-                if (user.Name == barsearchDto.Name || user.Surname == barsearchDto.Surname || user.BaroNumber == barsearchDto.BaroNumber)
-                {
-                        response.Name = user.Name;
-                    response.Surname = user.Surname; 
-                  
-                    response.HasError = false;
-                    return response;
-
-                }
-
-                else
-                {
-                    response.HasError = true;
-                    return response;
-
-
-                }
-            }
-            else
-            {
-                response.HasError = true;
-                return response;
-
-            }    */
+}
