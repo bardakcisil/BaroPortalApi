@@ -48,6 +48,13 @@ builder.Services.AddSingleton<IAdvTypeService, AdvTypeService>();
 builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
 
+
+builder.Services.AddSingleton<IContactUsTopicDal, EfContactUsTopicDal>();
+builder.Services.AddSingleton< IContactUsTopicService,ContactUsTopicService>();
+
+builder.Services.AddSingleton<IContactUsDal, EfContactUsDal>();
+builder.Services.AddSingleton<IContactUsService, ContactUsService>();
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {

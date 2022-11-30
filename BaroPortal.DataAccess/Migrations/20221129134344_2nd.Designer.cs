@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221124090543_BarSearch")]
-    partial class BarSearch
+    [Migration("20221129134344_2nd")]
+    partial class _2nd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace BaroPortal.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Advert", b =>
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace BaroPortal.DataAccess.Migrations
                         .HasMaxLength(10000)
                         .HasColumnType("int");
 
-                    b.Property<string>("AdvertTypeName")
+                    b.Property<string>("Advertiser")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -48,27 +48,7 @@ namespace BaroPortal.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("AdvertiserLwork")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AdvertiserName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("AdvertiserPhone")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AdvertiserSname")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ConscriptionStatus")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -76,7 +56,7 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Detail")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
@@ -86,9 +66,89 @@ namespace BaroPortal.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("TypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Adverts", (string)null);
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("Advertisements", (string)null);
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.AdvType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdvertTypes", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1697),
+                            Name = "İş Arıyorum",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1720),
+                            Name = "Avukat Arıyorum",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1721),
+                            Name = "Katip/Sekreter Arıyorum",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1722),
+                            Name = "Staj Yeri Arıyorum",
+                            TypeId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1722),
+                            Name = "Ortak Arıyorum",
+                            TypeId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1725),
+                            Name = "Stajyer Av. Arıyorum",
+                            TypeId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 513, DateTimeKind.Local).AddTicks(1725),
+                            Name = "Diğer",
+                            TypeId = 7
+                        });
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Announcement", b =>
@@ -153,6 +213,97 @@ namespace BaroPortal.DataAccess.Migrations
                     b.ToTable("BarSearch", (string)null);
                 });
 
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("TopicId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TopicId");
+
+                    b.ToTable("ContactUs", (string)null);
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUsTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("TopicId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactUsTopics", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 509, DateTimeKind.Local).AddTicks(1399),
+                            Name = "Öneri",
+                            TopicId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 510, DateTimeKind.Local).AddTicks(893),
+                            Name = "Bilgi",
+                            TopicId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 11, 29, 16, 43, 43, 510, DateTimeKind.Local).AddTicks(903),
+                            Name = "Şikayet",
+                            TopicId = 3
+                        });
+                });
+
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Education", b =>
                 {
                     b.Property<int>("Id")
@@ -184,6 +335,10 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Property<byte[]>("PdfFile")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -330,6 +485,34 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement", b =>
+                {
+                    b.HasOne("BaroPortal.Entities.Concrete.AdvType", "AdvertType")
+                        .WithMany("Advertisement")
+                        .HasForeignKey("TypeId");
+
+                    b.Navigation("AdvertType");
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUs", b =>
+                {
+                    b.HasOne("BaroPortal.Entities.Concrete.ContactUsTopic", "ContactUsTopic")
+                        .WithMany("ContactUs")
+                        .HasForeignKey("TopicId");
+
+                    b.Navigation("ContactUsTopic");
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.AdvType", b =>
+                {
+                    b.Navigation("Advertisement");
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUsTopic", b =>
+                {
+                    b.Navigation("ContactUs");
                 });
 #pragma warning restore 612, 618
         }
