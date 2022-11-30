@@ -13,7 +13,7 @@ namespace BaroPortal.Business.Concrete
 {
     public class BarSearchService : IBarSearchService
     {
-
+        string baroTitle;
         private readonly IBarSearchDal _barSearchDal;
         private readonly IConfiguration _configuration;
 
@@ -43,20 +43,89 @@ namespace BaroPortal.Business.Concrete
             }
         }
 
-        public BarSearch GetTypeById(int id, string name, string surname, int snum)
+
+        public LawyerResponseDto CheckUser(BaroSearchDto barsearchDto)
         {
-                var Lawer = _barSearchDal.Get(p => p.TypeId == id );
+
+            LawyerResponseDto response = new LawyerResponseDto();
+
+            //var user = _barSearchDal.GetUserByIdentity(barsearchDto.TypeId);
+
+            var resultList = _barSearchDal.GetAll(p => (p.TypeId == barsearchDto.TypeId) && (p.Name.Contains(barsearchDto.Name) || p.Surname.Contains(barsearchDto.Surname) || p.BaroNumber == barsearchDto.BaroNumber)   );
+            var listDto = new List<GetBarSearchListDto>();
 
 
-            //var hero = await _userDal.SuperHeroes.FindAsync(id);
-            if (Lawer is null)
-            { return null; }
-            else if (Lawer.Name == name || Lawer.Surname == surname || Lawer.BaroNumber ==snum)
+
+
+            foreach (var item in resultList)
             {
-                return Lawer;
+                GetBarSearchListDto dto = new GetBarSearchListDto();
+                
+                dto.title =item.TypeId ;
+                dto.Name = item.Name;
+                dto.Surname = item.Surname;
+                dto.BarNumber = item.BaroNumber;
+            
+                listDto.Add(dto);
+            
+            }
+            response.Data= listDto;
+            if (listDto is not null)
+            {
+                response.HasError = false;
+                return response;
             }
             else
-            { return null; }
+            {
+                response.HasError = true;
+                return response;
+            }
+        }
+
+
+
         }
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*             if (user is not null)
+            {
+                if (user.Name == barsearchDto.Name || user.Surname == barsearchDto.Surname || user.BaroNumber == barsearchDto.BaroNumber)
+                {
+                        response.Name = user.Name;
+                    response.Surname = user.Surname; 
+                  
+                    response.HasError = false;
+                    return response;
+
+                }
+
+                else
+                {
+                    response.HasError = true;
+                    return response;
+
+
+                }
+            }
+            else
+            {
+                response.HasError = true;
+                return response;
+
+            }    */

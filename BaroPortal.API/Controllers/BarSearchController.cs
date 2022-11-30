@@ -15,11 +15,22 @@ namespace BaroPortal.API.Controllers
         {
             _barsearchService = barsearchService;
         }
-        [HttpGet("getall{typeid}")]
-        public ActionResult GetAll(int typeid, string name=null, string surname = null, int snum = 0)
+        //[HttpPost("GetLawer")]
+        //public ActionResult GetAll(int typeid = 0, string name = null, string surname = null , int snum=0 )
+        //{
+
+        //    var result = _barsearchService.GetTypeById(typeid,name,surname,snum);
+        //    if (result is not null)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
+        [HttpPost("GetLawyer")]
+        public ActionResult GetAll(BaroSearchDto barsearchDto)
         {
 
-            var result = _barsearchService.GetTypeById(typeid,name,surname,snum);
+            var result = _barsearchService.CheckUser(barsearchDto);
             if (result is not null)
             {
                 return Ok(result);
@@ -34,8 +45,10 @@ namespace BaroPortal.API.Controllers
             if (result)
             {
                 return Ok(result);
+               
+
             }
-            else { return BadRequest("Event did not added"); }
+            else { return BadRequest("User Not Found"); }
 
 
         }

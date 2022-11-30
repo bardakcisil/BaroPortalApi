@@ -121,7 +121,7 @@ namespace BaroPortal.Business.Concrete
 
 
 
-
+           
 
 
             if (user is null || user.Email != forgotMyPasswordDto.Email || user.IdentityNumber != forgotMyPasswordDto.IdentityNumber)

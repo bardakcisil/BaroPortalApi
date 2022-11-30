@@ -12,8 +12,8 @@ namespace BaroPortal.DataAccess.Abstract
     {
         List<BarSearch> GetDetail();
         BarSearch Insert(BarSearch _barSearch);
-        BarSearch Get(Expression<Func<BarSearch, bool>>? filter = null);
+        List<BarSearch>  GetAll(Expression<Func<BarSearch, bool>>? filter = null);
+        //BarSearch GetUserByIdentity(int typeid);
 
-        // BarSearch GetAll(Func<BarSearch, bool> value);
     }
 }

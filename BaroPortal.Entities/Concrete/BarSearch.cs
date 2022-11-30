@@ -10,8 +10,8 @@ namespace BaroPortal.Entities.Concrete
     public class BarSearch : BaseEntity
     {
         public int TypeId { get; set; }
-        public string Name { get; set; } = null;
-        public string Surname { get; set; } = null;
+        public string Name { get; set; } 
+        public string Surname { get; set; }
         public int BaroNumber { get; set; } 
 
     }
