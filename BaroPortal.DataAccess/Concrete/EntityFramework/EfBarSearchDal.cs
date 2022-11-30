@@ -35,5 +35,25 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             context.SaveChanges();
             return _barSearch;
         }
+
+        //testing
+
+        public BarSearch GetUserByIdentity(int typeid)
+        {
+            using var context = new AppDbContext();
+            var user = context.BarSearch.SingleOrDefault(x => x.TypeId == typeid);
+            return user;
+        }
+
+        public List<BarSearch> GetAll(Expression<Func<BarSearch, bool>>? filter = null)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return filter == null
+                    ? context.Set<BarSearch>().ToList()
+                    : context.Set<BarSearch>().Where(filter).ToList();
+
+            }
+        }
     }
 }
