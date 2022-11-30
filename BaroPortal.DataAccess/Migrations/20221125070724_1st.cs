@@ -69,6 +69,7 @@ namespace BaroPortal.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PdfFile = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -179,13 +180,13 @@ namespace BaroPortal.DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1086), "İş Arıyorum", 1 },
-                    { 2, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1098), "Avukat Arıyorum", 2 },
-                    { 3, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1099), "Katip/Sekreter Arıyorum", 3 },
-                    { 4, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1099), "Staj Yeri Arıyorum", 4 },
-                    { 5, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100), "Ortak Arıyorum", 5 },
-                    { 6, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100), "Stajyer Av. Arıyorum", 6 },
-                    { 7, new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100), "Diğer", 7 }
+                    { 1, new DateTime(2022, 11, 25, 10, 7, 24, 554, DateTimeKind.Local).AddTicks(5395), "İş Arıyorum", 1 },
+                    { 2, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2011), "Avukat Arıyorum", 2 },
+                    { 3, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2018), "Katip/Sekreter Arıyorum", 3 },
+                    { 4, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2019), "Staj Yeri Arıyorum", 4 },
+                    { 5, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2020), "Ortak Arıyorum", 5 },
+                    { 6, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2023), "Stajyer Av. Arıyorum", 6 },
+                    { 7, new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2024), "Diğer", 7 }
                 });
 
             migrationBuilder.CreateIndex(

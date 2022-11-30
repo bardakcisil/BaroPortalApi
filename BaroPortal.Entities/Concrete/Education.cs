@@ -10,7 +10,7 @@ namespace BaroPortal.Entities.Concrete
 {
     public class Education : BaseEntity
     {
-        
+        public string Title { get; set; } = null!;
         public byte[] PdfFile { get; set; } = null!;
         public string FilePath { get; set; } = null!;
         public string FileName { get; set; } = null!;

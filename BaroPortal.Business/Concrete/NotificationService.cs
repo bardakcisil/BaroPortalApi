@@ -1,4 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
+using BaroPortal.Core.Entities;
+using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
@@ -27,24 +29,37 @@ namespace BaroPortal.Business.Concrete
         {
             var notification = _notificationDal;
                 if(notification is null) { return false; } else { 
-            var _bulletin = new Notification()
+            var _notification = new Notification()
             {
                 Title = addNotification.Title,
                 Detail = addNotification.Detail,
             };
             
 
-            var result = _notificationDal.Insert(_bulletin);
+            var result = _notificationDal.Insert(_notification);
                 return true;
             }
 
 
         }
 
-        public List<Notification> ShowList()
+        public IDataResult<List<GetNotificationDto>> GetList()
         {
-            var bulletin = _notificationDal.GetDetail();
-            return bulletin; 
+            var result = _notificationDal.GetAll();
+            var data = new List<GetNotificationDto>();
+            foreach (var item in result)
+            {
+                GetNotificationDto dto = new GetNotificationDto();
+                dto.Title = item.Title;
+
+                dto.Detail = item.Detail;
+
+
+                data.Add(dto);
+            }
+            
+                return new SuccessDataResult<List<GetNotificationDto>>(data,"Liste görüntülendi");
+            
 
         }
     }

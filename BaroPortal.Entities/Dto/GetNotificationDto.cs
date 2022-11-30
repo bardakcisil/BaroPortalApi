@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto
 {
-    public class AddEducationDto
+    public class GetNotificationDto
     {
         public string Title { get; set; }   
-            public IFormFile PdfFile { get; set; } = null!;
-        
+        public string Detail { get; set; } 
     }
 }

@@ -23,8 +23,7 @@ builder.Services.AddSingleton<IUserDal, EfUserDal>();
 builder.Services.AddSingleton<INotificationDal, EfNotificationDal>();
 builder.Services.AddSingleton<INotificationService, NotificationService>();
 
-builder.Services.AddSingleton<IAdvertDal, EfAdvertDal>();
-builder.Services.AddSingleton<IAdvertService, AdvertService>();
+
 
 builder.Services.AddSingleton<IAdvertisementDal, EfAdvertisementDal>();
 builder.Services.AddSingleton<IAdvertisementService, AdvertisementService>();
@@ -40,6 +39,11 @@ builder.Services.AddSingleton<INewService, NewService>();
 
 builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
 builder.Services.AddSingleton<IEducationService, EducationService>();
+
+builder.Services.AddSingleton<IAdvTypeDal, EfAdvTypeDal>();
+builder.Services.AddSingleton<IAdvTypeService, AdvTypeService>();
+
+
 
 builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();

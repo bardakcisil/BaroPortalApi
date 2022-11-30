@@ -1,4 +1,5 @@
-﻿using BaroPortal.Entities.Concrete;
+﻿using BaroPortal.Core.Result;
+using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ namespace BaroPortal.Business.Abstract
 {
     public interface IAdvertisementService
     {
-        List<AddAdvertisementDto> GetAll();
+        ListResultDto<GetAdvertisementListDto> GetList();
 
-        bool AddAdvertisement(AddAdvertisementDto addAdvert);
-        List<GetAdvertisementDto> GetByTypeId(int id);
-        bool DeleteAd(int id);
+        ResultDto AddAdvertisement(AddAdvertisementDto addAdvert);
+        ListResultDto<GetAdvertisementListDto> GetByTypeId(int id);
+        IDataResult<ResultDto> DeleteAd(int id);
+        IDataResult<List<AdvertDetailDto>> GetAdvertDetails();
     }
 }

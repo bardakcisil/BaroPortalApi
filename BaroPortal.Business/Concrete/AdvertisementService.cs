@@ -1,5 +1,7 @@
 ﻿
 using BaroPortal.Business.Abstract;
+using BaroPortal.Core.Entities;
+using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
@@ -29,48 +31,116 @@ namespace BaroPortal.Business.Concrete
             }
 
    
-            public List<AddAdvertisementDto> GetAll()
-            {
-                var result = _advertDal.GetAll();
-            var data = new List<AddAdvertisementDto>();
+            public ListResultDto<GetAdvertisementListDto> GetList()
+        {
+            ListResultDto<GetAdvertisementListDto> response = new ListResultDto<GetAdvertisementListDto>();
+            var result = _advertDal.GetAll();
+            var data = new List<GetAdvertisementListDto>();
             foreach (var item in result)
             {
-                AddAdvertisementDto dto = new AddAdvertisementDto();
-                dto.AdvertId = item.AdvertId;
+                GetAdvertisementListDto dto = new GetAdvertisementListDto();
+
+                dto.Advertiser = item.Advertiser;
                 dto.Title = item.Title;
                 dto.Advertiser = item.Advertiser;
-                dto.TypeId = item.TypeId;
-                dto.AdvertiserEmail = item.AdvertiserEmail;
                 dto.AdvertiserPhone = item.AdvertiserPhone;
+                dto.AdvertiserEmail = item.AdvertiserEmail;
                 dto.Description = item.Description;
                 
 
                 data.Add(dto);
+                
+            }
+
+            response.Data = data;
+
+            if (data is not null)
+            {
+                response.HasError = false;
+                response.Message = "Liste görüntülendi";
+                return response;
+            }
+            else
+            {
+                response.HasError = true;
+                response.Message = "Liste görüntülenmedi";
+                return response;
+            }
+
+            
+        }
+        public IDataResult<ResultDto> DeleteAd(int id)
+        {
+            
+
+
+            var deleteById = _advertDal.Get(p => p.AdvertId == id);
+            if (deleteById != null)
+            {
+                var result = _advertDal.Delete(deleteById);
+                if (result is true)
+                {
+
+                    return new SuccessDataResult<ResultDto>("İlan Silindi");
+                }
+                else
+                {
+                    return new ErrorDataResult<ResultDto>("İlan Silinemedi");
+                }
+            }
+            else
+            {
+                return new ErrorDataResult<ResultDto>("İlan Silinemedi");
             }
 
 
 
-            //advertDal.Get();
-            return data;
+
+
+
         }
 
 
+        /* public ResultDto DeleteAd(int id)
+         {
+         ResultDto response = new ResultDto();
 
-            public bool DeleteAd(int id)
-            {
 
-                var result = _advertDal.Get(p => p.AdvertId == id);
-                _advertDal.Delete(result);
-                return true;
-            }
+         var deleteById = _advertDal.Get(p => p.AdvertId == id);
+         if(deleteById != null)
+         { 
+             var result =  _advertDal.Delete(deleteById); 
+             if (result)
+             {
+                 response.HasError = true;
+                 response.Message = "İlan Silindi";
+                 return response;
+             }
+             else {
+                 response.HasError = false;
+                 response.Message = "İlan Silinemedi";
+                 return response; 
+             } }
+         else
+         {
+             response.HasError = false;
+             response.Message = "İlan Silinemedi";
+             return response;
+         }
 
-        public bool AddAdvertisement(AddAdvertisementDto addAdvert)
+
+     }*/
+
+        public ResultDto AddAdvertisement(AddAdvertisementDto addAdvert)
         {
+            ResultDto response = new ResultDto();   
             var advert = _advertDal;
 
             if (advert is null)
             {
-                return false;
+                response.HasError = true;
+                response.Message = "Wrong";
+                return response;
             }
             else
             {
@@ -105,10 +175,14 @@ namespace BaroPortal.Business.Concrete
 
                 if (result != null)
                 {
-                    return true;
+                    response.HasError = false;
+                    response.Message = "True";
+                    return response;
                 }
                 else
-                    return false;
+                    response.HasError = true;
+                response.Message = "Wrong";
+                return response;
 
             }
         }
@@ -146,31 +220,47 @@ namespace BaroPortal.Business.Concrete
             return AdvertismentNum;
         }
 
-        public List<GetAdvertisementDto> GetByTypeId(int id)
-        {
 
-          
-          var result = _advertDal.GetByType(id);
-            var data = new List<GetAdvertisementDto>();
-            foreach(var item in result)
+
+
+        IDataResult<List<AdvertDetailDto>> IAdvertisementService.GetAdvertDetails()
+        {
+            return new SuccessDataResult<List<AdvertDetailDto>>(_advertDal.GetAdvertDetails());
+        }
+
+        ListResultDto<GetAdvertisementListDto> IAdvertisementService.GetByTypeId(int id)
+        {
+            ListResultDto<GetAdvertisementListDto> response = new ListResultDto<GetAdvertisementListDto>();
+
+            var result = _advertDal.GetByType(id);
+            var data = new List<GetAdvertisementListDto>();
+            foreach (var item in result)
             {
-                GetAdvertisementDto dto = new GetAdvertisementDto();
-                dto.AdvertId = item.AdvertId;
+                GetAdvertisementListDto dto = new GetAdvertisementListDto();
+                dto.Advertiser = item.Advertiser;
                 dto.Title = item.Title;
                 dto.Advertiser = item.Advertiser;
-                dto.TypeId = item.TypeId;
-                dto.AdvertiserEmail = item.AdvertiserEmail;
                 dto.AdvertiserPhone = item.AdvertiserPhone;
+                dto.AdvertiserEmail = item.AdvertiserEmail;
                 dto.Description = item.Description;
-                dto.Name = item.AdvertType.Name;
 
                 data.Add(dto);
             }
 
-          
-   
-          //advertDal.Get();
-            return data;
+            response.Data = data;
+
+            if (data is not null)
+            {
+                response.HasError = false;
+                response.Message = "Liste görüntülendi";
+                return response;
+            }
+            else
+            {
+                response.HasError = true;
+                response.Message = "Liste görüntülenmedi";
+                return response;
+            }
         }
     }
 }

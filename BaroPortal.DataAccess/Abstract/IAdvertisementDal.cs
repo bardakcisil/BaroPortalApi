@@ -1,4 +1,5 @@
-﻿using BaroPortal.Entities.Concrete;
+﻿using BaroPortal.Core.Result;
+using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace BaroPortal.DataAccess.Abstract
         List<Advertisement> GetAll();
 
         Advertisement Add(Advertisement advert);
-        void Delete(Advertisement advert);
+        bool Delete(Advertisement advert);
         List<Advertisement> GetByType(int id);
         Advertisement Get(Expression<Func<Advertisement, bool>>? filter = null);
+        List<AdvertDetailDto> GetAdvertDetails();
 
     }
 }

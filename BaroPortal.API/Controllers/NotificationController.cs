@@ -7,7 +7,7 @@ namespace BaroPortal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class NotificationController : ControllerBase
     {
         private INotificationService _notificationService;
@@ -20,7 +20,7 @@ namespace BaroPortal.API.Controllers
         public ActionResult ShowNotification()
         {
  
-            var result = _notificationService.ShowList();
+            var result = _notificationService.GetList();
             if (result is not null)
             {
                 return Ok(result); 

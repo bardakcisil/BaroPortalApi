@@ -167,49 +167,49 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1086),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 554, DateTimeKind.Local).AddTicks(5395),
                             Name = "İş Arıyorum",
                             TypeId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1098),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2011),
                             Name = "Avukat Arıyorum",
                             TypeId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1099),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2018),
                             Name = "Katip/Sekreter Arıyorum",
                             TypeId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1099),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2019),
                             Name = "Staj Yeri Arıyorum",
                             TypeId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2020),
                             Name = "Ortak Arıyorum",
                             TypeId = 5
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2023),
                             Name = "Stajyer Av. Arıyorum",
                             TypeId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2022, 11, 22, 18, 10, 30, 496, DateTimeKind.Local).AddTicks(1100),
+                            CreateDate = new DateTime(2022, 11, 25, 10, 7, 24, 556, DateTimeKind.Local).AddTicks(2024),
                             Name = "Diğer",
                             TypeId = 7
                         });
@@ -308,6 +308,10 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Property<byte[]>("PdfFile")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

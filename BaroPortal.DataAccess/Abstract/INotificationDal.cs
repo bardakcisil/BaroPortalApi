@@ -9,7 +9,7 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface INotificationDal
     {
-        List<Notification> GetDetail();
+        List<Notification> GetAll();
         Notification Insert(Notification bulletin);
     }
 }
