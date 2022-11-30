@@ -13,7 +13,8 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
     {
         public DbSet<User>? Users { get; set; }
         public DbSet<Notification>? Notifications { get; set; }
-        public DbSet<Advert>? Adverts { get; set; }
+        public DbSet<ContactUs>? ContactUs { get; set; }
+        public DbSet<ContactUsTopic>? ContactUsTopics { get; set; }
         public DbSet<Announcement>? Announcements { get; set; }
         public DbSet<Event>? Events  { get; set; }
         public DbSet<BarSearch>? BarSearch { get; set; }
@@ -42,18 +43,21 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<User>().Property(x => x.PasswordHash).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.PasswordSalt).IsRequired();
 
-            modelBuilder.Entity<Advert>().ToTable("Adverts");
-            modelBuilder.Entity<Advert>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertId).HasMaxLength(10000).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.Title).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertTypeName).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertiserName).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertiserSname).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertiserLwork).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.ConscriptionStatus).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertiserPhone).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Advert>().Property(x => x.AdvertiserEmail).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<ContactUs>().ToTable("ContactUs");
+            modelBuilder.Entity<ContactUs>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();         
+            modelBuilder.Entity<ContactUs>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<ContactUs>().Property(x => x.Surname).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<ContactUs>().Property(x => x.Message).HasMaxLength(10000).IsRequired();
+            modelBuilder.Entity<ContactUs>().Property(x => x.Email).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<ContactUs>().Property(x => x.CreateDate).IsRequired();
+
+            modelBuilder.Entity<ContactUsTopic>().ToTable("ContactUsTopics");
+            modelBuilder.Entity<ContactUsTopic>().HasMany<ContactUs>(x => x.ContactUs).WithOne(y => y.ContactUsTopic).HasForeignKey(y => y.TopicId);
+            modelBuilder.Entity<ContactUsTopic>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ContactUsTopic>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<ContactUsTopic>().Property(x => x.TopicId).IsRequired();
+            modelBuilder.Entity<ContactUsTopic>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<ContactUsTopic>().HasData(ContactUsTopicSeed.advertType);
 
             modelBuilder.Entity<New>().ToTable("News");
             modelBuilder.Entity<New>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
