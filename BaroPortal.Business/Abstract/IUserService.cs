@@ -14,6 +14,8 @@ namespace BaroPortal.Business.Abstract
         bool Register(UserForRegister userForRegister);
         Task<User?> GetSingleHero(int id);
 
+       //  ResponseDto Login(UserForLogin userForLogin);
+
 
         ResponseDto ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto);
     }
