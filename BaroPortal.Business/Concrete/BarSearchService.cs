@@ -72,6 +72,7 @@ namespace BaroPortal.Business.Concrete
             if (listDto is not null)
             {
                 response.HasError = false;
+
                 return response;
             }
             else

@@ -12,5 +12,12 @@ namespace BaroPortal.Entities.Dto
         public bool HasError { get; set; }
         public string Message { get; set; } = null!;
         public string Token { get; set; } = null!;
+
+        public string firstName { get; set; } = null!;       
+        public string lastName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string IdentityNumber { get; set; } = null!;
+
     }
 }

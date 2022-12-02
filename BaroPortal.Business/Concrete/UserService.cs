@@ -59,6 +59,11 @@ namespace BaroPortal.Business.Concrete
                 response.Token = CreateToken(user);
                 response.HasError = false;
                 response.Message = "User Found";
+                response.firstName = user.FirstName;
+                response.lastName = user.LastName;
+                response.IdentityNumber = user.IdentityNumber;
+                response.PhoneNumber=user.PhoneNumber;
+                response.Email=user.Email;
                 return response;
             }
 
@@ -106,7 +111,7 @@ namespace BaroPortal.Business.Concrete
         public async Task<User?> GetSingleHero(int id)
         {
             var hero = _userDal.Get(p => p.Id== id);
-            //var hero = await _userDal.SuperHeroes.FindAsync(id);
+          
             if (hero is null)
                 return null;
 

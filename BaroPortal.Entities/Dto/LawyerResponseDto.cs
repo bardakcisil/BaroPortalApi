@@ -9,6 +9,8 @@ namespace BaroPortal.Entities.Dto
     public class LawyerResponseDto
     {
         public bool HasError { get; set; }
+
+
         public List<GetBarSearchListDto> Data { get; set; }
     }
 }
