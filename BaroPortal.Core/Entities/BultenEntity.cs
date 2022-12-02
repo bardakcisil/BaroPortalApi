@@ -8,10 +8,12 @@ namespace BaroPortal.Core.Entities
 {
     public class BultenEntity : BaseEntity
     {
+        public string? DetailImage { get; set; }
+        public string? Detail { get; set; }
         public string? ListImage { get; set; }
         public string? Title { get; set; }
-        public string? Detail { get; set; }
+        
 
-        public string? DetailImage { get; set; }
+      
     }
 }

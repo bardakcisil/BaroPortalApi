@@ -2,6 +2,7 @@
 using BaroPortal.Entities.Concrete.Advertisement;
 using BaroPortal.Entities.Concrete.Bildirimler;
 using BaroPortal.Entities.Concrete.ContactUs;
+using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Concrete.Etkinlikler;
 using BaroPortal.Entities.Concrete.Haberler;
 using BaroPortal.Entities.Seeds;
@@ -28,7 +29,8 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Bildirimler>? Bildirimler { get; set; }
         public DbSet<Haberler>? Haberler { get; set; }
         public DbSet<Etkinlikler>? Etkinlikler { get; set; }
-       
+        public DbSet<Duyurular>? Duyurular { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -137,6 +139,19 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Bildirimler>().Property(x => x.Detail).HasMaxLength(10000);
             modelBuilder.Entity<Bildirimler>().Property(x => x.ListImage).HasMaxLength(100);
             modelBuilder.Entity<Bildirimler>().Property(x => x.DetailImage).HasMaxLength(100);
+
+            modelBuilder.Entity<Duyurular>().ToTable("Duyurular");
+            modelBuilder.Entity<Duyurular>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Duyurular>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Duyurular>().Property(x => x.Title).HasMaxLength(100);
+            modelBuilder.Entity<Duyurular>().Property(x => x.Detail).HasMaxLength(10000);
+            modelBuilder.Entity<Duyurular>().Property(x => x.ListImage).HasMaxLength(100);
+            modelBuilder.Entity<Duyurular>().Property(x => x.DetailImage).HasMaxLength(100);
+            modelBuilder.Entity<Duyurular>().Property(x => x.PdfFile).IsRequired();
+            modelBuilder.Entity<Duyurular>().Property(x => x.FileName).IsRequired();
+            modelBuilder.Entity<Duyurular>().Property(x => x.FileExtension);
+            modelBuilder.Entity<Duyurular>().Property(x => x.FilePath);
+            modelBuilder.Entity<Duyurular>().Property(x => x.FileSize);
 
 
         }

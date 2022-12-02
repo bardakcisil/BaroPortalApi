@@ -9,5 +9,6 @@ namespace BaroPortal.Entities.Concrete.Haberler
 {
     public class Haberler : BultenEntity
     {
+
     }
 }

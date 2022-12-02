@@ -32,7 +32,8 @@ namespace BaroPortal.Business.Concrete
             else
             { 
                 var title = uploadDto.Title;
-                var file = uploadDto.PdfFile; // **it returns NULL**
+                var file = uploadDto.PdfFile; 
+
                 /*var upload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files", file.FileName);
 
                 if (!Directory.Exists(upload))

@@ -41,8 +41,12 @@ builder.Services.AddSingleton<IEtkinliklerService, EtkinliklerService>();
 builder.Services.AddSingleton<IBildirimlerDal, EfBildirimlerDal>();
 builder.Services.AddSingleton<IBildirimlerService, BildirimlerService>();
 
+builder.Services.AddSingleton<IDuyurularDal, EfDuyurularDal>();
+builder.Services.AddSingleton<IDuyuruService, DuyuruService>();
+
 builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
+
 builder.Services.AddSingleton<IContactUsTopicDal, EfContactUsTopicDal>();
 builder.Services.AddSingleton< IContactUsTopicService,ContactUsTopicService>();
 

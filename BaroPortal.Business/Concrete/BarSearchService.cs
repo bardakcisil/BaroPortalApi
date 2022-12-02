@@ -67,12 +67,12 @@ namespace BaroPortal.Business.Concrete
                 listDto.Add(dto);
 
             }
-<<<<<<< HEAD
+
             response.Data = listDto;
-=======
+
             response.Data= listDto;
 
->>>>>>> bf04be737792853cfe595f58171ce16f3a87c616
+
             if (listDto is not null)
             {
                 response.HasError = false;

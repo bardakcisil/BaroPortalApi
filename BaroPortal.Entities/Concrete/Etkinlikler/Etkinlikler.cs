@@ -9,5 +9,6 @@ namespace BaroPortal.Entities.Concrete.Etkinlikler
 {
     public class Etkinlikler :BultenEntity
     {
+
     }
 }
