@@ -1,7 +1,9 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.ContactUs;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ContactUs;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

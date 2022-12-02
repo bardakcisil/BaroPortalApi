@@ -1,4 +1,5 @@
 ﻿using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ContactUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

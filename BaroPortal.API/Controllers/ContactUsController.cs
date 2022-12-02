@@ -1,5 +1,5 @@
 ﻿using BaroPortal.Business.Abstract;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ContactUs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

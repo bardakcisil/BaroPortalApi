@@ -3,6 +3,7 @@ using BaroPortal.Core.Entities;
 using BaroPortal.Core.Result;
 using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Advertisement;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

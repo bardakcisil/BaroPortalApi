@@ -1,7 +1,7 @@
 ﻿using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.Advertisement;
 using BaroPortal.Entities.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -88,38 +88,6 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<AdvertDetailDto> GetAdvertDetails()
-        {
-            using (AppDbContext context = new AppDbContext())
-            {
-                //ontext.Set<Advertisement>().SingleOrDefault(filter);
-                var result = from p in context.Advertisements
-                              join c in context.AdvertTypes
-                              on p.TypeId equals c.TypeId
-                              select new AdvertDetailDto
-                              {
-                                  
-                                  Title = p.Title,
-                                  Description = p.Description,
-                                  Advertiser = p.Advertiser,
-                                  AdvertiserPhone = p.AdvertiserPhone,
-                                  AdvertiserEmail = p.AdvertiserEmail,
-                                  
-                              };
 
-
-                return result.ToList();
-
-
-                /*  */
-
-
-
-
-
-
-
-            }
-        }
     }
 }

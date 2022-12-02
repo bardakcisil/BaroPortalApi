@@ -1,6 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Advertisement;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,18 +40,7 @@ namespace BaroPortal.API.Controllers
 
 
         }
-        [HttpGet(" getAdvertDetails")]
-        public IActionResult GetAdvertDetail(int id)
-        {
-            //dependency chain
 
-            var result = _advertService.GetAdvertDetails();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
