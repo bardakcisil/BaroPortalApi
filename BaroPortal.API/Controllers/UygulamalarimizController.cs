@@ -1,5 +1,5 @@
 ﻿using BaroPortal.Business.Abstract;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.OtherApps;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,19 +7,19 @@ namespace BaroPortal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DuyuruController : ControllerBase
+    public class UygulamalarimizController : ControllerBase
     {
-        private IDuyuruService _DuyuruService;
+        private IUygulamalarimizService _UygulamalarimizService;
 
-        public DuyuruController(IDuyuruService DuyuruService)
+        public UygulamalarimizController(IUygulamalarimizService UygulamalarimizService)
         {
-            _DuyuruService = DuyuruService;
+            _UygulamalarimizService = UygulamalarimizService;
         }
         [HttpGet("getall")]
-        public ActionResult ShowDuyurular()
+        public ActionResult ShowUygulamalarimiz()
         {
 
-            var result = _DuyuruService.GetList();
+            var result = _UygulamalarimizService.GetList();
             if (result is not null)
             {
                 return Ok(result);
@@ -28,21 +28,21 @@ namespace BaroPortal.API.Controllers
         }
 
         [HttpPost("add")]
-        public ActionResult AddBildirim(UploadDto Duyurular)
+        public ActionResult AddBildirim(AppDto Uygulamalarimiz)
         {
-            var result = _DuyuruService.Add(Duyurular);
+            var result = _UygulamalarimizService.Add(Uygulamalarimiz);
             if (result)
             {
                 return Ok(result);
             }
-            else { return BadRequest("Duyurular did not added"); }
+            else { return BadRequest("Uygulamalarimiz did not added"); }
 
 
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var result = _DuyuruService.DeleteAd(id);
+            var result = _UygulamalarimizService.DeleteAd(id);
             if (result.Success)
             {
                 return Ok(result);

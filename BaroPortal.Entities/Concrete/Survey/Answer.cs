@@ -11,6 +11,6 @@ namespace BaroPortal.Entities.Concrete.Survey
     {
        public int? AnswerId;
        public string? AnswerName;
-        public virtual ICollection<Question> Question { get; set; }
+        public virtual ICollection<Question>? Question { get; set; }
     }
 }

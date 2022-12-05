@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete.Haberler
+namespace BaroPortal.Entities.Concrete.Uygulamalarımız
 {
-    public class Haberler : ListEntity
+    public class Uygulamalarimiz : ListEntity
     {
-
+        public string? Url { get; set; }
     }
 }

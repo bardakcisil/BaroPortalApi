@@ -10,7 +10,7 @@ namespace BaroPortal.Entities.Concrete.Survey
     public class Survey : BaseEntity
     {
         public int? SurveyId { get; set; }   
-        public string? SurveyName { get; set; }  
+        public string? SurveyName { get; set; }
         public List<Question>? Question { get; set; }
     }
 }

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Concrete.Duyurular
 {
-    public class Duyurular : BultenEntity
+    public class Duyurular : ListEntity
     {
+
         public byte[] PdfFile { get; set; } = null!;
         public string FilePath { get; set; } = null!;
         public string FileName { get; set; } = null!;

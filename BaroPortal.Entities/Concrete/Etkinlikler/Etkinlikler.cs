@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Concrete.Etkinlikler
 {
-    public class Etkinlikler :BultenEntity
+    public class Etkinlikler :ListEntity
     {
 
     }

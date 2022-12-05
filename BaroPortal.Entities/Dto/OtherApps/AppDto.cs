@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Core.Entities
+namespace BaroPortal.Entities.Dto.OtherApps
 {
-    public class BultenEntity : BaseEntity
+    public class AppDto
     {
-        public string? DetailImage { get; set; }
-        public string? Detail { get; set; }
         public string? ListImage { get; set; }
         public string? Title { get; set; }
-        
-
-      
+        public string? Detail { get; set; }
+        public string? DetailImage { get; set; }
+        public string? Url { get; set; }
     }
 }

@@ -53,6 +53,9 @@ builder.Services.AddSingleton< IContactUsTopicService,ContactUsTopicService>();
 builder.Services.AddSingleton<IContactUsDal, EfContactUsDal>();
 builder.Services.AddSingleton<IContactUsService, ContactUsService>();
 
+builder.Services.AddSingleton<IUygulamalarimizDal, EfUygulamalarimizDal>();
+builder.Services.AddSingleton<IUygulamalarimizService, UygulamalarimizService>();
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {

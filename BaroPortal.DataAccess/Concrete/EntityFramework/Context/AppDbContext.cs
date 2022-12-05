@@ -2,9 +2,12 @@
 using BaroPortal.Entities.Concrete.Advertisement;
 using BaroPortal.Entities.Concrete.Bildirimler;
 using BaroPortal.Entities.Concrete.ContactUs;
+using BaroPortal.Entities.Concrete.DigerUygulamalar;
 using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Concrete.Etkinlikler;
 using BaroPortal.Entities.Concrete.Haberler;
+using BaroPortal.Entities.Concrete.Survey;
+using BaroPortal.Entities.Concrete.Uygulamalarımız;
 using BaroPortal.Entities.Seeds;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,7 +34,9 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Etkinlikler>? Etkinlikler { get; set; }
         public DbSet<Duyurular>? Duyurular { get; set; }
 
-
+        public DbSet<Uygulamalarimiz>? Uygulamalarimiz { get; set; }
+        public DbSet<Answer>? Answer { get; set; }
+        public DbSet<Question>? Question { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -152,6 +157,42 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Duyurular>().Property(x => x.FileExtension);
             modelBuilder.Entity<Duyurular>().Property(x => x.FilePath);
             modelBuilder.Entity<Duyurular>().Property(x => x.FileSize);
+
+            modelBuilder.Entity<Uygulamalarimiz>().ToTable("Uygulamalarimiz");
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.Title).HasMaxLength(100);
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.ListImage).HasMaxLength(100);
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.Url).HasMaxLength(100);
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.Detail).HasMaxLength(10000);
+            modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.DetailImage).HasMaxLength(100);
+
+            modelBuilder.Entity<Answer>().ToTable("Cevaplar");
+            modelBuilder.Entity<Answer>().HasMany<Question>(x => x.Question).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
+            modelBuilder.Entity<Answer>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Answer>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Answer>().Property(x => x.AnswerId).HasMaxLength(100);
+            modelBuilder.Entity<Answer>().Property(x => x.AnswerName).HasMaxLength(10000);
+            modelBuilder.Entity<Answer>().HasData(AnswerSeed.answer);
+
+            modelBuilder.Entity<Question>().ToTable("Sorular");
+            modelBuilder.Entity<Question>().HasMany<Survey>(x => x.Survey).WithMany(y => y.Question);
+            modelBuilder.Entity<Question>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Question>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Question>().Property(x => x.QuestionId).HasMaxLength(100);
+            modelBuilder.Entity<Question>().Property(x => x.QuestionTitle).HasMaxLength(10000);
+            modelBuilder.Entity<Question>().Property(x => x.QuestionDetail).HasMaxLength(10000);
+
+            modelBuilder.Entity<Survey>().ToTable("Anketler");
+            modelBuilder.Entity<Survey>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Survey>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Survey>().Property(x => x.SurveyId).HasMaxLength(100);
+            modelBuilder.Entity<Survey>().Property(x => x.SurveyName).HasMaxLength(10000);
+      
+
+
+
+
 
 
         }

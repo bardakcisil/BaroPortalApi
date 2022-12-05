@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Concrete.Bildirimler
 {
-    public class Bildirimler : BultenEntity
+    public class Bildirimler : ListEntity
     {
 
     }
