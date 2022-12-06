@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete.Survey
+namespace BaroPortal.Entities.Concrete.Anketler
 {
-    public class Question : BaseEntity
+    public class Soru : BaseEntity
     {
-        public int? QuestionId { get; set; } 
+        public int? QuestionId { get; set; }
         public string? QuestionTitle { get; set; }
-        public string? QuestionDetail { get; set; } 
+        public string? QuestionDetail { get; set; }
         public int? AnswerId { get; set; }
-        public Answer? Answer { get; set; }
+        public Cevap? Answer { get; set; }
         public int? SurveyId { get; set; }
-        public  Survey? Survey { get; set; }
+        public Anket? Survey { get; set; }
     }
 }
