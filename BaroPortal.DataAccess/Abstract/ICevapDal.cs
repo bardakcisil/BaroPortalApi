@@ -1,4 +1,5 @@
-﻿using BaroPortal.Entities.Concrete.Anketler;
+﻿
+using BaroPortal.Entities.Concrete.Surveys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface ICevapDal
     {
-        List<Cevap> GetDetail();
+        List<Answers> GetDetail();
     }
 }

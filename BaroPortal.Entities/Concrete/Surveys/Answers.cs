@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete.Anketler
+namespace BaroPortal.Entities.Concrete.Surveys
 {
-    public class Cevap : BaseEntity
+    public class Answers:BaseEntity
     {
         public int? AnswerId;
         public string? AnswerName;
-        public IList<Soru>? Question { get; set; }
+        public ICollection<Questions>? Question { get; set; }
     }
 }

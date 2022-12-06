@@ -1,13 +1,12 @@
 ﻿using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Concrete.Advertisement;
-using BaroPortal.Entities.Concrete.Anketler;
 using BaroPortal.Entities.Concrete.Bildirimler;
 using BaroPortal.Entities.Concrete.ContactUs;
 using BaroPortal.Entities.Concrete.DigerUygulamalar;
 using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Concrete.Etkinlikler;
 using BaroPortal.Entities.Concrete.Haberler;
-using BaroPortal.Entities.Concrete.Survey;
+using BaroPortal.Entities.Concrete.Surveys;
 using BaroPortal.Entities.Concrete.Uygulamalarımız;
 using BaroPortal.Entities.Seeds;
 using Microsoft.EntityFrameworkCore;
@@ -37,9 +36,11 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
         public DbSet<Uygulamalarimiz>? Uygulamalarimiz { get; set; }
 
-        public DbSet<Cevap>? Cevap { get; set; }
-        public DbSet<Soru>? Soru { get; set; }
-        public DbSet<Anket>? Anket { get; set; }
+  
+
+        public DbSet<Answers>? Answers { get; set; }
+        public DbSet<Questions>? Questions { get; set; }
+        public DbSet<Surveys>? Surveys { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -170,29 +171,29 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.Detail).HasMaxLength(10000);
             modelBuilder.Entity<Uygulamalarimiz>().Property(x => x.DetailImage).HasMaxLength(100);
 
-            modelBuilder.Entity<Cevap>().ToTable("Cevap");
-            modelBuilder.Entity<Cevap>().HasMany<Soru>(x => x.Question).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
-            modelBuilder.Entity<Cevap>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-            modelBuilder.Entity<Cevap>().Property(x => x.CreateDate).IsRequired();
-            modelBuilder.Entity<Cevap>().Property(x => x.AnswerId).HasMaxLength(100);
-            modelBuilder.Entity<Cevap>().Property(x => x.AnswerName).HasMaxLength(10000);
-            modelBuilder.Entity<Cevap>().HasData(AnswerSeed.answer);
 
-            modelBuilder.Entity<Soru>().ToTable("Soru");
-            modelBuilder.Entity<Soru>().HasKey(x => new { x.SurveyId, x.AnswerId });
-            modelBuilder.Entity<Soru>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-            modelBuilder.Entity<Soru>().Property(x => x.CreateDate).IsRequired();
-            modelBuilder.Entity<Soru>().Property(x => x.QuestionId).HasMaxLength(100);
-            modelBuilder.Entity<Soru>().Property(x => x.QuestionTitle).HasMaxLength(10000);
-            modelBuilder.Entity<Soru>().Property(x => x.QuestionDetail).HasMaxLength(10000);
+            modelBuilder.Entity<Answers>().ToTable("Answers");
+            modelBuilder.Entity<Answers>().HasMany<Questions>(x => x.Question).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
+            modelBuilder.Entity<Answers>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Answers>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Answers>().Property(x => x.AnswerId).HasMaxLength(100);
+            modelBuilder.Entity<Answers>().Property(x => x.AnswerName).HasMaxLength(10000);
+            modelBuilder.Entity<Answers>().HasData(AnswersSeed.answer);
 
-            modelBuilder.Entity<Anket>().ToTable("Anket");
-            modelBuilder.Entity<Anket>().HasMany<Soru>(x => x.Question).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
-            modelBuilder.Entity<Anket>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-            modelBuilder.Entity<Anket>().Property(x => x.CreateDate).IsRequired();
-            modelBuilder.Entity<Anket>().Property(x => x.SurveyId).HasMaxLength(100);
-            modelBuilder.Entity<Anket>().Property(x => x.SurveyName).HasMaxLength(10000);
-      
+            modelBuilder.Entity<Questions>().ToTable("Questions");
+            modelBuilder.Entity<Questions>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Questions>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Questions>().Property(x => x.QuestionId).HasMaxLength(100);
+            modelBuilder.Entity<Questions>().Property(x => x.QuestionTitle).HasMaxLength(10000);
+            modelBuilder.Entity<Questions>().Property(x => x.QuestionDetail).HasMaxLength(10000);
+
+            modelBuilder.Entity<Surveys>().ToTable("Surveys");
+            modelBuilder.Entity<Surveys>().HasMany<Questions>(x => x.Question).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
+            modelBuilder.Entity<Surveys>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Surveys>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Surveys>().Property(x => x.SurveyId).HasMaxLength(100);
+            modelBuilder.Entity<Surveys>().Property(x => x.SurveyName).HasMaxLength(10000);
+
 
 
 

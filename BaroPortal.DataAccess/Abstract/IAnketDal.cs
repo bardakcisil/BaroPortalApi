@@ -1,7 +1,8 @@
-﻿using BaroPortal.Entities.Concrete.Anketler;
+﻿using BaroPortal.Entities.Concrete.Surveys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +10,10 @@ namespace BaroPortal.DataAccess.Abstract
 {
     public interface IAnketDal
     {
-        List<Anket> GetAll();
+        List<Surveys> GetAll();
 
-        Anket Add(Anket anket);
-        bool Delete(Anket anket);
+        Surveys Add(Surveys anket);
+        bool Delete(Surveys anket);
+        Surveys Get(Expression<Func<Surveys, bool>>? filter = null);
     }
 }

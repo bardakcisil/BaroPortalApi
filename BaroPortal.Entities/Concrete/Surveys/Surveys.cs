@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete.Survey
+namespace BaroPortal.Entities.Concrete.Surveys
 {
-    public class Survey : BaseEntity
+    public class Surveys : BaseEntity
     {
-        public int? SurveyId { get; set; }   
+        public int? SurveyId { get; set; }
         public string? SurveyName { get; set; }
-        public IList<Question>? Question { get; set; }
+        public ICollection<Questions>? Question { get; set; }
     }
 }
