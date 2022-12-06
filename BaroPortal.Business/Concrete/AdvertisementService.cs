@@ -4,7 +4,9 @@ using BaroPortal.Core.Entities;
 using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.Advertisement;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Advertisement;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -223,10 +225,7 @@ namespace BaroPortal.Business.Concrete
 
 
 
-        IDataResult<List<AdvertDetailDto>> IAdvertisementService.GetAdvertDetails()
-        {
-            return new SuccessDataResult<List<AdvertDetailDto>>(_advertDal.GetAdvertDetails());
-        }
+
 
         ListResultDto<GetAdvertisementListDto> IAdvertisementService.GetByTypeId(int id)
         {

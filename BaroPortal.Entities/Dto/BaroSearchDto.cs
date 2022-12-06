@@ -8,9 +8,9 @@ namespace BaroPortal.Entities.Dto
 {
    public class BaroSearchDto
     {
-        public int TypeId { get; set; }
-        public int BaroNumber { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public int? TypeId { get; set; }
+        public int? BaroNumber { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
     }
 }

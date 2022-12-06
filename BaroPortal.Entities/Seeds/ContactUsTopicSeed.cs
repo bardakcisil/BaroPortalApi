@@ -1,4 +1,4 @@
-﻿using BaroPortal.Entities.Concrete;
+﻿using BaroPortal.Entities.Concrete.ContactUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Seeds
 {
- 
+
     public static class ContactUsTopicSeed
     {
         public static readonly List<ContactUsTopic> advertType = new List<ContactUsTopic>()

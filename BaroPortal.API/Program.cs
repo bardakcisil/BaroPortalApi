@@ -20,22 +20,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
-builder.Services.AddSingleton<INotificationDal, EfNotificationDal>();
-builder.Services.AddSingleton<INotificationService, NotificationService>();
-
-
 
 builder.Services.AddSingleton<IAdvertisementDal, EfAdvertisementDal>();
 builder.Services.AddSingleton<IAdvertisementService, AdvertisementService>();
 
-builder.Services.AddSingleton<IAnnouncementDal, EfAnnouncementDal>();
-builder.Services.AddSingleton<IAnnouncementService, AnnouncementService>();
-
-builder.Services.AddSingleton<IEventDal, EfEventDal>();
-builder.Services.AddSingleton<IEventService, EventService>();
-
-builder.Services.AddSingleton<INewDal, EfNewDal>();
-builder.Services.AddSingleton<INewService, NewService>();
 
 builder.Services.AddSingleton<IEducationDal, EfEducationDal>();
 builder.Services.AddSingleton<IEducationService, EducationService>();
@@ -43,17 +31,30 @@ builder.Services.AddSingleton<IEducationService, EducationService>();
 builder.Services.AddSingleton<IAdvTypeDal, EfAdvTypeDal>();
 builder.Services.AddSingleton<IAdvTypeService, AdvTypeService>();
 
+//
+builder.Services.AddSingleton<IHaberlerDal, EfHaberlerDal>();
+builder.Services.AddSingleton<IHaberlerService, HaberlerService>();
 
+builder.Services.AddSingleton<IEtkinliklerDal, EfEtkinliklerDal>();
+builder.Services.AddSingleton<IEtkinliklerService, EtkinliklerService>();
+
+builder.Services.AddSingleton<IBildirimlerDal, EfBildirimlerDal>();
+builder.Services.AddSingleton<IBildirimlerService, BildirimlerService>();
+
+builder.Services.AddSingleton<IDuyurularDal, EfDuyurularDal>();
+builder.Services.AddSingleton<IDuyuruService, DuyuruService>();
 
 builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
-
 
 builder.Services.AddSingleton<IContactUsTopicDal, EfContactUsTopicDal>();
 builder.Services.AddSingleton< IContactUsTopicService,ContactUsTopicService>();
 
 builder.Services.AddSingleton<IContactUsDal, EfContactUsDal>();
 builder.Services.AddSingleton<IContactUsService, ContactUsService>();
+
+builder.Services.AddSingleton<IUygulamalarimizDal, EfUygulamalarimizDal>();
+builder.Services.AddSingleton<IUygulamalarimizService, UygulamalarimizService>();
 
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

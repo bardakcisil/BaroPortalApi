@@ -1,6 +1,7 @@
 ﻿using BaroPortal.Core.Result;
 using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Advertisement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace BaroPortal.Business.Abstract
         ResultDto AddAdvertisement(AddAdvertisementDto addAdvert);
         ListResultDto<GetAdvertisementListDto> GetByTypeId(int id);
         IDataResult<ResultDto> DeleteAd(int id);
-        IDataResult<List<AdvertDetailDto>> GetAdvertDetails();
+      
     }
 }

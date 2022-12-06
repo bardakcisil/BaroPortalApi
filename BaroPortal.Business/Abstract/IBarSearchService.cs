@@ -12,9 +12,9 @@ namespace BaroPortal.Business.Abstract
     public interface IBarSearchService
     {
         bool AddLawyer(BaroSearchDto barosearchDto);
-      //  BarSearch GetTypeById(int id, string name, string surname, int snumber);
-       //LawyerResponseDto CheckUser(BaroSearchDto barsearchDto);
-       LawyerResponseDto CheckUser(BaroSearchDto barsearchDto);
+        //  BarSearch GetTypeById(int id, string name, string surname, int snumber);
+        //LawyerResponseDto CheckUser(BaroSearchDto barsearchDto);
+        LawyerResponseDto CheckUser(BaroSearchDto barsearchDto);
 
      
 
