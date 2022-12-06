@@ -32,16 +32,6 @@ namespace BaroPortal.API.Controllers
 
 
 
-        [HttpGet("Profile{id}"), Authorize]
-        public async Task<ActionResult<UserForRegister>> GetSingleHero(int id)
-        {
-            var result = await _userService.GetSingleHero(id);
-            if (result is null)
-                return NotFound("Hero not found.");
-
-            return Ok(result);
-        }
-
 
 
 
