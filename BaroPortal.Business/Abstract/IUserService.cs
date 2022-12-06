@@ -12,7 +12,7 @@ namespace BaroPortal.Business.Abstract
     {
         ResponseDto Login(UserForLogin userForLogin);
         bool Register(UserForRegister userForRegister);
-        Task<User?> GetSingleHero(int id);
+       
 
        //  ResponseDto Login(UserForLogin userForLogin);
 

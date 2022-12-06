@@ -53,30 +53,26 @@ namespace BaroPortal.Business.Concrete
             var listDto = new List<GetBarSearchListDto>();
 
 
-
+           
 
             foreach (var item in resultList)
             {
                 GetBarSearchListDto dto = new GetBarSearchListDto();
-
-                dto.title = item.TypeId;
+                
+                dto.title =item.TypeId ;
                 dto.Name = item.Name;
                 dto.Surname = item.Surname;
                 dto.BarNumber = item.BaroNumber;
-
+            
                 listDto.Add(dto);
-
+            
             }
-
-            response.Data = listDto;
-
             response.Data= listDto;
 
 
             if (listDto is not null)
             {
                 response.HasError = false;
-
                 return response;
             }
             else

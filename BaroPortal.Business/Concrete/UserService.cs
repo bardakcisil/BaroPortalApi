@@ -108,15 +108,7 @@ namespace BaroPortal.Business.Concrete
         }
 
        
-        public async Task<User?> GetSingleHero(int id)
-        {
-            var hero = _userDal.Get(p => p.Id== id);
-          
-            if (hero is null)
-                return null;
-
-            return hero;
-        }
+     
 
         public ResponseDto ForgotMyPassword(ForgotMyPasswordDto forgotMyPasswordDto)
         {
