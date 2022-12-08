@@ -64,25 +64,6 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
                 return result;
 
 
-                /* (from p in context.Advertisements
-                           join c in context.AdvertType
-                           on p.TypeId equals c.TypeId
-                           select new Advertisement
-                           {
-                               TypeId = p.TypeId,
-                               Title = p.Title,
-                               Description = p.Description,
-                               Advertiser = p.Advertiser,
-                               AdvertiserPhone = p.AdvertiserPhone,
-                               AdvertiserEmail = p.AdvertiserEmail,
-                               AdvertId = p.AdvertId,
-                               AdvertType = p.AdvertType,
-                           }).ToList(); */
-
-
-
-
-
 
 
             }

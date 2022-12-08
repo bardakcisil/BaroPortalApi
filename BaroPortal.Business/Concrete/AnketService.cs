@@ -75,6 +75,7 @@ namespace BaroPortal.Business.Concrete
             foreach (var item in result)
             {
                 AnketDto dto = new AnketDto();
+                dto.Id = item.Id;     
                 dto.SurveyId = item.SurveyId;
                 dto.SurveyName= item.SurveyName;
 

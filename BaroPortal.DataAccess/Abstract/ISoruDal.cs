@@ -1,5 +1,6 @@
 ﻿
 using BaroPortal.Entities.Concrete.Surveys;
+using BaroPortal.Entities.Dto.Survey;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace BaroPortal.DataAccess.Abstract
         Questions Add(Questions Questions);
         bool Delete(Questions Questions);
         Questions Get(Expression<Func<Questions, bool>>? filter = null);
-        List<Questions> GetBySurvey(int id);
-
+        List<Questions> GetBySurvey(int? id);
+        bool Update(int anketId, int soruId,int answerId);
+        //bool Update(int anketId, int answerId);
     }
 }

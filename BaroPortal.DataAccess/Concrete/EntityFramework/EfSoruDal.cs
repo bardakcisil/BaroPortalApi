@@ -1,6 +1,7 @@
 ﻿using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
 using BaroPortal.Entities.Concrete.Surveys;
+using BaroPortal.Entities.Dto.Survey;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 
 
 
-        public List<Questions> GetBySurvey(int id)
+        public List<Questions> GetBySurvey(int? id)
         {
             using (AppDbContext context = new AppDbContext())
             {
@@ -58,6 +59,17 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
                 var result = context.Questions.Where(p => p.SurveyId == id).Include(p => p.Survey).ToList();
                 return result;
 
+            }
+        }
+
+        public bool Update(int antketId, int soruId,  int answerId)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                var result =context.Questions.Where(p=>p.SurveyId == antketId && p.QuestionId ==soruId).SingleOrDefault();
+                result.AnswerId = answerId;
+                context.SaveChanges();
+                return true;
             }
         }
     }

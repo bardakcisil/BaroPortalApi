@@ -35,7 +35,22 @@ namespace BaroPortal.API.Controllers
             {
                 return Ok(result);
             }
-            else { return BadRequest("soru is not added"); }
+            else { return BadRequest("Soru is not added"); }
+
+
+        }
+
+        [HttpPost("addAnswer")]
+       public ActionResult UpdateAnswer(AnketAnswerDto anketAnswerDto)
+        {
+            
+            var result = _soruService.UpdateAnswer(anketAnswerDto);
+
+           
+                return Ok(result);
+           
+
+
 
 
         }
@@ -53,7 +68,7 @@ namespace BaroPortal.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetBySurveyId(int id)
+        public ActionResult GetBySurveyId(int? id)
         {
 
             var result = _soruService.GetBySurveyId(id);

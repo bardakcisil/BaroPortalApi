@@ -125,19 +125,45 @@ namespace BaroPortal.Business.Concrete
             }
         }
 
+        public IResult UpdateAnswer(AnketAnswerDto anketAnswerDto)
+        {
 
-        ListResultDto<GetQuestionListDto> ISoruService.GetBySurveyId(int id)
+            foreach(var anket in anketAnswerDto.GetAnswerFromListSoru)
+            {
+
+                var result = _soruDal.Update(anketAnswerDto.SurveyId,anket.SoruId,anket.AnswerId);
+
+                if (result)
+                {
+                    return new SuccessResult("başarılı");
+                }
+
+                else
+                {
+                   return new ErrorResult("başarısız");
+               }
+            }
+            
+            return new SuccessResult();
+            
+           
+        }
+
+        ListResultDto<GetQuestionListDto> ISoruService.GetBySurveyId(int? id)
         {
             ListResultDto<GetQuestionListDto> response = new ListResultDto<GetQuestionListDto>();
-
+            
             var result = _soruDal.GetBySurvey(id);
             var data = new List<GetQuestionListDto>();
             foreach (var item in result)
             {
                 GetQuestionListDto dto = new GetQuestionListDto();
+               
+                dto.SurveyId = item.Survey.Id;
                 dto.QuestionId = item.QuestionId;
                 dto.QuestionTitle = item.QuestionTitle;
                 dto.QuestionDetail = item.QuestionDetail;
+                dto.AnswerId = item.AnswerId;
                 
 
 
