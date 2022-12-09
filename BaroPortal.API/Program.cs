@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserService, UserService>();
+
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
 
@@ -55,6 +56,8 @@ builder.Services.AddSingleton<IContactUsService, ContactUsService>();
 
 builder.Services.AddSingleton<IUygulamalarimizDal, EfUygulamalarimizDal>();
 builder.Services.AddSingleton<IUygulamalarimizService, UygulamalarimizService>();
+
+builder.Services.AddSingleton<ICalculationService, CalculationService>();
 
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
