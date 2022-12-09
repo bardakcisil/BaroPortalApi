@@ -10,69 +10,69 @@ namespace BaroPortal.Business.Concrete
 {
     public class CalculationService : ICalculationService
     {
-        public ResponseCalculationDto AttorneyFeeCalculate(LivingFeeCalculationDto calcDto)
+        public ResponseCalculationDto AttorneyFeeCalculate(CalculationDto calcDto)
         {
             ResponseCalculationDto response = new ResponseCalculationDto();
 
 
 
 
-            if (calcDto.Status == "İcra Takipleri için")
+            if (calcDto.Status == "İcra Takipleri İçin")
             {
-                response.bill = CalcFee(calcDto.children);
-                response.total = CalcFee(calcDto.children);
+               
+                response.total = CalcFee1(calcDto.Amount);
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Konusu Para Olan Davalar için")
+            else if (calcDto.Status == "Konusu Para Olan Davalar İçin")
             {
-                switch (calcDto.partnerWork)
+                switch (calcDto.Case)
                 {
                     case "İcra Mahkemeleri":
-                        response.bill = CalcFee(calcDto.children);
-                        response.total = CalcFee(calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "Sulh Hukuk Mahkemeleri":
-                        response.bill = CalcFee(calcDto.children);
-                        response.total = CalcFee(calcDto.children);
+                      
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "Sulh Ceza/İnfaz Hakimlikleri":
-                        response.bill = CalcFee(calcDto.children);
-                        response.total = CalcFee(calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "Asliye Mahkemeleri":
-                        response.bill = CalcFee(calcDto.children);
-                        response.total = CalcFee(calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "Tüketici Mahkemeleri":
-                        response.bill = ((calcDto.children * 8) / 100) + (calcDto.children);
-                        response.total = ((calcDto.children * 8) / 100) + (calcDto.children);
+                        
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "Fikri ve Sınai Haklar Mahkemeleri":
-                        response.bill = ((calcDto.children * 5) / 100) + (calcDto.children);
-                        response.total = ((calcDto.children * 5) / 100) + (calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "İdare ve Vergi Mahkemeleri - Duruşmalı":
-                        response.bill = ((calcDto.children * 3) / 100) + (calcDto.children);
-                        response.total = ((calcDto.children * 3) / 100) + (calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
                     case "İdare ve Vergi Mahkemeleri - Duruşmasız":
-                        response.bill = ((calcDto.children * 2) / 100) + (calcDto.children);
-                        response.total = ((calcDto.children * 2) / 100) + (calcDto.children);
+                       
+                        response.total = CalcFee(calcDto.Amount);
                         response.HasError = false;
                         response.Message = "success";
                         break;
@@ -89,35 +89,72 @@ namespace BaroPortal.Business.Concrete
             return response;
         }
         double? fee = 0;
+        public double? CalcFee1(double? amount)
+        {
+            switch (amount)
+            {
+                case 40000:
+                    fee = ((amount * 15) / 100) + (amount);
+                    break;
+                case > 0 and < 50000:
+                    fee = ((amount * 13) / 100) + (amount);
+                    break;
+                case > 50000 and <= 90000:
+                    fee = ((amount * 14) / 100) + (amount);
+                    break;
+                case > 90000 and <= 250000:
+                    fee = ((amount * 9.50) / 100) + (amount);
+                    break;
+                case > 250000 and <= 620000:
+                    fee = ((amount * 7) / 100) + (amount);
+                    break;
+                case > 620000 and <= 775000:
+                    fee = ((amount * 5) / 100) + (amount);
+                    break;
+                case > 775000 and <= 12750000:
+                    fee = ((amount * 3) / 100) + (amount);
+                    break;
+                case > 1275000 and <= 100000000:
+                    fee = ((amount * 1.80) / 100) + (amount);
+                    break;
+                case > 100000000 :
+                    fee = ((amount * 1) / 100) + (amount);
+                    break;
+                default:
+
+                    break;
+            }
+            return fee;
+        }
         public double? CalcFee(double? amount)
         {
             switch (amount)
             {
-                case 1000:
+                case 100000:
                     fee = ((amount * 16) / 100) + (amount);
                     break;
-                case > 0 and < 1000:
+                case > 0 and < 100000:
                     fee = ((amount * 15) / 100) + (amount);
                     break;
-                case > 1000 and <= 3000:
+                case > 100000 and <= 300000:
                    fee = ((amount * 14) / 100) + (amount);
                     break;
-                case > 3000 and <= 5000:
+                case > 300000 and <= 500000:
                     fee = ((amount * 11) / 100) + (amount);                 
                     break;
-                case > 5000 and <= 7000:
+                case > 500000 and <= 700000:
                     fee = ((amount * 8) / 100) + (amount);
                     break;
-                case > 7000 and <= 9000:
+                case > 700000 and <= 900000:
                     fee = ((amount * 5) / 100) + (amount);
                     break;
-                case > 9000 and <= 11000:
+                case > 900000 and <= 1100000:
                     fee = ((amount * 3) / 100) + (amount);
                     break;
-                case > 11000 and <= 13000:
+                case > 1100000 and <= 1300000:
                     fee = ((amount * 2) / 100) + (amount);
                     break;
-                case > 13000 and <= 50000:
+                case > 1300000 and <= 5000000:
                     fee = ((amount * 1) / 100) + (amount);                    
                    break;
                 default:
@@ -127,7 +164,7 @@ namespace BaroPortal.Business.Concrete
             return fee;
         }
 
-        public ResponseCalculationDto LivingFeeCalculate(LivingFeeCalculationDto calcDto)
+        public ResponseCalculationDto LivingFeeCalculate(CalculationDto calcDto)
         {
             ResponseCalculationDto response = new ResponseCalculationDto();
 
@@ -136,22 +173,22 @@ namespace BaroPortal.Business.Concrete
 
             if (calcDto.Status == "Bekar")
             {
-                response.bill = 15;
+                
                 response.total = 25;
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Evli" || calcDto.partnerWork == "Çalışmıyor" || calcDto.children == 0)
+            else if (calcDto.Status == "Evli" || calcDto.Case == "Çalışmıyor" || calcDto.Amount == 0)
             {
                 response.total = 0.0;
-                response.bill = 10.0;
+             
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Evli" ||  calcDto.partnerWork == "Çalışıyor" || calcDto.children == 1)
+            else if (calcDto.Status == "Evli" ||  calcDto.Case == "Çalışıyor" || calcDto.Amount == 1)
             {
                 response.total = 50;
-                response.bill = 80;
+             
                 response.HasError = false;
                 response.Message = "success";
             }

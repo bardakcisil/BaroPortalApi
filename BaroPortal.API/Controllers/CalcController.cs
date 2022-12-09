@@ -20,7 +20,7 @@ namespace BaroPortal.API.Controllers
 
 
         [HttpPost("GetResult")]
-        public ActionResult GetAll(LivingFeeCalculationDto calculationDto)
+        public ActionResult GetAll(CalculationDto calculationDto)
         {
 
             var result = _calculationService.LivingFeeCalculate(calculationDto);
@@ -32,7 +32,7 @@ namespace BaroPortal.API.Controllers
         }
 
         [HttpPost("GetAttorney")]
-        public ActionResult GetAttorney(LivingFeeCalculationDto calculationDto)
+        public ActionResult GetAttorney(CalculationDto calculationDto)
         {
 
             var result = _calculationService.AttorneyFeeCalculate(calculationDto);

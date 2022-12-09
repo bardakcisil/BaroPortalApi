@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto
 {
-    public class LivingFeeCalculationDto
+    public class CalculationDto
     {
         public string? Status  { get; set; }
-        public string? partnerWork  { get; set; }
-        public double? children  { get; set; }
+        public string? Case  { get; set; }
+        public double? Amount  { get; set; }
     }
 }

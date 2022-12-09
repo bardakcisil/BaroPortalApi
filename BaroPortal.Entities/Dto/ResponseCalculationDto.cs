@@ -8,7 +8,7 @@ namespace BaroPortal.Entities.Dto
 {
     public class ResponseCalculationDto
     {
-        public double? bill { get; set; } = null!;
+      
         public double? total { get; set; } = null!;
         public bool HasError { get; set; }
         public string Message { get; set; } = null!;
