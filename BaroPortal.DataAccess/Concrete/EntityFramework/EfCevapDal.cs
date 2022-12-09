@@ -1,19 +1,15 @@
-﻿using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete.Anketler;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BaroPortal.DataAccess.Abstract;
+using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
+using BaroPortal.Entities.Concrete.Surveys;
 
 namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
-    public class EfCevapDal
+    public class EfCevapDal:ICevapDal
     {
-        public List<Cevap> GetDetail()
+        public List<Answers> GetDetail()
         {
             var context = new AppDbContext();
-            var result = context.Cevap.ToList();
+            var result = context.Answers.ToList();
             return result;
         }
     }

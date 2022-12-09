@@ -1,10 +1,12 @@
 ﻿using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete.Anketler;
+using BaroPortal.Entities.Concrete.Surveys;
+using BaroPortal.Entities.Dto.Survey;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +14,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
     public class EfSoruDal:ISoruDal
     {
-        public Soru Add(Soru result)
+        public Questions Add(Questions result)
         {
             using var context = new AppDbContext();
-            context.Soru.Add(result);
+            context.Questions.Add(result);
             context.SaveChanges();
             return result;
         }
 
-        public bool Delete(Soru result)
+        public bool Delete(Questions result)
         {
             using (AppDbContext context = new AppDbContext())
             {
@@ -32,12 +34,43 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             }
         }
 
+        public Questions Get(Expression<Func<Questions, bool>>? filter = null)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.Set<Questions>().SingleOrDefault(filter);
+            }
+        }
 
-        List<Soru> ISoruDal.GetAll()
+        List<Questions> ISoruDal.GetAll()
         {
             using var context = new AppDbContext();
-            var result = context.Soru.ToList();
+            var result = context.Questions.ToList();
             return result;
+        }
+
+
+
+        public List<Questions> GetBySurvey(int? id)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+
+                var result = context.Questions.Where(p => p.SurveyId == id).Include(p => p.Survey).ToList();
+                return result;
+
+            }
+        }
+
+        public bool Update(int antketId, int soruId,  int answerId)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                var result =context.Questions.Where(p=>p.SurveyId == antketId && p.QuestionId ==soruId).SingleOrDefault();
+                result.AnswerId = answerId;
+                context.SaveChanges();
+                return true;
+            }
         }
     }
 }

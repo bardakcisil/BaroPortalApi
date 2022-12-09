@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto.Survey
 {
-    public class AnketDto
+    public class ListSoruDto
     {
-        public int? Id { get; set; }
-        public int? SurveyId { get; set; }
-        public string? SurveyName { get; set; }
+        public int SoruId { get; set; }
+        public int AnswerId { get; set; }
     }
 }

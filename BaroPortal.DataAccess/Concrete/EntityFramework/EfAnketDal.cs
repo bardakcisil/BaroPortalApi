@@ -1,10 +1,11 @@
 ﻿using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete.Anketler;
+using BaroPortal.Entities.Concrete.Surveys;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +13,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
 {
     public class EfAnketDal:IAnketDal
     {
-        public Anket Add(Anket result)
+        public Surveys Add(Surveys result)
         {
             using var context = new AppDbContext();
-            context.Anket.Add(result);
+            context.Surveys.Add(result);
             context.SaveChanges();
             return result;
         }
 
-        public bool Delete(Anket result)
+        public bool Delete(Surveys result)
         {
             using (AppDbContext context = new AppDbContext())
             {
@@ -32,11 +33,18 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             }
         }
 
+        public Surveys Get(Expression<Func<Surveys, bool>>? filter = null)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.Set<Surveys>().SingleOrDefault(filter);
+            }
+        }
 
-        List<Anket> IAnketDal.GetAll()
+        List<Surveys> IAnketDal.GetAll()
         {
             using var context = new AppDbContext();
-            var result = context.Anket.ToList();
+            var result = context.Surveys.ToList();
             return result;
         }
     }

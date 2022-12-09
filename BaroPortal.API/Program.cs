@@ -56,9 +56,15 @@ builder.Services.AddSingleton<IContactUsService, ContactUsService>();
 
 builder.Services.AddSingleton<IUygulamalarimizDal, EfUygulamalarimizDal>();
 builder.Services.AddSingleton<IUygulamalarimizService, UygulamalarimizService>();
+builder.Services.AddSingleton<ICevapDal, EfCevapDal>();
+builder.Services.AddSingleton<ICevapService, CevapService>();
 
+builder.Services.AddSingleton<ISoruDal, EfSoruDal>();
+builder.Services.AddSingleton<ISoruService, SoruService>();
+
+builder.Services.AddSingleton<IAnketDal, EfAnketDal>();
+builder.Services.AddSingleton<IAnketService, AnketService>();
 builder.Services.AddSingleton<ICalculationService, CalculationService>();
-
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {

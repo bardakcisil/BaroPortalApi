@@ -8,7 +8,7 @@ namespace BaroPortal.Entities.Dto.Survey
 {
     public class CevapDto
     {
-        public int? AnswerId;
-        public string? AnswerName;
+        public int? AnswerId { get; set; }  
+        public string? AnswerName { get; set; }
     }
 }
