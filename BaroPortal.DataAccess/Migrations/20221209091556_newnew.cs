@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaroPortal.DataAccess.Migrations
 {
-    public partial class Newinitials : Migration
+    public partial class newnew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,21 +25,6 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Anket",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SurveyId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
-                    SurveyName = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Anket", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Announcements",
                 columns: table => new
                 {
@@ -53,6 +38,21 @@ namespace BaroPortal.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Announcements", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AnswerId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
+                    AnswerName = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,21 +90,6 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cevap",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AnswerId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
-                    AnswerName = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cevap", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ContactUsTopics",
                 columns: table => new
                 {
@@ -117,6 +102,21 @@ namespace BaroPortal.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ContactUsTopics", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Court",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Court", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,6 +195,21 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Surveys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SurveyId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
+                    SurveyName = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Surveys", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -259,36 +274,6 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Soru",
-                columns: table => new
-                {
-                    AnswerId = table.Column<int>(type: "int", nullable: false),
-                    SurveyId = table.Column<int>(type: "int", nullable: false),
-                    QuestionId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
-                    QuestionTitle = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
-                    QuestionDetail = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Soru", x => new { x.SurveyId, x.AnswerId });
-                    table.ForeignKey(
-                        name: "FK_Soru_Anket_SurveyId",
-                        column: x => x.SurveyId,
-                        principalTable: "Anket",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Soru_Cevap_AnswerId",
-                        column: x => x.AnswerId,
-                        principalTable: "Cevap",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ContactUs",
                 columns: table => new
                 {
@@ -311,30 +296,32 @@ namespace BaroPortal.DataAccess.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.InsertData(
-                table: "AdvertTypes",
-                columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
                 {
-                    { 1, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9321), "İş Arıyorum", 1 },
-                    { 2, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9341), "Avukat Arıyorum", 2 },
-                    { 3, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9342), "Katip/Sekreter Arıyorum", 3 },
-                    { 4, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9343), "Staj Yeri Arıyorum", 4 },
-                    { 5, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9343), "Ortak Arıyorum", 5 },
-                    { 6, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9346), "Stajyer Av. Arıyorum", 6 },
-                    { 7, new DateTime(2022, 12, 6, 14, 2, 26, 532, DateTimeKind.Local).AddTicks(9347), "Diğer", 7 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Cevap",
-                columns: new[] { "Id", "AnswerId", "AnswerName", "CreateDate" },
-                values: new object[,]
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionId = table.Column<int>(type: "int", maxLength: 100, nullable: true),
+                    QuestionTitle = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
+                    QuestionDetail = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
+                    AnswerId = table.Column<int>(type: "int", nullable: true),
+                    SurveyId = table.Column<int>(type: "int", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
                 {
-                    { 1, 1, "Strongly Disagree", new DateTime(2022, 12, 6, 14, 2, 26, 535, DateTimeKind.Local).AddTicks(1770) },
-                    { 2, 2, "Disagree", new DateTime(2022, 12, 6, 14, 2, 26, 535, DateTimeKind.Local).AddTicks(1787) },
-                    { 3, 3, "Neutral", new DateTime(2022, 12, 6, 14, 2, 26, 535, DateTimeKind.Local).AddTicks(1788) },
-                    { 4, 4, "Agree", new DateTime(2022, 12, 6, 14, 2, 26, 535, DateTimeKind.Local).AddTicks(1789) },
-                    { 5, 5, "Strongly Agree", new DateTime(2022, 12, 6, 14, 2, 26, 535, DateTimeKind.Local).AddTicks(1789) }
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_Answers_AnswerId",
+                        column: x => x.AnswerId,
+                        principalTable: "Answers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Questions_Surveys_SurveyId",
+                        column: x => x.SurveyId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -342,9 +329,24 @@ namespace BaroPortal.DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "Name", "TopicId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 6, 14, 2, 26, 529, DateTimeKind.Local).AddTicks(1302), "Öneri", 1 },
-                    { 2, new DateTime(2022, 12, 6, 14, 2, 26, 530, DateTimeKind.Local).AddTicks(4103), "Bilgi", 2 },
-                    { 3, new DateTime(2022, 12, 6, 14, 2, 26, 530, DateTimeKind.Local).AddTicks(4112), "Şikayet", 3 }
+                    { 1, new DateTime(2022, 12, 9, 12, 15, 55, 776, DateTimeKind.Local).AddTicks(7878), "Öneri", 1 },
+                    { 2, new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7640), "Bilgi", 2 },
+                    { 3, new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7650), "Şikayet", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Court",
+                columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4605), "İcra Mahkemeleri", 1 },
+                    { 2, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4624), "Sulh Hukuk Mahkemeleri", 2 },
+                    { 3, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4625), "Sulh Ceza/İnfaz Hakimlikleri", 3 },
+                    { 4, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4626), "Asliye Mahkemeleri", 4 },
+                    { 5, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4627), "Tüketici Mahkemeleri", 5 },
+                    { 6, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4630), "Fikri ve Sınai Haklar Mahkemeleri", 6 },
+                    { 7, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631), "İdare ve Vergi Mahkemeleri-Duruşmalı", 7 },
+                    { 8, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631), "İdare ve Vergi Mahkemeleri-Duruşmasız", 8 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -358,9 +360,14 @@ namespace BaroPortal.DataAccess.Migrations
                 column: "TopicId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Soru_AnswerId",
-                table: "Soru",
+                name: "IX_Questions_AnswerId",
+                table: "Questions",
                 column: "AnswerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_SurveyId",
+                table: "Questions",
+                column: "SurveyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -381,6 +388,9 @@ namespace BaroPortal.DataAccess.Migrations
                 name: "ContactUs");
 
             migrationBuilder.DropTable(
+                name: "Court");
+
+            migrationBuilder.DropTable(
                 name: "Duyurular");
 
             migrationBuilder.DropTable(
@@ -393,7 +403,7 @@ namespace BaroPortal.DataAccess.Migrations
                 name: "Haberler");
 
             migrationBuilder.DropTable(
-                name: "Soru");
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -408,10 +418,10 @@ namespace BaroPortal.DataAccess.Migrations
                 name: "ContactUsTopics");
 
             migrationBuilder.DropTable(
-                name: "Anket");
+                name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "Cevap");
+                name: "Surveys");
         }
     }
 }

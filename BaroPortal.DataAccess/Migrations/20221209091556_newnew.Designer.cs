@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221206092243_99th")]
-    partial class _99th
+    [Migration("20221209091556_newnew")]
+    partial class newnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,181 +98,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdvertTypes", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4828),
-                            Name = "İş Arıyorum",
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4845),
-                            Name = "Avukat Arıyorum",
-                            TypeId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4846),
-                            Name = "Katip/Sekreter Arıyorum",
-                            TypeId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4847),
-                            Name = "Staj Yeri Arıyorum",
-                            TypeId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4848),
-                            Name = "Ortak Arıyorum",
-                            TypeId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4851),
-                            Name = "Stajyer Av. Arıyorum",
-                            TypeId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4852),
-                            Name = "Diğer",
-                            TypeId = 7
-                        });
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Anket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SurveyId")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
-                    b.Property<string>("SurveyName")
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Anket", (string)null);
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Cevap", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("AnswerId")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
-                    b.Property<string>("AnswerName")
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cevap", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AnswerId = 1,
-                            AnswerName = "Strongly Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6916)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AnswerId = 2,
-                            AnswerName = "Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6932)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AnswerId = 3,
-                            AnswerName = "Neutral",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6933)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AnswerId = 4,
-                            AnswerName = "Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6934)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AnswerId = 5,
-                            AnswerName = "Strongly Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6934)
-                        });
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Soru", b =>
-                {
-                    b.Property<int?>("SurveyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("QuestionDetail")
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("QuestionId")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionTitle")
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SurveyId", "AnswerId");
-
-                    b.HasIndex("AnswerId");
-
-                    b.ToTable("Soru", (string)null);
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Announcement", b =>
@@ -443,23 +268,106 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 422, DateTimeKind.Local).AddTicks(828),
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 776, DateTimeKind.Local).AddTicks(7878),
                             Name = "Öneri",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 423, DateTimeKind.Local).AddTicks(749),
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7640),
                             Name = "Bilgi",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 423, DateTimeKind.Local).AddTicks(760),
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7650),
                             Name = "Şikayet",
                             TopicId = 3
+                        });
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Court", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TypeId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Court", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4605),
+                            Name = "İcra Mahkemeleri",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4624),
+                            Name = "Sulh Hukuk Mahkemeleri",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4625),
+                            Name = "Sulh Ceza/İnfaz Hakimlikleri",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4626),
+                            Name = "Asliye Mahkemeleri",
+                            TypeId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4627),
+                            Name = "Tüketici Mahkemeleri",
+                            TypeId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4630),
+                            Name = "Fikri ve Sınai Haklar Mahkemeleri",
+                            TypeId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631),
+                            Name = "İdare ve Vergi Mahkemeleri-Duruşmalı",
+                            TypeId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631),
+                            Name = "İdare ve Vergi Mahkemeleri-Duruşmasız",
+                            TypeId = 8
                         });
                 });
 
@@ -646,43 +554,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Answers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AnswerId = 1,
-                            AnswerName = "Strongly Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 430, DateTimeKind.Local).AddTicks(2470)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AnswerId = 2,
-                            AnswerName = "Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 430, DateTimeKind.Local).AddTicks(2486)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AnswerId = 3,
-                            AnswerName = "Neutral",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 430, DateTimeKind.Local).AddTicks(2487)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AnswerId = 4,
-                            AnswerName = "Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 430, DateTimeKind.Local).AddTicks(2488)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AnswerId = 5,
-                            AnswerName = "Strongly Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 430, DateTimeKind.Local).AddTicks(2489)
-                        });
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Questions", b =>
@@ -848,25 +719,6 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Navigation("AdvertType");
                 });
 
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Soru", b =>
-                {
-                    b.HasOne("BaroPortal.Entities.Concrete.Anketler.Cevap", "Answer")
-                        .WithMany("Question")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BaroPortal.Entities.Concrete.Anketler.Anket", "Survey")
-                        .WithMany("Question")
-                        .HasForeignKey("SurveyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Answer");
-
-                    b.Navigation("Survey");
-                });
-
             modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUs.ContactUs", b =>
                 {
                     b.HasOne("BaroPortal.Entities.Concrete.ContactUs.ContactUsTopic", "ContactUsTopic")
@@ -894,16 +746,6 @@ namespace BaroPortal.DataAccess.Migrations
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement.AdvType", b =>
                 {
                     b.Navigation("Advertisement");
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Anket", b =>
-                {
-                    b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("BaroPortal.Entities.Concrete.Anketler.Cevap", b =>
-                {
-                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.ContactUs.ContactUsTopic", b =>

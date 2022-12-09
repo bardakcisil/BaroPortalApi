@@ -20,10 +20,22 @@ namespace BaroPortal.API.Controllers
 
 
         [HttpPost("GetResult")]
-        public ActionResult GetAll(CalculationDto calculationDto)
+        public ActionResult GetAll(LivingFeeCalculationDto calculationDto)
         {
 
-            var result = _calculationService.Calculate(calculationDto);
+            var result = _calculationService.LivingFeeCalculate(calculationDto);
+            if (result is not null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("GetAttorney")]
+        public ActionResult GetAttorney(LivingFeeCalculationDto calculationDto)
+        {
+
+            var result = _calculationService.AttorneyFeeCalculate(calculationDto);
             if (result is not null)
             {
                 return Ok(result);

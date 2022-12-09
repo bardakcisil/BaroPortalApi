@@ -43,7 +43,7 @@ namespace BaroPortal.Business.Concrete
 
                 var fileName = Path.GetFileName(filePath);*/
 
-                byte[] fileContent = null; 
+                byte[]? fileContent = null; 
                 if (file.Length > 0)
                 {
                     using var ms = new MemoryStream(); 

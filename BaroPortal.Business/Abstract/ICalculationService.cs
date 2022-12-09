@@ -9,6 +9,7 @@ namespace BaroPortal.Business.Abstract
 {
     public interface ICalculationService
     {
-        ResponseCalculationDto Calculate(CalculationDto calcDto);
+        ResponseCalculationDto LivingFeeCalculate(LivingFeeCalculationDto calcDto);
+        ResponseCalculationDto AttorneyFeeCalculate(LivingFeeCalculationDto calcDto);
     }
 }
