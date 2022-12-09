@@ -10,5 +10,7 @@ namespace BaroPortal.Entities.Dto.Survey
     {
         public int SoruId { get; set; }
         public int AnswerId { get; set; }
+
+
     }
 }

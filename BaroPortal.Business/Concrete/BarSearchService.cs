@@ -13,7 +13,7 @@ namespace BaroPortal.Business.Concrete
 {
     public class BarSearchService : IBarSearchService
     {
-        string baroTitle;
+        
         private readonly IBarSearchDal _barSearchDal;
         private readonly IConfiguration _configuration;
 
