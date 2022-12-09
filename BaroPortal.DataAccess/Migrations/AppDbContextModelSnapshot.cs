@@ -108,42 +108,42 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4845),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(99),
                             Name = "Avukat Arıyorum",
                             TypeId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4846),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(100),
                             Name = "Katip/Sekreter Arıyorum",
                             TypeId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4847),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(101),
                             Name = "Staj Yeri Arıyorum",
                             TypeId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4848),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(102),
                             Name = "Ortak Arıyorum",
                             TypeId = 5
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4851),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(105),
                             Name = "Stajyer Av. Arıyorum",
                             TypeId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 425, DateTimeKind.Local).AddTicks(4852),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 512, DateTimeKind.Local).AddTicks(105),
                             Name = "Diğer",
                             TypeId = 7
                         });
@@ -204,35 +204,35 @@ namespace BaroPortal.DataAccess.Migrations
                             Id = 1,
                             AnswerId = 1,
                             AnswerName = "Strongly Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6916)
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 514, DateTimeKind.Local).AddTicks(2104)
                         },
                         new
                         {
                             Id = 2,
                             AnswerId = 2,
                             AnswerName = "Disagree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6932)
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 514, DateTimeKind.Local).AddTicks(2119)
                         },
                         new
                         {
                             Id = 3,
                             AnswerId = 3,
                             AnswerName = "Neutral",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6933)
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 514, DateTimeKind.Local).AddTicks(2120)
                         },
                         new
                         {
                             Id = 4,
                             AnswerId = 4,
                             AnswerName = "Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6934)
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 514, DateTimeKind.Local).AddTicks(2121)
                         },
                         new
                         {
                             Id = 5,
                             AnswerId = 5,
                             AnswerName = "Strongly Agree",
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 427, DateTimeKind.Local).AddTicks(6934)
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 514, DateTimeKind.Local).AddTicks(2122)
                         });
                 });
 
@@ -441,21 +441,21 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 422, DateTimeKind.Local).AddTicks(828),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 508, DateTimeKind.Local).AddTicks(7432),
                             Name = "Öneri",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 423, DateTimeKind.Local).AddTicks(749),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 509, DateTimeKind.Local).AddTicks(7248),
                             Name = "Bilgi",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 6, 12, 22, 42, 423, DateTimeKind.Local).AddTicks(760),
+                            CreateDate = new DateTime(2022, 12, 5, 17, 1, 2, 509, DateTimeKind.Local).AddTicks(7256),
                             Name = "Şikayet",
                             TopicId = 3
                         });
