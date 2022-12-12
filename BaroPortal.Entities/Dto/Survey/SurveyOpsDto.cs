@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto.Survey
 {
-    public class GetQuestionListDto
+    public class SurveyOpsDto
     {
      
-      
-        public int? Id { get; set; }
-        public int? SurveyId { get; set; }
+        public int? SurveyId { get; set; }    
         public int? QuestionId { get; set; }
         public int? AnswerId { get; set; }
-        public string? QuestionTitle { get; set; } = null!;
-        public string? QuestionDetail { get; set; } = null!;
-        
+        public string? QuestionTitle { get; set; }
+        public string? QuestionDetail { get; set; }
 
     }
 }

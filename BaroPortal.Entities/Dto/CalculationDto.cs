@@ -8,6 +8,7 @@ namespace BaroPortal.Entities.Dto
 {
     public class CalculationDto
     {
+       
         public string? Status  { get; set; }
         public string? Case  { get; set; }
         public double? Amount  { get; set; }

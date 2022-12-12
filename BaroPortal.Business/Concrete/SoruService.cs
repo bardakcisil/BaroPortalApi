@@ -38,20 +38,21 @@ namespace BaroPortal.Business.Concrete
             }
             else
             {
-                
-                
+
 
                 var _soru = new Questions()
                 {
+
                     QuestionId = addSoru.QuestionId,
                     QuestionTitle = addSoru.QuestionTitle,
                     QuestionDetail = addSoru.QuestionDetail,
-                    SurveyId = addSoru.SurveyId,    
+                    SurveyId = addSoru.SurveyId,
                     AnswerId = addSoru.AnswerId,
-                    
-            };
+                    CreateDate = DateTime.Now,
+
+                };
                 var result = _soruDal.Add(_soru);
-               
+
 
                 if (result != null)
                 {
@@ -69,7 +70,7 @@ namespace BaroPortal.Business.Concrete
 
 
 
-        public IDataResult<ResultDto> DeleteAd(int id)
+        public IDataResult<ResultDto> Delete(int id)
         {
             var deleteById = _soruDal.Get(p => p.Id == id);
             if (deleteById != null)
@@ -99,6 +100,8 @@ namespace BaroPortal.Business.Concrete
             foreach (var item in result)
             {
                 SoruDto dto = new SoruDto();
+
+                dto.Id = item.Id;
                 dto.QuestionId = item.QuestionId;
                 dto.QuestionTitle = item.QuestionTitle;
                 dto.QuestionDetail = item.QuestionDetail;
@@ -127,27 +130,25 @@ namespace BaroPortal.Business.Concrete
 
         public IResult UpdateAnswer(AnketAnswerDto anketAnswerDto)
         {
+            bool isSonuc = true;
 
-            foreach(var anket in anketAnswerDto.GetAnswerFromListSoru)
+            foreach (var anket in anketAnswerDto.GetAnswerFromListSoru)
+
             {
 
-                var result = _soruDal.Update(anketAnswerDto.SurveyId,anket.SoruId,anket.AnswerId);
+                var result = _soruDal.Update(anket.SurveyId, anket.QuestionId, anket.AnswerId);
 
-                if (result)
+                if (!result)
                 {
-                    return new SuccessResult("başarılı");
+                    isSonuc = false;
                 }
-
-                else
-                {
-                   return new ErrorResult("başarısız");
-               }
             }
-            
-            return new SuccessResult();
-            
-           
+
+            if (isSonuc) return new SuccessResult("başarılı");
+            else return new ErrorResult("başarısız");
+
         }
+
 
         ListResultDto<GetQuestionListDto> ISoruService.GetBySurveyId(int? id)
         {
@@ -159,7 +160,8 @@ namespace BaroPortal.Business.Concrete
             {
                 GetQuestionListDto dto = new GetQuestionListDto();
                
-                dto.SurveyId = item.Survey.Id;
+                dto.Id = item.Id;
+                dto.SurveyId = item.SurveyId;
                 dto.QuestionId = item.QuestionId;
                 dto.QuestionTitle = item.QuestionTitle;
                 dto.QuestionDetail = item.QuestionDetail;

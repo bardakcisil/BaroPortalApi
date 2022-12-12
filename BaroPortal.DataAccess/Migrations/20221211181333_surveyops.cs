@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaroPortal.DataAccess.Migrations
 {
-    public partial class newnew : Migration
+    public partial class surveyops : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -324,14 +324,57 @@ namespace BaroPortal.DataAccess.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SurveyOps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SurveyId = table.Column<int>(type: "int", nullable: true),
+                    QuestionId = table.Column<int>(type: "int", nullable: true),
+                    AnswerId = table.Column<int>(type: "int", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SurveyOps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SurveyOps_Answers_AnswerId",
+                        column: x => x.AnswerId,
+                        principalTable: "Answers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SurveyOps_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SurveyOps_Surveys_SurveyId",
+                        column: x => x.SurveyId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Answers",
+                columns: new[] { "Id", "AnswerId", "AnswerName", "CreateDate" },
+                values: new object[,]
+                {
+                    { 1, 1, "Strongly Disagree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4728) },
+                    { 2, 2, "Disagree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4742) },
+                    { 3, 3, "Neutral", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4743) },
+                    { 4, 4, "Agree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4744) },
+                    { 5, 5, "Strongly Agree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4745) }
+                });
+
             migrationBuilder.InsertData(
                 table: "ContactUsTopics",
                 columns: new[] { "Id", "CreateDate", "Name", "TopicId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 9, 12, 15, 55, 776, DateTimeKind.Local).AddTicks(7878), "Öneri", 1 },
-                    { 2, new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7640), "Bilgi", 2 },
-                    { 3, new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7650), "Şikayet", 3 }
+                    { 1, new DateTime(2022, 12, 11, 21, 13, 33, 223, DateTimeKind.Local).AddTicks(4726), "Öneri", 1 },
+                    { 2, new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4059), "Bilgi", 2 },
+                    { 3, new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4068), "Şikayet", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -339,14 +382,14 @@ namespace BaroPortal.DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4605), "İcra Mahkemeleri", 1 },
-                    { 2, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4624), "Sulh Hukuk Mahkemeleri", 2 },
-                    { 3, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4625), "Sulh Ceza/İnfaz Hakimlikleri", 3 },
-                    { 4, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4626), "Asliye Mahkemeleri", 4 },
-                    { 5, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4627), "Tüketici Mahkemeleri", 5 },
-                    { 6, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4630), "Fikri ve Sınai Haklar Mahkemeleri", 6 },
-                    { 7, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631), "İdare ve Vergi Mahkemeleri-Duruşmalı", 7 },
-                    { 8, new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631), "İdare ve Vergi Mahkemeleri-Duruşmasız", 8 }
+                    { 1, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(7998), "İcra Mahkemeleri", 1 },
+                    { 2, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8014), "Sulh Hukuk Mahkemeleri", 2 },
+                    { 3, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015), "Sulh Ceza/İnfaz Hakimlikleri", 3 },
+                    { 4, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015), "Asliye Mahkemeleri", 4 },
+                    { 5, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8016), "Tüketici Mahkemeleri", 5 },
+                    { 6, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019), "Fikri ve Sınai Haklar Mahkemeleri", 6 },
+                    { 7, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019), "İdare ve Vergi Mahkemeleri-Duruşmalı", 7 },
+                    { 8, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8020), "İdare ve Vergi Mahkemeleri-Duruşmasız", 8 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -367,6 +410,21 @@ namespace BaroPortal.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Questions_SurveyId",
                 table: "Questions",
+                column: "SurveyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SurveyOps_AnswerId",
+                table: "SurveyOps",
+                column: "AnswerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SurveyOps_QuestionId",
+                table: "SurveyOps",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SurveyOps_SurveyId",
+                table: "SurveyOps",
                 column: "SurveyId");
         }
 
@@ -403,7 +461,7 @@ namespace BaroPortal.DataAccess.Migrations
                 name: "Haberler");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "SurveyOps");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -416,6 +474,9 @@ namespace BaroPortal.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "ContactUsTopics");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Answers");

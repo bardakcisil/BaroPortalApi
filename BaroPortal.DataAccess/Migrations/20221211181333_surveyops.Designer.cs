@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaroPortal.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221209091556_newnew")]
-    partial class newnew
+    [Migration("20221211181333_surveyops")]
+    partial class surveyops
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -268,21 +268,21 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 776, DateTimeKind.Local).AddTicks(7878),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 223, DateTimeKind.Local).AddTicks(4726),
                             Name = "Öneri",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7640),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4059),
                             Name = "Bilgi",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 777, DateTimeKind.Local).AddTicks(7650),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4068),
                             Name = "Şikayet",
                             TopicId = 3
                         });
@@ -316,56 +316,56 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4605),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(7998),
                             Name = "İcra Mahkemeleri",
                             TypeId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4624),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8014),
                             Name = "Sulh Hukuk Mahkemeleri",
                             TypeId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4625),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015),
                             Name = "Sulh Ceza/İnfaz Hakimlikleri",
                             TypeId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4626),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015),
                             Name = "Asliye Mahkemeleri",
                             TypeId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4627),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8016),
                             Name = "Tüketici Mahkemeleri",
                             TypeId = 5
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4630),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019),
                             Name = "Fikri ve Sınai Haklar Mahkemeleri",
                             TypeId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019),
                             Name = "İdare ve Vergi Mahkemeleri-Duruşmalı",
                             TypeId = 7
                         },
                         new
                         {
                             Id = 8,
-                            CreateDate = new DateTime(2022, 12, 9, 12, 15, 55, 782, DateTimeKind.Local).AddTicks(4631),
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8020),
                             Name = "İdare ve Vergi Mahkemeleri-Duruşmasız",
                             TypeId = 8
                         });
@@ -554,6 +554,43 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Answers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AnswerId = 1,
+                            AnswerName = "Strongly Disagree",
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4728)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AnswerId = 2,
+                            AnswerName = "Disagree",
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4742)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AnswerId = 3,
+                            AnswerName = "Neutral",
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4743)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AnswerId = 4,
+                            AnswerName = "Agree",
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4744)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AnswerId = 5,
+                            AnswerName = "Strongly Agree",
+                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4745)
+                        });
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Questions", b =>
@@ -593,6 +630,38 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasIndex("SurveyId");
 
                     b.ToTable("Questions", (string)null);
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.SurveyOps", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AnswerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SurveyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("SurveyId");
+
+                    b.ToTable("SurveyOps", (string)null);
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Surveys", b =>
@@ -743,6 +812,27 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Navigation("Survey");
                 });
 
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.SurveyOps", b =>
+                {
+                    b.HasOne("BaroPortal.Entities.Concrete.Surveys.Answers", "Answer")
+                        .WithMany("SurveyOp")
+                        .HasForeignKey("AnswerId");
+
+                    b.HasOne("BaroPortal.Entities.Concrete.Surveys.Questions", "Question")
+                        .WithMany("SurveyOp")
+                        .HasForeignKey("QuestionId");
+
+                    b.HasOne("BaroPortal.Entities.Concrete.Surveys.Surveys", "Survey")
+                        .WithMany("SurveyOp")
+                        .HasForeignKey("SurveyId");
+
+                    b.Navigation("Answer");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("Survey");
+                });
+
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Advertisement.AdvType", b =>
                 {
                     b.Navigation("Advertisement");
@@ -756,11 +846,20 @@ namespace BaroPortal.DataAccess.Migrations
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Answers", b =>
                 {
                     b.Navigation("Question");
+
+                    b.Navigation("SurveyOp");
+                });
+
+            modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Questions", b =>
+                {
+                    b.Navigation("SurveyOp");
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Surveys.Surveys", b =>
                 {
                     b.Navigation("Question");
+
+                    b.Navigation("SurveyOp");
                 });
 #pragma warning restore 612, 618
         }

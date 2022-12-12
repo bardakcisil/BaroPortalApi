@@ -17,5 +17,7 @@ namespace BaroPortal.Entities.Concrete.Surveys
         public Answers? Answer { get; set; }
         public int? SurveyId { get; set; }
         public Surveys? Survey { get; set; }
+        public ICollection<SurveyOps>? SurveyOp { get; set; }
+
     }
 }

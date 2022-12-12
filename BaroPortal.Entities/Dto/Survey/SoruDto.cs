@@ -8,6 +8,7 @@ namespace BaroPortal.Entities.Dto.Survey
 {
     public class SoruDto
     {
+        public int? Id { get; set; }
         public int? QuestionId { get; set; }
         public string? QuestionTitle { get; set; }
         public string? QuestionDetail { get; set; }

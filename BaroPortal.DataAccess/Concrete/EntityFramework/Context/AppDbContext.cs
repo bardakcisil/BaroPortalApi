@@ -42,11 +42,13 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Questions>? Questions { get; set; }
         public DbSet<Surveys>? Surveys { get; set; }
 
+        public DbSet<SurveyOps> SurveyOps { get; set; }
+
         public DbSet<Court>? Court { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baroportal_db;Trusted_Connection=True;");// isil
+           optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baro_portal;Trusted_Connection=True;");// isil
            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortalDb;Trusted_Connection=True;");// Hussain
         }
 
@@ -176,13 +178,15 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<Answers>().ToTable("Answers");
             modelBuilder.Entity<Answers>().HasMany<Questions>(x => x.Question).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
+            modelBuilder.Entity<Answers>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
             modelBuilder.Entity<Answers>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Answers>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Answers>().Property(x => x.AnswerId).HasMaxLength(100);
             modelBuilder.Entity<Answers>().Property(x => x.AnswerName).HasMaxLength(10000);
-            //modelBuilder.Entity<Answers>().HasData(AnswersSeed.answer);
+            modelBuilder.Entity<Answers>().HasData(AnswersSeed.answer);
 
             modelBuilder.Entity<Questions>().ToTable("Questions");
+            modelBuilder.Entity<Questions>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Question).HasForeignKey(y => y.QuestionId);
             modelBuilder.Entity<Questions>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Questions>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Questions>().Property(x => x.QuestionId).HasMaxLength(100);
@@ -191,6 +195,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<Surveys>().ToTable("Surveys");
             modelBuilder.Entity<Surveys>().HasMany<Questions>(x => x.Question).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
+            modelBuilder.Entity<Surveys>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
             modelBuilder.Entity<Surveys>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Surveys>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Surveys>().Property(x => x.SurveyId).HasMaxLength(100);
@@ -203,6 +208,12 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Court>().Property(x => x.TypeId).IsRequired();
             modelBuilder.Entity<Court>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<Court>().HasData(CourtSeed.court);
+
+            modelBuilder.Entity<SurveyOps>().ToTable("SurveyOps");
+            modelBuilder.Entity<SurveyOps>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<SurveyOps>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<SurveyOps>().Property(x => x.QuestionTitle).HasMaxLength(10000);
+            modelBuilder.Entity<SurveyOps>().Property(x => x.QuestionDetail).HasMaxLength(10000);
 
 
 

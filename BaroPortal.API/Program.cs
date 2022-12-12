@@ -65,6 +65,12 @@ builder.Services.AddSingleton<ISoruService, SoruService>();
 builder.Services.AddSingleton<IAnketDal, EfAnketDal>();
 builder.Services.AddSingleton<IAnketService, AnketService>();
 builder.Services.AddSingleton<ICalculationService, CalculationService>();
+
+builder.Services.AddSingleton<ISurveyOpsDal, EfSurveyOpsDal>();
+builder.Services.AddSingleton<ISurveyOpsService, SurveyOpsService>();
+
+
+
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {

@@ -12,5 +12,7 @@ namespace BaroPortal.Entities.Concrete.Surveys
         public int? SurveyId { get; set; }
         public string? SurveyName { get; set; }
         public ICollection<Questions>? Question { get; set; }
+        public ICollection<SurveyOps>? SurveyOp { get; set; }
+
     }
 }

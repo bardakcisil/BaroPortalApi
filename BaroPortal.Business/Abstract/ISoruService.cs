@@ -8,7 +8,7 @@ namespace BaroPortal.Business.Abstract
     {
         ResultDto Add(SoruDto addSoru);
         ListResultDto<SoruDto> GetList();
-        IDataResult<ResultDto> DeleteAd(int id);
+        IDataResult<ResultDto> Delete(int id);
         ListResultDto<GetQuestionListDto> GetBySurveyId(int? id);
         IResult UpdateAnswer(AnketAnswerDto anketAnswerDto);
     }

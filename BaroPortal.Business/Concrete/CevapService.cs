@@ -26,7 +26,7 @@ namespace BaroPortal.Business.Concrete
             foreach (var item in result)
             {
                 CevapDto dto = new CevapDto();
-
+                dto.Id = item.Id;   
                 dto.AnswerId = item.AnswerId;
                 dto.AnswerName = item.AnswerName;
              

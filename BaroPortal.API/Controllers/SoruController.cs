@@ -59,7 +59,7 @@ namespace BaroPortal.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var result = _soruService.DeleteAd(id);
+            var result = _soruService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

@@ -88,6 +88,8 @@ namespace BaroPortal.Business.Concrete
 
             return response;
         }
+
+        
         double? fee = 0;
         public double? CalcFee1(double? amount)
         {
@@ -126,6 +128,7 @@ namespace BaroPortal.Business.Concrete
             }
             return fee;
         }
+        
         public double? CalcFee(double? amount)
         {
             switch (amount)
@@ -174,20 +177,20 @@ namespace BaroPortal.Business.Concrete
             if (calcDto.Status == "Bekar")
             {
                 
-                response.total = 25;
+                response.total = AGUH_Child(calcDto.Amount,50);
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Evli" || calcDto.Case == "Çalışmıyor" || calcDto.Amount == 0)
+            else if (calcDto.Status == "Evli" || calcDto.Case == "Çalışmıyor")
             {
-                response.total = 0.0;
+                response.total = AGUH_Child(calcDto.Amount,60); 
              
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Evli" ||  calcDto.Case == "Çalışıyor" || calcDto.Amount == 1)
+            else if (calcDto.Status == "Evli" ||  calcDto.Case == "Çalışıyor" )
             {
-                response.total = 50;
+                response.total =  AGUH_Child(calcDto.Amount,50); 
              
                 response.HasError = false;
                 response.Message = "success";
@@ -203,6 +206,35 @@ namespace BaroPortal.Business.Concrete
 
             return response;
         }
+        double? tot = 0;
+        public double? AGUH_Child(double? amount,double? discount)
+        {
+            switch (amount)
+            {
+                case 0:
+                    tot = 0 + discount;
 
+                    break;
+                case 1:
+                    tot = 7.5 + discount;
+                    break;
+                case 2:
+                    tot = 15 + discount;
+                    break;
+                case 3:
+                    tot = 25 + discount;
+                    break;
+                case 4:
+                    tot = 30 + discount;
+                    break;
+                case >5:
+                    tot = 35 + discount;
+                    break;
+                default:
+
+                    break;
+            }
+            return tot;
+        }
     }
 }
