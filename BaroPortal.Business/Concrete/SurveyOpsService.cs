@@ -123,5 +123,40 @@ namespace BaroPortal.Business.Concrete
                 return response;
             }
         }
+
+
+        public IResult AddAnswer(AddSurveyOpsDto surveyOpsDto)
+        {
+            bool isSonuc = true;
+
+            foreach (var anket in surveyOpsDto.GetAnswerFromListSoru)
+
+            {
+
+               //var result = _opsDal.AddAnswer(anket.SurveyId, anket.QuestionId, anket.AnswerId);
+                var _ops = new SurveyOps()
+                {
+                    QuestionTitle = anket.QuestionTitle,
+                    QuestionDetail = anket.QuestionDetail,
+                    SurveyId = anket.SurveyId,
+                    QuestionId = anket.QuestionId,
+                    AnswerId = anket.AnswerId,
+                    CreateDate = DateTime.Now,
+
+
+
+                };
+                var result = _opsDal.Add(_ops);
+
+                if (result is null)
+                {
+                    isSonuc = false;
+                }
+            }
+
+            if (isSonuc) return new SuccessResult("başarılı");
+            else return new ErrorResult("başarısız");
+
+        }
     }
 }

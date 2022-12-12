@@ -39,6 +39,20 @@ namespace BaroPortal.API.Controllers
 
 
         }
+        [HttpPost("addAnswer")]
+        public ActionResult AddAnswer(AddSurveyOpsDto surveyOpsDto)
+        {
+
+            var result = _SurveyOpsService.AddAnswer(surveyOpsDto);
+
+
+            return Ok(result);
+
+
+
+
+
+        }
 
     }
 }
