@@ -17,14 +17,14 @@ namespace BaroPortal.Business.Concrete
 
 
 
-            if (calcDto.Status == "İcra Takipleri İçin")
+            if (calcDto.Status == "Icra")
             {
                
                 response.total = CalcFee1(calcDto.Amount);
                 response.HasError = false;
                 response.Message = "success";
             }
-            else if (calcDto.Status == "Konusu Para Olan Davalar İçin")
+            else if (calcDto.Status == "Konusu")
             {
                 switch (calcDto.Case)
                 {
