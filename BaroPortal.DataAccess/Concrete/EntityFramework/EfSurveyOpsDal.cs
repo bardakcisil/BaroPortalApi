@@ -21,6 +21,17 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
             return ops;
         }
 
+        public bool AddAnswer(int anketId, int soruId, int answerId)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                var result = context.SurveyOps.Where(p => p.SurveyId == anketId && p.QuestionId == soruId).SingleOrDefault();
+                result.AnswerId = answerId;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
         public bool Delete(SurveyOps result)
         {
             using (AppDbContext context = new AppDbContext())

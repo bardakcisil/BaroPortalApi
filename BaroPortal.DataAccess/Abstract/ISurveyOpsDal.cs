@@ -16,5 +16,6 @@ namespace BaroPortal.DataAccess.Abstract
         
         SurveyOps Get(Expression<Func<SurveyOps, bool>>? filter = null);
         bool Delete(SurveyOps result);
+        bool AddAnswer(int anketId, int soruId, int answerId);
     }
 }

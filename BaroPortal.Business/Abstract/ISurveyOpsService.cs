@@ -14,6 +14,7 @@ namespace BaroPortal.Business.Abstract
         ResultDto Add(SurveyOpsDto addSurveyOps);
         ListResultDto<SurveyOpsDto> GetList();
         IDataResult<ResultDto> Delete(int id);
+        IResult AddAnswer(AddSurveyOpsDto surveyOpsDto);
 
     }
 }
