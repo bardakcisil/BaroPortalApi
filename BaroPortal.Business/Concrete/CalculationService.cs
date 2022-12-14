@@ -1,5 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Calculation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -236,5 +237,265 @@ namespace BaroPortal.Business.Concrete
             }
             return tot;
         }
+
+        public SMMHResultDto ReceiptCalculate(SMMH calcDto)
+        {
+            SMMHResultDto response = new SMMHResultDto();
+
+            double? Fon = (calcDto.Fon);  
+            double? KDV =  (calcDto.Kdv );
+            double? Stopaj = (calcDto.Stopaj);
+            double? Tevkifat = (calcDto.Tevkifat);
+            double? NetKdv = (calcDto.Kdv - calcDto.Kdv * Tevkifat);
+
+           
+
+            if(calcDto.Tur == "Brüt Tutar")
+            {
+                double? BrutTutar = calcDto.Amount;
+                double? NetTutar = 0;
+                double? KDVliTutar = NetTutar + KDV;
+                if (Stopaj == 0)
+                {
+                    Fon = 0;
+                    if (Tevkifat == 0)
+                    {
+                        NetTutar = BrutTutar;
+                        KDVliTutar = NetTutar + KDV;
+                    }
+                    else if (Tevkifat > 0)
+                    {
+                        NetTutar = BrutTutar;
+                        KDVliTutar = NetTutar + (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
+                    }
+
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+                else if (Stopaj > 0)
+                {
+                    if (Fon == 0 && Tevkifat == 0)
+                    {
+                        NetTutar = BrutTutar - BrutTutar * Stopaj/100;
+                        KDVliTutar = NetTutar + KDV;
+                    }
+                    else if (Fon > 0 && Tevkifat == 0)
+                    {
+                        NetTutar = BrutTutar - BrutTutar * Stopaj/100 - calcDto.Stopaj * Fon/100;
+                        KDVliTutar = NetTutar + KDV;
+                    }
+                    else if (Fon == 0 && Tevkifat > 0)
+                    {
+                        NetTutar = BrutTutar - BrutTutar * Stopaj/100;
+                        KDVliTutar = NetTutar + NetKdv;
+                        Tevkifat = Tevkifat * 10;
+                    }
+                    else if (Fon > 0 && Tevkifat > 0)
+                    {
+                        NetTutar = BrutTutar - BrutTutar * Stopaj/100 - calcDto.Stopaj * Fon/100;
+                        KDVliTutar = NetTutar + NetKdv;
+                        Tevkifat = Tevkifat * 10;
+                    
+                    }
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+
+                calcDto.BrutTutar = BrutTutar;
+                calcDto.NetTutar = NetTutar;
+                calcDto.NetKdv = NetKdv;
+                calcDto.KDVliTutar = KDVliTutar;
+                calcDto.Tevkifat = Tevkifat;
+
+                response.Tur = calcDto.Tur;
+                response.BrutTutar = calcDto.BrutTutar;
+                response.Stopaj = calcDto.Stopaj;
+                response.Fon = calcDto.Fon;
+                response.NetTutar = calcDto.NetTutar;
+                response.Kdv = calcDto.Kdv;
+                response.Tevkifat = calcDto.Tevkifat;
+                response.NetKdv = calcDto.NetKdv;
+                response.KdvliTutar = calcDto.KDVliTutar;
+                response.HasError = false;
+                response.Message = "success";
+            }
+            else if(calcDto.Tur == "Net Tutar")
+            {
+                double? BrutTutar = 0;
+                double? NetTutar = calcDto.Amount;
+                double? KDVliTutar = NetTutar + KDV;
+                if (Stopaj == 0)
+                {
+                    Fon = 0;
+                    if (Tevkifat == 0)
+                    {
+                        KDVliTutar = NetTutar + KDV;
+                        BrutTutar = NetTutar;
+                        Tevkifat = Tevkifat * 10;
+
+                    }
+                    else if (Tevkifat > 0)
+                    {
+                        
+                        KDVliTutar = NetTutar + (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
+                        BrutTutar = NetTutar;
+                        Tevkifat = Tevkifat * 10;
+                    }
+
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+                else if (Stopaj > 0)
+                {
+                    if (Fon == 0 && Tevkifat == 0)
+                    {
+                       
+                        BrutTutar = NetTutar-NetTutar/(1-Stopaj);
+                        KDVliTutar = NetTutar + KDV;
+                    }
+                    else if (Fon > 0 && Tevkifat == 0)
+                    {
+                       
+                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj*Fon/100))/(1-Stopaj);   
+                        KDVliTutar = NetTutar + KDV;
+                    }
+                    else if (Fon == 0 && Tevkifat > 0)
+                    {
+                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
+                        KDVliTutar = NetTutar + NetKdv;
+                        Tevkifat = Tevkifat * 10;
+                    }
+                    else if (Fon > 0 && Tevkifat > 0)
+                    {
+                        BrutTutar = NetTutar-(NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
+                        KDVliTutar = NetTutar + NetKdv;
+                        Tevkifat = Tevkifat * 10;
+                    }
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+                calcDto.BrutTutar = BrutTutar;
+                calcDto.NetTutar = NetTutar;
+                calcDto.NetKdv = NetKdv;
+                calcDto.KDVliTutar = KDVliTutar;
+                calcDto.Tevkifat = Tevkifat;
+
+                response.Tur = calcDto.Tur;
+                response.BrutTutar = calcDto.BrutTutar;
+                response.Stopaj = calcDto.Stopaj;
+                response.Fon = calcDto.Fon;
+                response.NetTutar = calcDto.NetTutar;
+                response.Kdv = calcDto.Kdv;
+                response.Tevkifat = calcDto.Tevkifat;
+                response.NetKdv = calcDto.NetKdv;
+                response.KdvliTutar = calcDto.KDVliTutar;
+                response.HasError = false;
+                response.Message = "success";
+            }
+            else if (calcDto.Tur == "KDV Dahil Tahsil Edilecek Tutar")
+            {
+                double? BrutTutar = 0;
+                
+                double? KDVliTutar = calcDto.Amount;
+                double? NetTutar = calcDto.Amount-KDV+KDVliTutar;
+                if (Stopaj == 0)
+                {
+                    Fon = 0;
+                    if (Tevkifat == 0)
+                    {
+                       
+                       
+                        NetTutar = KDVliTutar - KDV;
+                        BrutTutar = NetTutar;
+                    }
+                    else if (Tevkifat > 0)
+                    {
+                       
+                        
+                        NetTutar = KDVliTutar - (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
+                        BrutTutar = NetTutar;
+                        Tevkifat = Tevkifat * 10;
+                    }
+
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+                else if (Stopaj > 0)
+                {
+                    if (Fon == 0 && Tevkifat == 0)
+                    {
+                        NetTutar = KDVliTutar - KDV;
+                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
+
+                    }
+                    else if (Fon > 0 && Tevkifat == 0)
+                    {
+                        NetTutar = KDVliTutar - KDV;
+                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
+                      
+                    }
+                    else if (Fon == 0 && Tevkifat > 0)
+                    {
+                        NetTutar = KDVliTutar - NetKdv;
+                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
+                        Tevkifat = Tevkifat * 10;
+
+                    }
+                    else if (Fon > 0 && Tevkifat > 0)
+                    {
+                        NetTutar = KDVliTutar - NetKdv;
+                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
+                        Tevkifat = Tevkifat * 10;
+
+                    }
+                    else
+                    {
+                        response.HasError = true;
+                        response.Message = "Not Found";
+                    }
+                }
+
+                calcDto.BrutTutar = BrutTutar;
+                calcDto.NetTutar = NetTutar;
+                calcDto.NetKdv = NetKdv;
+                calcDto.KDVliTutar = KDVliTutar;
+                calcDto.Tevkifat = Tevkifat;
+
+                response.Tur = calcDto.Tur;
+                response.BrutTutar = calcDto.BrutTutar;
+                response.Stopaj = calcDto.Stopaj;
+                response.Fon = calcDto.Fon;
+                response.NetTutar = calcDto.NetTutar;
+                response.Kdv = calcDto.Kdv;
+                response.Tevkifat = calcDto.Tevkifat;
+                response.NetKdv = calcDto.NetKdv;
+                response.KdvliTutar = calcDto.KDVliTutar;
+                response.HasError = false;
+                response.Message = "success";
+            }
+            else
+            {
+                response.HasError = true;
+                response.Message = "Not Found";
+            }
+            return response;
+        }
+
+     
     }
 }

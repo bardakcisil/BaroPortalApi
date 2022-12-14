@@ -1,5 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Calculation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaroPortal.API.Controllers
@@ -36,6 +37,18 @@ namespace BaroPortal.API.Controllers
         {
 
             var result = _calculationService.AttorneyFeeCalculate(calculationDto);
+            if (result is not null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("GetReceipt")]
+        public ActionResult ReceiptCalculate(SMMH calculationDto)
+        {
+
+            var result = _calculationService.ReceiptCalculate(calculationDto);
             if (result is not null)
             {
                 return Ok(result);
