@@ -55,5 +55,18 @@ namespace BaroPortal.API.Controllers
             }
             return BadRequest(result);
         }
+
+
+        [HttpPost("GetLevyInterest")]
+        public ActionResult LevyInterestCalculate(IFH calculationDto)
+        {
+
+            var result = _calculationService.LevyInterestCalculate(calculationDto);
+            if (result is not null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

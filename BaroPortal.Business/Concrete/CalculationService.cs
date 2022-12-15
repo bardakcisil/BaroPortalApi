@@ -238,86 +238,231 @@ namespace BaroPortal.Business.Concrete
             return tot;
         }
 
+        public class smmh
+        {
+            public double? net { get; set; }
+            public double? brut { get; set; }   
+            public double? kdvliTutar { get; set; } 
+            public double? tevkifat { get; set; }
+            public double? netKdv { get; set; }
+        }
+        public smmh CalcReceipt(String? type,double? amount, double? kdv, double? stopaj, double? fon, double? tevkifat)
+        {
+            smmh result = new smmh();
+            switch (type)
+            {
+                case "Brüt Tutar":
+                    result.brut= amount;
+                    result.net = 0;
+                    result.kdvliTutar = result.net + kdv;
+                    result.netKdv = (kdv - kdv * tevkifat / 100);
+                    if (stopaj == 0)
+                    {
+                        fon = 0;
+                        if (tevkifat == 0)
+                        {
+                            result.net = result.brut;
+                            result.kdvliTutar = result.net + kdv;
+                        }
+                        else if (tevkifat > 0)
+                        {
+                            result.net = result.brut;
+                            result.kdvliTutar = result.net + result.netKdv;
+                        }
+
+                        else
+                        {
+                            
+                        }
+                    }
+                    else if (stopaj > 0)
+                    {
+                        if (fon == 0 && tevkifat == 0)
+                        {
+                            result.net = result.net - result.brut * stopaj / 100;
+                            result.kdvliTutar = result.net + kdv;
+                        }
+                        else if (fon > 0 && tevkifat == 0)
+                        {
+                            result.net = result.brut - result.brut * stopaj / 100 - stopaj * fon / 100;
+                            result.kdvliTutar = result.net + kdv;
+                        }
+                        else if (fon == 0 && tevkifat > 0)
+                        {
+                            result.net = result.brut - result.brut * stopaj / 100;
+                            result.kdvliTutar = result.net + result.netKdv;
+                            result.tevkifat = tevkifat * 10;
+                        }
+                        else if (fon > 0 && tevkifat > 0)
+                        {
+                            result.net = result.brut - result.brut * stopaj / 100 - stopaj * fon / 100;
+                            result.kdvliTutar = result.net + result.netKdv;
+                            result.tevkifat = tevkifat * 10;
+
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                    break;
+                case "Net Tutar":
+                    result.brut = 0;
+                    result.net = amount;
+                    result.kdvliTutar = result.net + kdv;
+                    result.netKdv = (kdv - kdv * tevkifat / 100);
+                    if (stopaj == 0)
+                    {
+                        fon = 0;
+                        if (tevkifat == 0)
+                        {
+                            result.kdvliTutar = result.net + kdv;
+                            result.brut = result.net;
+                            result.tevkifat = tevkifat * 10;
+
+                        }
+                        else if (tevkifat > 0)
+                        {
+
+                            result.kdvliTutar = result.net + result.netKdv;
+                            result.brut = result.net;
+                            result.tevkifat = tevkifat * 10;
+                        }
+
+                        else
+                        {
+                            
+                        }
+                    }
+                    else if (stopaj > 0)
+                    {
+                        if (fon == 0 && tevkifat == 0)
+                        {
+
+                            result.brut = result.net - result.net / (1 - stopaj);
+                            result.kdvliTutar = result.net + kdv;
+                        }
+                        else if (fon > 0 && tevkifat == 0)
+                        {
+
+                            result.brut = result.net - (result.net + (stopaj * fon / 100)) / (1 - stopaj);
+                            result.kdvliTutar = result.net + kdv;
+                        }
+                        else if (fon == 0 && tevkifat > 0)
+                        {
+                            result.brut = result.net - result.net / (1 - stopaj);
+                            result.kdvliTutar = result.net + result.netKdv;
+                            result.tevkifat = tevkifat * 10;
+                        }
+                        else if (fon > 0 && tevkifat > 0)
+                        {
+                            result.brut = result.net - (result.net + (stopaj * fon / 100)) / (1 - stopaj);
+                            result.kdvliTutar = result.net + result.netKdv;
+                            result.tevkifat = tevkifat * 10;
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                    break;
+                case "KDV Dahil Tahsil Edilecek Tutar":
+                    result.brut = 0;
+
+                    result.kdvliTutar = amount;
+                    result.net = amount - kdv + result.kdvliTutar;
+                    result.netKdv = (kdv - kdv * tevkifat / 100);
+                    if (stopaj == 0)
+                    {
+                        fon = 0;
+                        if (tevkifat == 0)
+                        {
+
+
+                            result.net = result.kdvliTutar -kdv;
+                            result.brut = result.net;
+                        }
+                        else if (tevkifat > 0)
+                        {
+
+
+                            result.net = result.kdvliTutar - result.netKdv;
+                            result.brut = result.net;
+                            result.tevkifat = tevkifat * 10;
+                        }
+
+                        else
+                        {
+                            
+                        }
+                    }
+                    else if (stopaj > 0)
+                    {
+                        if (fon == 0 && tevkifat == 0)
+                        {
+                            result.net = result.kdvliTutar - kdv;
+                            result.brut = result.net - result.net / (1 - stopaj);
+
+                        }
+                        else if (fon > 0 && tevkifat == 0)
+                        {
+                            result.net = result.kdvliTutar - kdv;
+                            result.brut = result.net - (result.net + (stopaj * fon / 100)) / (1 - stopaj);
+
+                        }
+                        else if (fon == 0 && tevkifat > 0)
+                        {
+                            result.net = result.kdvliTutar - result.netKdv;
+                            result.brut = result.net - result.net / (1 - stopaj);
+                            result.tevkifat = tevkifat * 10;
+
+                        }
+                        else if (fon > 0 && tevkifat > 0)
+                        {
+                            result.net = result.kdvliTutar - result.netKdv;
+                            result.brut = result.net - (result.net + (stopaj * fon / 100)) / (1 -stopaj);
+                            result.tevkifat = tevkifat * 10;
+
+                        }
+                        else
+                        {
+                         
+                        }
+                    }
+                    break;
+                default:
+
+                    break;
+            }
+            return result;
+        }
+
         public SMMHResultDto ReceiptCalculate(SMMH calcDto)
         {
             SMMHResultDto response = new SMMHResultDto();
 
-            double? Fon = (calcDto.Fon);  
-            double? KDV =  (calcDto.Kdv );
-            double? Stopaj = (calcDto.Stopaj);
+
             double? Tevkifat = (calcDto.Tevkifat);
             double? NetKdv = (calcDto.Kdv - calcDto.Kdv * Tevkifat);
+            int? tur = 0;
+            
 
-           
-
-            if(calcDto.Tur == "Brüt Tutar")
+            if (calcDto.Tur == "Brüt Tutar")
             {
-                double? BrutTutar = calcDto.Amount;
-                double? NetTutar = 0;
-                double? KDVliTutar = NetTutar + KDV;
-                if (Stopaj == 0)
-                {
-                    Fon = 0;
-                    if (Tevkifat == 0)
-                    {
-                        NetTutar = BrutTutar;
-                        KDVliTutar = NetTutar + KDV;
-                    }
-                    else if (Tevkifat > 0)
-                    {
-                        NetTutar = BrutTutar;
-                        KDVliTutar = NetTutar + (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
-                    }
+                
 
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-                else if (Stopaj > 0)
-                {
-                    if (Fon == 0 && Tevkifat == 0)
-                    {
-                        NetTutar = BrutTutar - BrutTutar * Stopaj/100;
-                        KDVliTutar = NetTutar + KDV;
-                    }
-                    else if (Fon > 0 && Tevkifat == 0)
-                    {
-                        NetTutar = BrutTutar - BrutTutar * Stopaj/100 - calcDto.Stopaj * Fon/100;
-                        KDVliTutar = NetTutar + KDV;
-                    }
-                    else if (Fon == 0 && Tevkifat > 0)
-                    {
-                        NetTutar = BrutTutar - BrutTutar * Stopaj/100;
-                        KDVliTutar = NetTutar + NetKdv;
-                        Tevkifat = Tevkifat * 10;
-                    }
-                    else if (Fon > 0 && Tevkifat > 0)
-                    {
-                        NetTutar = BrutTutar - BrutTutar * Stopaj/100 - calcDto.Stopaj * Fon/100;
-                        KDVliTutar = NetTutar + NetKdv;
-                        Tevkifat = Tevkifat * 10;
-                    
-                    }
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-
-                calcDto.BrutTutar = BrutTutar;
-                calcDto.NetTutar = NetTutar;
-                calcDto.NetKdv = NetKdv;
-                calcDto.KDVliTutar = KDVliTutar;
-                calcDto.Tevkifat = Tevkifat;
-
+                tur = 1;
+                //smmh result = new smmh();
+                //result = CalcReceipt(tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat);
+                calcDto.BrutTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).brut;
+                calcDto.NetTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).net;
+                calcDto.KDVliTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).kdvliTutar;
+                calcDto.NetKdv = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).netKdv;
                 response.Tur = calcDto.Tur;
                 response.BrutTutar = calcDto.BrutTutar;
                 response.Stopaj = calcDto.Stopaj;
                 response.Fon = calcDto.Fon;
-                response.NetTutar = calcDto.NetTutar;
+                response.NetTutar =calcDto.NetTutar;
                 response.Kdv = calcDto.Kdv;
                 response.Tevkifat = calcDto.Tevkifat;
                 response.NetKdv = calcDto.NetKdv;
@@ -327,71 +472,15 @@ namespace BaroPortal.Business.Concrete
             }
             else if(calcDto.Tur == "Net Tutar")
             {
-                double? BrutTutar = 0;
-                double? NetTutar = calcDto.Amount;
-                double? KDVliTutar = NetTutar + KDV;
-                if (Stopaj == 0)
-                {
-                    Fon = 0;
-                    if (Tevkifat == 0)
-                    {
-                        KDVliTutar = NetTutar + KDV;
-                        BrutTutar = NetTutar;
-                        Tevkifat = Tevkifat * 10;
+                tur = 2;
+               // smmh result = new smmh();
+                //result = CalcReceipt(tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat);
 
-                    }
-                    else if (Tevkifat > 0)
-                    {
-                        
-                        KDVliTutar = NetTutar + (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
-                        BrutTutar = NetTutar;
-                        Tevkifat = Tevkifat * 10;
-                    }
 
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-                else if (Stopaj > 0)
-                {
-                    if (Fon == 0 && Tevkifat == 0)
-                    {
-                       
-                        BrutTutar = NetTutar-NetTutar/(1-Stopaj);
-                        KDVliTutar = NetTutar + KDV;
-                    }
-                    else if (Fon > 0 && Tevkifat == 0)
-                    {
-                       
-                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj*Fon/100))/(1-Stopaj);   
-                        KDVliTutar = NetTutar + KDV;
-                    }
-                    else if (Fon == 0 && Tevkifat > 0)
-                    {
-                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
-                        KDVliTutar = NetTutar + NetKdv;
-                        Tevkifat = Tevkifat * 10;
-                    }
-                    else if (Fon > 0 && Tevkifat > 0)
-                    {
-                        BrutTutar = NetTutar-(NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
-                        KDVliTutar = NetTutar + NetKdv;
-                        Tevkifat = Tevkifat * 10;
-                    }
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-                calcDto.BrutTutar = BrutTutar;
-                calcDto.NetTutar = NetTutar;
-                calcDto.NetKdv = NetKdv;
-                calcDto.KDVliTutar = KDVliTutar;
-                calcDto.Tevkifat = Tevkifat;
-
+                calcDto.BrutTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).brut;
+                calcDto.NetTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).net;
+                calcDto.KDVliTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).kdvliTutar;
+                calcDto.NetKdv = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).netKdv;
                 response.Tur = calcDto.Tur;
                 response.BrutTutar = calcDto.BrutTutar;
                 response.Stopaj = calcDto.Stopaj;
@@ -406,76 +495,14 @@ namespace BaroPortal.Business.Concrete
             }
             else if (calcDto.Tur == "KDV Dahil Tahsil Edilecek Tutar")
             {
-                double? BrutTutar = 0;
-                
-                double? KDVliTutar = calcDto.Amount;
-                double? NetTutar = calcDto.Amount-KDV+KDVliTutar;
-                if (Stopaj == 0)
-                {
-                    Fon = 0;
-                    if (Tevkifat == 0)
-                    {
-                       
-                       
-                        NetTutar = KDVliTutar - KDV;
-                        BrutTutar = NetTutar;
-                    }
-                    else if (Tevkifat > 0)
-                    {
-                       
-                        
-                        NetTutar = KDVliTutar - (calcDto.Kdv - calcDto.Kdv * Tevkifat/100);
-                        BrutTutar = NetTutar;
-                        Tevkifat = Tevkifat * 10;
-                    }
+                tur = 3;
+                //smmh result = new smmh();
+               //result = CalcReceipt(tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat);
 
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-                else if (Stopaj > 0)
-                {
-                    if (Fon == 0 && Tevkifat == 0)
-                    {
-                        NetTutar = KDVliTutar - KDV;
-                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
-
-                    }
-                    else if (Fon > 0 && Tevkifat == 0)
-                    {
-                        NetTutar = KDVliTutar - KDV;
-                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
-                      
-                    }
-                    else if (Fon == 0 && Tevkifat > 0)
-                    {
-                        NetTutar = KDVliTutar - NetKdv;
-                        BrutTutar = NetTutar - NetTutar / (1 - Stopaj);
-                        Tevkifat = Tevkifat * 10;
-
-                    }
-                    else if (Fon > 0 && Tevkifat > 0)
-                    {
-                        NetTutar = KDVliTutar - NetKdv;
-                        BrutTutar = NetTutar - (NetTutar + (calcDto.Stopaj * Fon/100)) / (1 - Stopaj);
-                        Tevkifat = Tevkifat * 10;
-
-                    }
-                    else
-                    {
-                        response.HasError = true;
-                        response.Message = "Not Found";
-                    }
-                }
-
-                calcDto.BrutTutar = BrutTutar;
-                calcDto.NetTutar = NetTutar;
-                calcDto.NetKdv = NetKdv;
-                calcDto.KDVliTutar = KDVliTutar;
-                calcDto.Tevkifat = Tevkifat;
-
+                calcDto.BrutTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).brut;
+                calcDto.NetTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).net;
+                calcDto.KDVliTutar = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).kdvliTutar;
+                calcDto.NetKdv = CalcReceipt(calcDto.Tur, calcDto.Amount, calcDto.Kdv, calcDto.Stopaj, calcDto.Fon, calcDto.Tevkifat).netKdv;
                 response.Tur = calcDto.Tur;
                 response.BrutTutar = calcDto.BrutTutar;
                 response.Stopaj = calcDto.Stopaj;
@@ -487,6 +514,8 @@ namespace BaroPortal.Business.Concrete
                 response.KdvliTutar = calcDto.KDVliTutar;
                 response.HasError = false;
                 response.Message = "success";
+
+
             }
             else
             {
@@ -496,6 +525,35 @@ namespace BaroPortal.Business.Concrete
             return response;
         }
 
-     
+        public ResponseCalculationDto LevyInterestCalculate(IFH calcDto)
+        {
+            ResponseCalculationDto response = new ResponseCalculationDto();
+            TimeSpan timespan = (TimeSpan)(calcDto.End - calcDto.Start);
+            double totDay = timespan.TotalDays; 
+            if (calcDto.TotDay == "360")
+            {
+                response.total = calcDto.Amount + (totDay / 360) * calcDto.Amount * calcDto.InterestPercent/100;
+                response.HasError = false;
+                response.Message = "successful";
+            }
+            else if(calcDto.TotDay == "365")
+            {
+                response.total = calcDto.Amount + (totDay / 365) * calcDto.Amount * calcDto.InterestPercent/100;
+                response.HasError = false;
+                response.Message = "successful";
+            }
+            else
+            {
+                response.HasError = true;
+                response.Message = "fail";
+            }
+            return response;
+        }
+
+        //public ResponseCalculationDto LevyMortarCalculate(IHH calcDto)
+        //{
+        //    ResponseCalculationDto response = new ResponseCalculationDto();
+        //    if()
+        //}
     }
 }
