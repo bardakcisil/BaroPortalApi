@@ -10,7 +10,7 @@ namespace BaroPortal.Entities.Dto.Calculation
     {
         public DateTime? Start { get; set; } 
         public DateTime? End { get; set; }
-        public String? TotDay { get; set; } 
+        public string? TotDay { get; set; } 
         public double? Amount { get; set; }  
         public double? InterestPercent { get; set; }    
     }
