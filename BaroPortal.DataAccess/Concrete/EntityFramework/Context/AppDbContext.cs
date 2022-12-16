@@ -49,7 +49,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
      //      optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baro_portal;Trusted_Connection=True;");// isil
-       optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=baro_portal;Trusted_Connection=True;");// Hussain
+       optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortalDb;Trusted_Connection=True;");// Hussain
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -126,7 +126,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<BarSearch>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<BarSearch>().Property(x => x.Surname).IsRequired();
             modelBuilder.Entity<BarSearch>().Property(x => x.BaroNumber).IsRequired();
-            //modelBuilder.Entity<BarSearch>().HasData(BarSearchSeed.barSearch);
+           // modelBuilder.Entity<BarSearch>().HasData(BarSearchSeed.barSearch);
 
             modelBuilder.Entity<Haberler>().ToTable("Haberler");
             modelBuilder.Entity<Haberler>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
