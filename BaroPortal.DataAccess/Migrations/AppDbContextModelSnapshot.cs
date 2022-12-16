@@ -96,6 +96,57 @@ namespace BaroPortal.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdvertTypes", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9017),
+                            Name = "İş Arıyorum",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9037),
+                            Name = "Avukat Arıyorum",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9038),
+                            Name = "Katip/Sekreter Arıyorum",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9039),
+                            Name = "Staj Yeri Arıyorum",
+                            TypeId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9040),
+                            Name = "Ortak Arıyorum",
+                            TypeId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9044),
+                            Name = "Stajyer Av. Arıyorum",
+                            TypeId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9044),
+                            Name = "Diğer",
+                            TypeId = 7
+                        });
                 });
 
             modelBuilder.Entity("BaroPortal.Entities.Concrete.Announcement", b =>
@@ -266,21 +317,21 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 223, DateTimeKind.Local).AddTicks(4726),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 390, DateTimeKind.Local).AddTicks(2210),
                             Name = "Öneri",
                             TopicId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4059),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 392, DateTimeKind.Local).AddTicks(462),
                             Name = "Bilgi",
                             TopicId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4068),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 392, DateTimeKind.Local).AddTicks(475),
                             Name = "Şikayet",
                             TopicId = 3
                         });
@@ -314,56 +365,56 @@ namespace BaroPortal.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(7998),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7966),
                             Name = "İcra Mahkemeleri",
                             TypeId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8014),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7983),
                             Name = "Sulh Hukuk Mahkemeleri",
                             TypeId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7984),
                             Name = "Sulh Ceza/İnfaz Hakimlikleri",
                             TypeId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7985),
                             Name = "Asliye Mahkemeleri",
                             TypeId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8016),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7986),
                             Name = "Tüketici Mahkemeleri",
                             TypeId = 5
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8039),
                             Name = "Fikri ve Sınai Haklar Mahkemeleri",
                             TypeId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8040),
                             Name = "İdare ve Vergi Mahkemeleri-Duruşmalı",
                             TypeId = 7
                         },
                         new
                         {
                             Id = 8,
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8020),
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8041),
                             Name = "İdare ve Vergi Mahkemeleri-Duruşmasız",
                             TypeId = 8
                         });
@@ -559,35 +610,35 @@ namespace BaroPortal.DataAccess.Migrations
                             Id = 1,
                             AnswerId = 1,
                             AnswerName = "Strongly Disagree",
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4728)
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2880)
                         },
                         new
                         {
                             Id = 2,
                             AnswerId = 2,
                             AnswerName = "Disagree",
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4742)
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2895)
                         },
                         new
                         {
                             Id = 3,
                             AnswerId = 3,
                             AnswerName = "Neutral",
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4743)
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2896)
                         },
                         new
                         {
                             Id = 4,
                             AnswerId = 4,
                             AnswerName = "Agree",
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4744)
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2896)
                         },
                         new
                         {
                             Id = 5,
                             AnswerId = 5,
                             AnswerName = "Strongly Agree",
-                            CreateDate = new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4745)
+                            CreateDate = new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2897)
                         });
                 });
 
@@ -645,8 +696,16 @@ namespace BaroPortal.DataAccess.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("QuestionDetail")
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("QuestionId")
                         .HasColumnType("int");
+
+                    b.Property<string>("QuestionTitle")
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SurveyId")
                         .HasColumnType("int");

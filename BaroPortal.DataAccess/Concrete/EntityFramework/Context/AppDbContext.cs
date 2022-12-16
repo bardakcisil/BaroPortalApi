@@ -49,7 +49,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
      //      optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baro_portal;Trusted_Connection=True;");// isil
-       optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortalDb;Trusted_Connection=True;");// Hussain
+       optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=baro_portal;Trusted_Connection=True;");// Hussain
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -117,7 +117,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<AdvType>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<AdvType>().Property(x => x.TypeId).IsRequired();
             modelBuilder.Entity<AdvType>().Property(x => x.Name).IsRequired();
-           // modelBuilder.Entity<AdvType>().HasData(AdvTypeSeed.advertType);
+            modelBuilder.Entity<AdvType>().HasData(AdvTypeSeed.advertType);
 
           modelBuilder.Entity<BarSearch>().ToTable("BarSearch");
             modelBuilder.Entity<BarSearch>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
@@ -178,7 +178,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<Answers>().ToTable("Answers");
             modelBuilder.Entity<Answers>().HasMany<Questions>(x => x.Question).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
-          //  modelBuilder.Entity<Answers>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
+           modelBuilder.Entity<Answers>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Answer).HasForeignKey(y => y.AnswerId);
             modelBuilder.Entity<Answers>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Answers>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Answers>().Property(x => x.AnswerId).HasMaxLength(100);
@@ -186,7 +186,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<Answers>().HasData(AnswersSeed.answer);
 
             modelBuilder.Entity<Questions>().ToTable("Questions");
-            //modelBuilder.Entity<Questions>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Question).HasForeignKey(y => y.QuestionId);
+            modelBuilder.Entity<Questions>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Question).HasForeignKey(y => y.QuestionId);
             modelBuilder.Entity<Questions>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Questions>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Questions>().Property(x => x.QuestionId).HasMaxLength(100);
@@ -195,7 +195,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<Surveys>().ToTable("Surveys");
             modelBuilder.Entity<Surveys>().HasMany<Questions>(x => x.Question).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
-           // modelBuilder.Entity<Surveys>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
+            modelBuilder.Entity<Surveys>().HasMany<SurveyOps>(x => x.SurveyOp).WithOne(y => y.Survey).HasForeignKey(y => y.SurveyId);
             modelBuilder.Entity<Surveys>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
             modelBuilder.Entity<Surveys>().Property(x => x.CreateDate).IsRequired();
             modelBuilder.Entity<Surveys>().Property(x => x.SurveyId).HasMaxLength(100);
