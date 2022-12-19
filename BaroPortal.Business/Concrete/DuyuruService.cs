@@ -4,6 +4,7 @@ using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Announcements;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -88,23 +89,31 @@ namespace BaroPortal.Business.Concrete
             }
         }
 
- 
 
-        ListResultDto<GetDto> IDuyuruService.GetList()
+        public FileStream SaveByteArrayToFileWithFileStream(byte[] data, string filePath)
         {
-            ListResultDto<GetDto> response = new ListResultDto<GetDto>();
+            using var stream = File.Create(filePath);
+            stream.Write(data, 0, data.Length);
+            return stream;
+        }
+        ListResultDto<GetPdfDto> IDuyuruService.GetList()
+        {
+            ListResultDto<GetPdfDto> response = new ListResultDto<GetPdfDto>();
             var result = _duyuruDal.GetAll();
-            var data = new List<GetDto>();
+            var data = new List<GetPdfDto>();
 
             foreach (var item in result)
             {
 
 
-                GetDto dto = new GetDto();
-                dto.Title = item.Title;
-                dto.Detail = item.Detail;
-                dto.ListImage = item.ListImage;
-                dto.DetailImage = item.DetailImage;
+                GetPdfDto dto = new GetPdfDto();
+               
+                dto.PdfFile = item.PdfFile;
+                dto.FilePath=item.FilePath;
+                dto.FileName = item.FileName;
+                dto.FileSize = item.FileSize;
+                //dto.Pdf = SaveByteArrayToFileWithFileStream(dto.PdfFile, dto.FilePath);
+
 
 
 

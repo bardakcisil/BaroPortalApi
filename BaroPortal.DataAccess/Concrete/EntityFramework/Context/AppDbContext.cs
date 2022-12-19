@@ -37,7 +37,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Uygulamalarimiz>? Uygulamalarimiz { get; set; }
 
   
-
+        public DbSet<Education>? Education { get; set; }
         public DbSet<Answers>? Answers { get; set; }
         public DbSet<Questions>? Questions { get; set; }
         public DbSet<Surveys>? Surveys { get; set; }
@@ -215,6 +215,16 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<SurveyOps>().Property(x => x.QuestionTitle).HasMaxLength(10000);
             modelBuilder.Entity<SurveyOps>().Property(x => x.QuestionDetail).HasMaxLength(10000);
 
+
+            modelBuilder.Entity<Education>().ToTable("Educations");
+            modelBuilder.Entity<Education>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+            modelBuilder.Entity<Education>().Property(x => x.CreateDate).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.Title).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.PdfFile).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.FileName).IsRequired();
+            modelBuilder.Entity<Education>().Property(x => x.FileExtension);
+            modelBuilder.Entity<Education>().Property(x => x.FilePath);
+            modelBuilder.Entity<Education>().Property(x => x.FileSize);
 
 
 

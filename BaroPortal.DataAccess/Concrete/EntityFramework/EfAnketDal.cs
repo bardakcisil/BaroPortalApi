@@ -25,8 +25,8 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework
         {
             using (AppDbContext context = new AppDbContext())
             {
-                var deletedAd = context.Entry(result);
-                deletedAd.State = EntityState.Deleted;
+                var delete = context.Entry(result);
+                delete.State = EntityState.Deleted;
                 context.SaveChanges();
                 return true;
 

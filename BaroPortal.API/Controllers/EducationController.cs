@@ -11,6 +11,7 @@ namespace BaroPortal.API.Controllers
     public class EducationController : ControllerBase
     {
         private IEducationService _educationService;
+    
 
         public EducationController(IEducationService educationService)
         {
@@ -27,6 +28,33 @@ namespace BaroPortal.API.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("{id}")]
+        public  ActionResult GetPdf(int id)
+        {
+
+            var result = _educationService.GetPdf(id);
+
+
+            byte[] bytes = result.PdfFile;
+            string path = result.FilePath;
+
+
+            if (result is not null)
+            {
+                var stream = new FileStream(path, FileMode.Open);
+                return new FileStreamResult(stream, "application/pdf");
+            }
+            return BadRequest(result);
+        }
+        //[HttpGet("GetList")]
+        //public Task<ActionResult> DownloadFile()
+        //{
+
+        //    var result = _educationService.GetPdf();
+
+
+
+        //}
 
         [HttpPost("addFile")]
         public ActionResult Add([FromForm] AddEducationDto addEducations)

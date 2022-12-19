@@ -1,6 +1,7 @@
 ﻿using BaroPortal.Core.Result;
 using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Announcements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BaroPortal.Business.Abstract
     public interface IDuyuruService
     {
         bool Add(UploadDto addDuyuru);
-        ListResultDto<GetDto> GetList();
+        ListResultDto<GetPdfDto> GetList();
         IDataResult<ResultDto> DeleteAd(int id);
   
 

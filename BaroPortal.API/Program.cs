@@ -3,10 +3,11 @@ using BaroPortal.Business.Concrete;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +50,7 @@ builder.Services.AddSingleton<IBarSearchDal, EfBarSearchDal>();
 builder.Services.AddSingleton<IBarSearchService, BarSearchService>();
 
 builder.Services.AddSingleton<IContactUsTopicDal, EfContactUsTopicDal>();
-builder.Services.AddSingleton< IContactUsTopicService,ContactUsTopicService>();
+builder.Services.AddSingleton<IContactUsTopicService, ContactUsTopicService>();
 
 builder.Services.AddSingleton<IContactUsDal, EfContactUsDal>();
 builder.Services.AddSingleton<IContactUsService, ContactUsService>();
@@ -68,6 +69,8 @@ builder.Services.AddSingleton<ICalculationService, CalculationService>();
 
 builder.Services.AddSingleton<ISurveyOpsDal, EfSurveyOpsDal>();
 builder.Services.AddSingleton<ISurveyOpsService, SurveyOpsService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
 

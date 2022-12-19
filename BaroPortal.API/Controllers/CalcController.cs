@@ -1,11 +1,10 @@
 ﻿using BaroPortal.Business.Abstract;
-using BaroPortal.Entities.Dto;
 using BaroPortal.Entities.Dto.Calculation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaroPortal.API.Controllers
 {
-     [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CalcController : ControllerBase
     {
@@ -49,11 +48,9 @@ namespace BaroPortal.API.Controllers
         {
 
             var result = _calculationService.ReceiptCalculate(calculationDto);
-            if (result is not null)
-            {
+          
                 return Ok(result);
-            }
-            return BadRequest(result);
+           
         }
 
 
@@ -62,11 +59,9 @@ namespace BaroPortal.API.Controllers
         {
 
             var result = _calculationService.LevyInterestCalculate(calculationDto);
-            if (result is not null)
-            {
+            
                 return Ok(result);
-            }
-            return BadRequest(result);
+            
         }
     }
 }

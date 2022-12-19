@@ -14,6 +14,7 @@ namespace BaroPortal.Business.Abstract
         ResponseCalculationDto AttorneyFeeCalculate(CalculationDto calcDto);
         SMMHResultDto ReceiptCalculate(SMMH calcDto);
         ResponseCalculationDto LevyInterestCalculate(IFH calcDto);
+       
         //ResponseCalculationDto LevyMortarCalculate(IHH calcDto);
     }
 }

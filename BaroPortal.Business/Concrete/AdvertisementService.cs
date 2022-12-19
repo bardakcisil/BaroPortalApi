@@ -83,16 +83,16 @@ namespace BaroPortal.Business.Concrete
                 if (result is true)
                 {
 
-                    return new SuccessDataResult<ResultDto>("İlan Silindi");
+                    return new SuccessDataResult<ResultDto>("Silindi");
                 }
                 else
                 {
-                    return new ErrorDataResult<ResultDto>("İlan Silinemedi");
+                    return new ErrorDataResult<ResultDto>("Silinemedi");
                 }
             }
             else
             {
-                return new ErrorDataResult<ResultDto>("İlan Silinemedi");
+                return new ErrorDataResult<ResultDto>("Silinemedi");
             }
 
 
