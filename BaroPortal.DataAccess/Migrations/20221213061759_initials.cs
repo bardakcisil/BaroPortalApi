@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaroPortal.DataAccess.Migrations
 {
-    public partial class surveyops : Migration
+    public partial class initials : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -333,6 +333,8 @@ namespace BaroPortal.DataAccess.Migrations
                     SurveyId = table.Column<int>(type: "int", nullable: true),
                     QuestionId = table.Column<int>(type: "int", nullable: true),
                     AnswerId = table.Column<int>(type: "int", nullable: true),
+                    QuestionTitle = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
+                    QuestionDetail = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -356,15 +358,29 @@ namespace BaroPortal.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AdvertTypes",
+                columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9017), "İş Arıyorum", 1 },
+                    { 2, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9037), "Avukat Arıyorum", 2 },
+                    { 3, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9038), "Katip/Sekreter Arıyorum", 3 },
+                    { 4, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9039), "Staj Yeri Arıyorum", 4 },
+                    { 5, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9040), "Ortak Arıyorum", 5 },
+                    { 6, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9044), "Stajyer Av. Arıyorum", 6 },
+                    { 7, new DateTime(2022, 12, 13, 9, 17, 59, 394, DateTimeKind.Local).AddTicks(9044), "Diğer", 7 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Answers",
                 columns: new[] { "Id", "AnswerId", "AnswerName", "CreateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Strongly Disagree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4728) },
-                    { 2, 2, "Disagree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4742) },
-                    { 3, 3, "Neutral", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4743) },
-                    { 4, 4, "Agree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4744) },
-                    { 5, 5, "Strongly Agree", new DateTime(2022, 12, 11, 21, 13, 33, 228, DateTimeKind.Local).AddTicks(4745) }
+                    { 1, 1, "Strongly Disagree", new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2880) },
+                    { 2, 2, "Disagree", new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2895) },
+                    { 3, 3, "Neutral", new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2896) },
+                    { 4, 4, "Agree", new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2896) },
+                    { 5, 5, "Strongly Agree", new DateTime(2022, 12, 13, 9, 17, 59, 397, DateTimeKind.Local).AddTicks(2897) }
                 });
 
             migrationBuilder.InsertData(
@@ -372,9 +388,9 @@ namespace BaroPortal.DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "Name", "TopicId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 11, 21, 13, 33, 223, DateTimeKind.Local).AddTicks(4726), "Öneri", 1 },
-                    { 2, new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4059), "Bilgi", 2 },
-                    { 3, new DateTime(2022, 12, 11, 21, 13, 33, 224, DateTimeKind.Local).AddTicks(4068), "Şikayet", 3 }
+                    { 1, new DateTime(2022, 12, 13, 9, 17, 59, 390, DateTimeKind.Local).AddTicks(2210), "Öneri", 1 },
+                    { 2, new DateTime(2022, 12, 13, 9, 17, 59, 392, DateTimeKind.Local).AddTicks(462), "Bilgi", 2 },
+                    { 3, new DateTime(2022, 12, 13, 9, 17, 59, 392, DateTimeKind.Local).AddTicks(475), "Şikayet", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -382,14 +398,14 @@ namespace BaroPortal.DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "Name", "TypeId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(7998), "İcra Mahkemeleri", 1 },
-                    { 2, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8014), "Sulh Hukuk Mahkemeleri", 2 },
-                    { 3, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015), "Sulh Ceza/İnfaz Hakimlikleri", 3 },
-                    { 4, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8015), "Asliye Mahkemeleri", 4 },
-                    { 5, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8016), "Tüketici Mahkemeleri", 5 },
-                    { 6, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019), "Fikri ve Sınai Haklar Mahkemeleri", 6 },
-                    { 7, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8019), "İdare ve Vergi Mahkemeleri-Duruşmalı", 7 },
-                    { 8, new DateTime(2022, 12, 11, 21, 13, 33, 229, DateTimeKind.Local).AddTicks(8020), "İdare ve Vergi Mahkemeleri-Duruşmasız", 8 }
+                    { 1, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7966), "İcra Mahkemeleri", 1 },
+                    { 2, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7983), "Sulh Hukuk Mahkemeleri", 2 },
+                    { 3, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7984), "Sulh Ceza/İnfaz Hakimlikleri", 3 },
+                    { 4, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7985), "Asliye Mahkemeleri", 4 },
+                    { 5, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(7986), "Tüketici Mahkemeleri", 5 },
+                    { 6, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8039), "Fikri ve Sınai Haklar Mahkemeleri", 6 },
+                    { 7, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8040), "İdare ve Vergi Mahkemeleri-Duruşmalı", 7 },
+                    { 8, new DateTime(2022, 12, 13, 9, 17, 59, 398, DateTimeKind.Local).AddTicks(8041), "İdare ve Vergi Mahkemeleri-Duruşmasız", 8 }
                 });
 
             migrationBuilder.CreateIndex(

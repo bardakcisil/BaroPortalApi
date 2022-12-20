@@ -530,6 +530,7 @@ namespace BaroPortal.Business.Concrete
             ResponseCalculationDto response = new ResponseCalculationDto();
             TimeSpan timespan = (TimeSpan)(calcDto.End - calcDto.Start);
             double totDay = timespan.TotalDays; 
+
             if (calcDto.TotDay == "360")
             {
                 response.total = calcDto.Amount + (totDay / 360) * calcDto.Amount * calcDto.InterestPercent/100;

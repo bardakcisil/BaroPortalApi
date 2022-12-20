@@ -16,7 +16,8 @@ namespace BaroPortal.Business.Abstract
 
         ResultDto AddAdvertisement(AddAdvertisementDto addAdvert);
         ListResultDto<GetAdvertisementListDto> GetByTypeId(int id);
-        IDataResult<ResultDto> DeleteAd(int id);
+       // IDataResult<ResultDto> DeleteAd(int id);
+       ResultDto DeleteAd(int id);
       
     }
 }

@@ -46,7 +46,7 @@ namespace BaroPortal.API.Controllers
         public IActionResult Delete(int id)
         {
             var result = _advertService.DeleteAd(id);
-            if (result.Success)
+            if (result is not null)
             {
                 return Ok(result);
             }

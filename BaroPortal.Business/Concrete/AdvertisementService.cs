@@ -71,7 +71,9 @@ namespace BaroPortal.Business.Concrete
 
             
         }
-        public IDataResult<ResultDto> DeleteAd(int id)
+      
+        
+        /*public IDataResult<ResultDto> DeleteAd(int id)
         {
             
 
@@ -101,9 +103,9 @@ namespace BaroPortal.Business.Concrete
 
 
         }
+        */
 
-
-        /* public ResultDto DeleteAd(int id)
+         public ResultDto DeleteAd(int id)
          {
          ResultDto response = new ResultDto();
 
@@ -114,24 +116,24 @@ namespace BaroPortal.Business.Concrete
              var result =  _advertDal.Delete(deleteById); 
              if (result)
              {
-                 response.HasError = true;
+                 response.HasError = false;
                  response.Message = "İlan Silindi";
                  return response;
              }
              else {
-                 response.HasError = false;
+                 response.HasError = true;
                  response.Message = "İlan Silinemedi";
                  return response; 
              } }
          else
          {
-             response.HasError = false;
+             response.HasError = true;
              response.Message = "İlan Silinemedi";
              return response;
          }
 
-
-     }*/
+            return response;
+     }
 
         public ResultDto AddAdvertisement(AddAdvertisementDto addAdvert)
         {
@@ -182,7 +184,7 @@ namespace BaroPortal.Business.Concrete
                     return response;
                 }
                 else
-                    response.HasError = true;
+                 response.HasError = true;
                 response.Message = "Wrong";
                 return response;
 
