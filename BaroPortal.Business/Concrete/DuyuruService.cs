@@ -5,6 +5,8 @@ using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete.Duyurular;
 using BaroPortal.Entities.Dto;
 using BaroPortal.Entities.Dto.Announcements;
+using BaroPortal.Entities.Dto.Educations;
+using BaroPortal.Entities.Dto.ListDto;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

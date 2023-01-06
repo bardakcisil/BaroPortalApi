@@ -1,4 +1,4 @@
-﻿using BaroPortal.Entities.Concrete;
+﻿using BaroPortal.Entities.Concrete.Educations;
 using BaroPortal.Entities.Dto;
 using System;
 using System.Collections.Generic;

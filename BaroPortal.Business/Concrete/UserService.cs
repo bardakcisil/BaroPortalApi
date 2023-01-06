@@ -1,7 +1,7 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.DataAccess.Abstract;
-using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Concrete.Login;
+using BaroPortal.Entities.Dto.Login;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;

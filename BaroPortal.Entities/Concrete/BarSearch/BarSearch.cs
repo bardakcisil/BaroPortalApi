@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete
+namespace BaroPortal.Entities.Concrete.Barsearch
 {
     public class BarSearch : BaseEntity
     {
         public int? TypeId { get; set; }
-        public string? Name { get; set; } 
+        public string? Name { get; set; }
         public string? Surname { get; set; }
-        public int? BaroNumber { get; set; } 
+        public int? BaroNumber { get; set; }
 
     }
 }

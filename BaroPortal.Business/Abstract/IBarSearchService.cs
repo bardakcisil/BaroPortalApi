@@ -1,6 +1,6 @@
 ﻿
 using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.BarSearch;
 using System;
 using System.Collections.Generic;
 using System.Linq;

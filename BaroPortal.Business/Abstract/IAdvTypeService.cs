@@ -1,7 +1,7 @@
 ﻿using BaroPortal.Core.Result;
 using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
 using BaroPortal.Entities.Dto.Advertisement;
+using BaroPortal.Entities.Dto.ListDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

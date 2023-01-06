@@ -1,14 +1,16 @@
-﻿using System;
+﻿using BaroPortal.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Dto
+namespace BaroPortal.Entities.Concrete.Duyurular
 {
-    public class Download
+    public class Duyurular: ListEntity
     {
-        public byte[] PdfFile { get; set; } = null!;//static void SaveByteArrayToFileWithStaticMethod(byte[] data, string filePath)=> File.WriteAllBytes(filePath, data);
+
+        public byte[] PdfFile { get; set; } = null!;
         public string FilePath { get; set; } = null!;
         public string FileName { get; set; } = null!;
         public string FileExtension { get; set; } = null!;

@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Dto
+namespace BaroPortal.Entities.Dto.BarSearch
 {
-    public class ResponseCalculationDto
+    public class LawyerResponseDto
     {
-
-        public double? total { get; set; } = null!;
         public bool HasError { get; set; }
-        public string Message { get; set; } = null!;
 
 
+        public List<GetBarSearchListDto> Data { get; set; }
     }
 }

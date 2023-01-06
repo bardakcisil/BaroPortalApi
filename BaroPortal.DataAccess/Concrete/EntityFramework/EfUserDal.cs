@@ -1,6 +1,6 @@
 ﻿using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;

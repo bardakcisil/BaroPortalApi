@@ -1,7 +1,9 @@
-﻿using BaroPortal.Business.Abstract;
+﻿
+using BaroPortal.Business.Abstract;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Concrete.Barsearch;
+using BaroPortal.Entities.Dto.BarSearch;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

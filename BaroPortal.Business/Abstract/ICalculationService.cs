@@ -1,5 +1,4 @@
-﻿using BaroPortal.Entities.Dto;
-using BaroPortal.Entities.Dto.Calculation;
+﻿using BaroPortal.Entities.Dto.Calculation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

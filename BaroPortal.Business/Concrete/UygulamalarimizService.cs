@@ -4,6 +4,7 @@ using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete.Uygulamalarımız;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ListDto;
 using BaroPortal.Entities.Dto.OtherApps;
 using Microsoft.Extensions.Configuration;
 using System;

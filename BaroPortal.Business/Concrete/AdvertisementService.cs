@@ -7,6 +7,7 @@ using BaroPortal.Entities.Concrete;
 using BaroPortal.Entities.Concrete.Advertisement;
 using BaroPortal.Entities.Dto;
 using BaroPortal.Entities.Dto.Advertisement;
+using BaroPortal.Entities.Dto.ListDto;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -170,7 +171,7 @@ namespace BaroPortal.Business.Concrete
                 message.From = new MailAddress("baroportal@yandex.com");
                 message.To.Add(addAdvert.AdvertiserEmail);
                 message.Subject = "Baro İlanı Hakkında"; 
-                message.Body = "Sayın "+ addAdvert.Advertiser + "oluşturmuş olduğunuz " + addAdvert.Title + "içerikli ilanın ilan numarası: " + AdvertNumber + " dır. İlanınızı bu numara ile kaldırabilirsiniz.";
+                message.Body = "Sayın "+ addAdvert.Advertiser + " oluşturmuş olduğunuz " + addAdvert.Title + " içerikli ilanın ilan numarası: " + AdvertNumber + " dır. İlanınızı bu numara ile kaldırabilirsiniz.";
                 client.UseDefaultCredentials = false;
                 client.EnableSsl = true; // Encryption
                 client.Credentials = new System.Net.NetworkCredential("baroportal@yandex.com", "nntdrirfvaajoynl");

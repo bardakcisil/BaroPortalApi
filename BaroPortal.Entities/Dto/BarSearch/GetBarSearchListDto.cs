@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Dto
+namespace BaroPortal.Entities.Dto.BarSearch
 {
     public class GetBarSearchListDto
     {
@@ -12,6 +12,6 @@ namespace BaroPortal.Entities.Dto
         public string? Surname { get; set; } = null!;
         public int? title { get; set; } = null!;
         public int? BarNumber { get; set; } = null!;
-      
+
     }
 }

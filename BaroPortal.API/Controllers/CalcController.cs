@@ -1,4 +1,5 @@
-﻿using BaroPortal.Business.Abstract;
+﻿
+using BaroPortal.Business.Abstract;
 using BaroPortal.Entities.Dto.Calculation;
 using Microsoft.AspNetCore.Mvc;
 

@@ -4,6 +4,7 @@ using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
 using BaroPortal.Entities.Concrete.Surveys;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ListDto;
 using BaroPortal.Entities.Dto.Survey;
 using Microsoft.Extensions.Configuration;
 using System;

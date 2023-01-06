@@ -1,5 +1,6 @@
 ﻿using BaroPortal.Core.Result;
 using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ListDto;
 using BaroPortal.Entities.Dto.Survey;
 
 namespace BaroPortal.Business.Abstract

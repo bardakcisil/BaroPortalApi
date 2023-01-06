@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Dto
+namespace BaroPortal.Entities.Dto.ListDto
 {
     public class ListResultDto<T>
     {

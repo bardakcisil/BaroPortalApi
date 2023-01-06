@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BaroPortal.Entities.Dto.Educations
 {
-    public class FileDto
+    public class GetListDto
     {
-        public string FileBytes { get; set; }
-        public string FileExtension { get; set; }
-        public string FilePath { get; set; }
+        public string Title { get; set; }
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;

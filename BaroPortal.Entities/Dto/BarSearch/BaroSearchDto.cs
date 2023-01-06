@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Dto
+namespace BaroPortal.Entities.Dto.BarSearch
 {
-   public class BaroSearchDto
+    public class BaroSearchDto
     {
         public int? TypeId { get; set; }
         public int? BaroNumber { get; set; }

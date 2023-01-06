@@ -1,8 +1,8 @@
 ﻿using BaroPortal.Business.Abstract;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.Educations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static BaroPortal.Entities.Dto.AddEducationDto;
+using static BaroPortal.Entities.Dto.Educations.AddEducationDto;
 
 namespace BaroPortal.API.Controllers
 {
@@ -21,7 +21,7 @@ namespace BaroPortal.API.Controllers
         public ActionResult ShowEducation()
         {
 
-            var result = _educationService.ShowList();
+            var result = _educationService.GetList();
             if (result is not null)
             {
                 return Ok(result);
@@ -29,32 +29,36 @@ namespace BaroPortal.API.Controllers
             return BadRequest(result);
         }
         [HttpGet("{id}")]
-        public  ActionResult GetPdf(int id)
+        public  IActionResult GetPdf(int id)
         {
 
             var result = _educationService.GetPdf(id);
 
 
-            byte[] bytes = result.PdfFile;
-            string path = result.FilePath;
-
+            //string file = Convert.ToBase64String(result.PdfFile);
+            //byte[] bytes = Convert.FromBase64String(file);
+            //MemoryStream streamx = new MemoryStream(bytes);
+            
 
             if (result is not null)
             {
-                var stream = new FileStream(path, FileMode.Open);
-                return new FileStreamResult(stream, "application/pdf");
+                var stream = new FileStream(result.FilePath, FileMode.Open, FileAccess.Read);
+                return File(stream, "application/pdf", result.FileName);
+
+                //return Ok(result);
             }
             return BadRequest(result);
         }
-        //[HttpGet("GetList")]
-        //public Task<ActionResult> DownloadFile()
-        //{
-
-        //    var result = _educationService.GetPdf();
-
-
-
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _educationService.Delete(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("addFile")]
         public ActionResult Add([FromForm] AddEducationDto addEducations)

@@ -1,11 +1,14 @@
-﻿using BaroPortal.Entities.Concrete;
-using BaroPortal.Entities.Concrete.Advertisement;
+﻿using BaroPortal.Entities.Concrete.Advertisement;
+using BaroPortal.Entities.Concrete.Barsearch;
 using BaroPortal.Entities.Concrete.Bildirimler;
+using BaroPortal.Entities.Concrete.Calculations;
 using BaroPortal.Entities.Concrete.ContactUs;
 using BaroPortal.Entities.Concrete.DigerUygulamalar;
 using BaroPortal.Entities.Concrete.Duyurular;
+using BaroPortal.Entities.Concrete.Educations;
 using BaroPortal.Entities.Concrete.Etkinlikler;
 using BaroPortal.Entities.Concrete.Haberler;
+using BaroPortal.Entities.Concrete.Login;
 using BaroPortal.Entities.Concrete.Surveys;
 using BaroPortal.Entities.Concrete.Uygulamalarımız;
 using BaroPortal.Entities.Seeds;
@@ -23,7 +26,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
         public DbSet<User>? Users { get; set; }
         public DbSet<ContactUs>? ContactUs { get; set; }
         public DbSet<ContactUsTopic>? ContactUsTopics { get; set; }
-        public DbSet<Announcement>? Announcements { get; set; }
+        
       public DbSet<BarSearch>? BarSearch { get; set; }
         public DbSet<Education>? Educations { get; set; }
         public DbSet<Advertisement>? Advertisements { get; set; }
@@ -48,8 +51,8 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-     //      optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baro_portal;Trusted_Connection=True;");// isil
-       optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=baro_portal;Trusted_Connection=True;");// Hussain
+          optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=baro_portal;Trusted_Connection=True;");// isil
+       //optionsBuilder.UseSqlServer(@"Server=DESKTOP-I2583PH\SQLEXPRESS;Database=BaroPortalDb;Trusted_Connection=True;");// Hussain
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -81,12 +84,7 @@ namespace BaroPortal.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.Entity<ContactUsTopic>().HasData(ContactUsTopicSeed.advertType);
 
 
-            modelBuilder.Entity<Announcement>().ToTable("Announcements");
-            modelBuilder.Entity<Announcement>().Property(x => x.Id).UseIdentityColumn().ValueGeneratedOnAdd();
-            modelBuilder.Entity<Announcement>().Property(x => x.CreateDate).IsRequired();
-            modelBuilder.Entity<Announcement>().Property(x => x.ImageData).HasColumnType("image");
-            modelBuilder.Entity<Announcement>().Property(x => x.Title).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Announcement>().Property(x => x.Detail).HasMaxLength(10000).IsRequired();
+            
 
 
             modelBuilder.Entity<Education>().ToTable("Educations");

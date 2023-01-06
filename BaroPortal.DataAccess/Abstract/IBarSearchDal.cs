@@ -1,4 +1,4 @@
-﻿using BaroPortal.Entities.Concrete;
+﻿using BaroPortal.Entities.Concrete.Barsearch;
 using System;
 using System.Collections.Generic;
 using System.Linq;

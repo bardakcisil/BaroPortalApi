@@ -1,6 +1,6 @@
 ﻿using BaroPortal.Business.Abstract;
 using BaroPortal.DataAccess.Abstract;
-using BaroPortal.Entities.Dto;
+using BaroPortal.Entities.Dto.ListDto;
 using BaroPortal.Entities.Dto.Survey;
 using Microsoft.Extensions.Configuration;
 

@@ -1,6 +1,6 @@
 ﻿using BaroPortal.DataAccess.Abstract;
 using BaroPortal.DataAccess.Concrete.EntityFramework.Context;
-using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.Educations;
 using BaroPortal.Entities.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -2,9 +2,11 @@
 using BaroPortal.Core.Entities;
 using BaroPortal.Core.Result;
 using BaroPortal.DataAccess.Abstract;
-using BaroPortal.Entities.Concrete;
+using BaroPortal.Entities.Concrete.Educations;
 using BaroPortal.Entities.Dto;
 using BaroPortal.Entities.Dto.Announcements;
+using BaroPortal.Entities.Dto.Educations;
+using BaroPortal.Entities.Dto.ListDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.StaticFiles;
@@ -14,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BaroPortal.Entities.Dto.AddEducationDto;
+using static BaroPortal.Entities.Dto.Educations.AddEducationDto;
 
 namespace BaroPortal.Business.Concrete
 {
@@ -82,14 +84,9 @@ namespace BaroPortal.Business.Concrete
             foreach (var item in result)
             {
                 GetTitle dto = new GetTitle();
+                dto.Id = item.Id;
                 dto.Title = item.Title;
-                //dto.PdfFile = item.PdfFile;
-                //dto.FilePath = item.FilePath;
-                //dto.FileName = item.FileName;
-                //dto.FileSize = item.FileSize;   
-                //dto.FileExtension = item.FileExtension;
-                //String file = Convert.ToBase64String(dto.PdfFile);
-                //dto.Pdf = Base64ToImage(file);
+
 
                 data.Add(dto);
             }
@@ -110,20 +107,20 @@ namespace BaroPortal.Business.Concrete
             }
         }
 
-        public List<Education> ShowList()
+        public List<Education> ShowDetail()
         {
             var education = _educationDal.GetDetail();
             return education;
         }
-        public  IFormFile Base64ToImage(string base64String) 
-        {
-            FormFile formFile;
-            byte[] bytes = Convert.FromBase64String(base64String);
-            MemoryStream stream = new MemoryStream(bytes);
-            formFile = new FormFile(stream, 0, bytes.Length, "", "");
+        //public  IFormFile Base64ToImage(string base64String) 
+        //{
+        //    FormFile formFile;
+        //    byte[] bytes = Convert.FromBase64String(base64String);
+        //    MemoryStream stream = new MemoryStream(bytes);
+        //    formFile = new FormFile(stream, 0, bytes.Length, "", "");
 
-            return formFile;
-        }
+        //    return formFile;
+        //}
 
 
         public GetPdfDto GetPdf(int id)
@@ -146,10 +143,7 @@ namespace BaroPortal.Business.Concrete
                 // response.Pdf = Base64ToImage(file);
 
                 string file = Convert.ToBase64String(result.PdfFile);
-                byte[] sPDFDecoded = Convert.FromBase64String(file);
-                response.PdfFile = sPDFDecoded;
-                
-                // File.WriteAllBytes(result.FilePath, response.PdfFile); 
+
 
 
 
@@ -157,7 +151,7 @@ namespace BaroPortal.Business.Concrete
                 response.Message = "Başarılı";
                 return response;
 
-               // return new SuccessDataResult<GetPdfDto>(File.WriteAllBytes(result.FilePath, sPDFDecoded));
+           
                 
                
 
@@ -174,51 +168,28 @@ namespace BaroPortal.Business.Concrete
 
            
 
-        } 
+        }
 
-        //public ListResultDto<GetPdfDto> GetPdf()
-        //{
-        //    ListResultDto<GetPdfDto> getList = new ListResultDto<GetPdfDto>();
-        //    var result = _educationDal.GetAll();
-        //    var data = new List<GetPdfDto>();
-        //    foreach (var item in result)
-        //    {
-        //        GetPdfDto response = new GetPdfDto();
+        public IDataResult<ResultDto> Delete(int id)
+        {
+            var deleteById = _educationDal.Get(p => p.Id == id);
+            if (deleteById != null)
+            {
+                var result = _educationDal.Delete(deleteById);
+                if (result is true)
+                {
 
-        //        Download dto = new Download();
-        //        response.PdfFile = dto.PdfFile;
-        //        response.FilePath = dto.FilePath;
-        //        response.FileName = dto.FileName;
-        //        response.FileExtension = dto.FileExtension;
-        //        response.FileSize = dto.FileSize;
-        //        String file = Convert.ToBase64String(dto.PdfFile);
-        //        response.Pdf = (FormFile?)Base64ToImage(file);
-
-        //        data.Add(response);
-        //    }
-
-        //    getList.Data = data;
-
-
-        //    if (data != null)
-        //    {
-        //        getList.HasError = false;
-        //        getList.Message = "True";
-        //        return getList;
-
-        //    }
-        //    else
-        //    {
-        //        getList.HasError = true;
-        //        getList.Message = "Wrong";
-        //        return getList;
-        //    } }
-
-
-
-
-
-
-   
+                    return new SuccessDataResult<ResultDto>(" Silindi");
+                }
+                else
+                {
+                    return new ErrorDataResult<ResultDto>("Silinemedi");
+                }
+            }
+            else
+            {
+                return new ErrorDataResult<ResultDto>(" Silinemedi");
+            }
+        }
     }
 }

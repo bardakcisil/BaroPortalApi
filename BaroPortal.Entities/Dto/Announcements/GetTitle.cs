@@ -8,6 +8,7 @@ namespace BaroPortal.Entities.Dto.Announcements
 {
     public  class GetTitle
     {
+        public int? Id { get; set; }    
         public String? Title { get; set; }
     }
 }

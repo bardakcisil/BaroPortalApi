@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaroPortal.Entities.Concrete
+namespace BaroPortal.Entities.Concrete.Calculations
 {
-    public class Court:BaseEntity
+    public class Court : BaseEntity
     {
         public int? TypeId { get; set; }
         public string? Name { get; set; } = null;
